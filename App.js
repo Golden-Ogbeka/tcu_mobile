@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {
   ImageBackground,
   View,
@@ -15,13 +16,13 @@ import WelcomePage from './components/WelcomePage';
 
 const App = () => {
   return (
-    <>
+    <NavigationContainer>
       <StatusBar hidden />
       <SafeAreaView style={styles.container}>
         <WelcomePage />
         <NavLayout />
       </SafeAreaView>
-    </>
+    </NavigationContainer>
   );
 };
 
