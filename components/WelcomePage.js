@@ -15,7 +15,11 @@ export default function WelcomePage() {
           justifyContent: 'center',
         }}>
         <Button title="Login" color="red" />
-        <Button title="Register" color="gold" />
+        <Button
+          title="Register"
+          color="gold"
+          onPress={() => console.log('Button Clicked')}
+        />
       </View>
     </View>
   );
