@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
 
-export default function WelcomePage() {
+export default function WelcomeScreen(props) {
   return (
     <View style={styles.logoContainer}>
       <Image
@@ -14,11 +14,15 @@ export default function WelcomePage() {
           flexDirection: 'row',
           justifyContent: 'center',
         }}>
-        <Button title="Login" color="red" />
+        <Button
+          title="Login"
+          color="red"
+          onPress={() => props.navigation.navigate('UserLogin')}
+        />
         <Button
           title="Register"
           color="gold"
-          onPress={() => console.log('Button Clicked')}
+          onPress={() => props.navigation.navigate('UserRegister')}
         />
       </View>
     </View>
