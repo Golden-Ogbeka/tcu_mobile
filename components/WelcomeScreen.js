@@ -1,9 +1,10 @@
 import React from 'react';
 import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function WelcomeScreen(props) {
   return (
-    <View style={styles.logoContainer}>
+    <SafeAreaView style={styles.logoContainer}>
       <Image
         resizeMode="contain"
         source={require('../assets/logo/tcu.png')}
@@ -25,7 +26,7 @@ export default function WelcomeScreen(props) {
           onPress={() => props.navigation.navigate('UserRegister')}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
