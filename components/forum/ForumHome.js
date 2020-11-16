@@ -5,12 +5,14 @@ import ForumProfile from './ForumProfile';
 import NewTopic from './NewTopic';
 import ForumSections from './sections/ForumSections';
 import ForumSectionStack from './sections/ForumSectionStack';
+import TrendingTopics from './TrendingTopics';
 
 const Tab = createBottomTabNavigator();
 export default function ForumHome() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Sections" component={ForumSectionStack} />
+      <Tab.Screen name="Trending Topics" component={TrendingTopics} />
       <Tab.Screen name="New Topic" component={NewTopic} />
       <Tab.Screen name="Profile" component={ForumProfile} />
     </Tab.Navigator>

@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import {Button, Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function WelcomeScreen(props) {
@@ -14,16 +15,21 @@ export default function WelcomeScreen(props) {
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
+          alignItems: 'center',
         }}>
         <Button
           title="Login"
-          color="red"
-          onPress={() => props.navigation.navigate('UserLogin')}
+          icon={<Icon raised name="sign-in" type="font-awesome" color="#f50" />}
+          onPress={() => props.navigation.navigate('Login')}
+          type="clear"
+          titleStyle={{color: 'red', fontSize: 22}}
         />
         <Button
           title="Register"
-          color="gold"
-          onPress={() => props.navigation.navigate('UserRegister')}
+          icon={<Icon raised name="user" type="font-awesome" color="#f50" />}
+          onPress={() => props.navigation.navigate('Register')}
+          type="clear"
+          titleStyle={{color: 'red', fontSize: 22}}
         />
       </View>
     </SafeAreaView>

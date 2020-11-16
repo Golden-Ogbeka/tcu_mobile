@@ -1,10 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {PickerIOSBase, StyleSheet, Text, View} from 'react-native';
+import {Button, Input} from 'react-native-elements';
 
 export default function NewTopic() {
   return (
     <View>
-      <Text>NewTopic</Text>
+      <Text>Create new Topic</Text>
+      <Input label="Title" />
+      <Input label="Content" />
+      <Input label="Dropdown Section" />
+      <Button title="Create Topic" />
     </View>
   );
 }

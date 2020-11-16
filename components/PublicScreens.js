@@ -19,7 +19,7 @@ const PublicScreens = () => {
       <PublicScreensStack.Screen
         name="WelcomeScreen"
         component={WelcomeScreen}
-        options={{title: 'Home'}}
+        options={{title: 'The Chicken Universe'}}
       />
       <PublicScreensStack.Screen
         name="UserLogin"

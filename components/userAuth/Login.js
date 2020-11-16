@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 // const logo = {uri: 'https://picsum.photos/200'};
 const logo = require('../../assets/logo/tcu.png');
 
-export default function Login() {
+export default function Login({navigation}) {
   const [userDetails, setUserDetails] = useState({
     email: '',
     password: '',
@@ -22,7 +22,6 @@ export default function Login() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={{position: 'relative', top: 0, alignItems: 'center'}}>
-        <Text h1>User Login</Text>
         <Image
           // resizeMode="contain"
           source={logo}
@@ -51,10 +50,11 @@ export default function Login() {
       <Button
         title="LOGIN"
         raised
+        titleStyle={{fontSize: 18}}
         icon={
           <Icon
             name="sign-in"
-            size={15}
+            size={18}
             color="white"
             style={{paddingLeft: 10}}
           />
@@ -63,6 +63,11 @@ export default function Login() {
         buttonStyle={{backgroundColor: 'red', height: 50, width: 150}}
         onPress={() => submitDetails()}
       />
+      <Text
+        style={{fontSize: 18, marginTop: 20, color: 'grey'}}
+        onPress={() => navigation.navigate('Register')}>
+        Not registered? Login Here
+      </Text>
     </ScrollView>
   );
 }

@@ -38,14 +38,21 @@ const App = () => {
         <StatusBar />
         <NavigationContainer>
           {/* When not logged in */}
-          {/* <Drawer.Navigator>
-            <Drawer.Screen name="Home" component={PublicScreens} />
+          <Drawer.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: 'red',
+              },
+              headerTintColor: 'white',
+              headerTitleAlign: 'center',
+            }}>
+            <Drawer.Screen name="Home" component={WelcomeScreen} />
             <Drawer.Screen name="Login" component={Login} />
             <Drawer.Screen name="Register" component={Register} />
             <Drawer.Screen name="About" component={About} />
-          </Drawer.Navigator> */}
+          </Drawer.Navigator>
           {/* When Logged in */}
-          <Drawer.Navigator>
+          {/* <Drawer.Navigator>
             <Drawer.Screen name="Products" component={ProductsHome} />
             <Drawer.Screen name="Forum" component={ForumHome} />
             <Drawer.Screen name="Groups" component={GroupsTab} />
@@ -53,7 +60,7 @@ const App = () => {
             <Drawer.Screen name="Producer Mode" component={ProducerTab} />
             <Drawer.Screen name="Messages" component={Messages} />
             <Drawer.Screen name="About" component={About} />
-          </Drawer.Navigator>
+          </Drawer.Navigator> */}
         </NavigationContainer>
       </View>
     </SafeAreaProvider>

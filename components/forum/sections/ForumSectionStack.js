@@ -13,6 +13,7 @@ const Stack = createStackNavigator();
 export default function ForumSectionStack() {
   return (
     <View style={{flex: 1}}>
+      <Text>Forum Description</Text>
       <Stack.Navigator>
         <Stack.Screen name="Sections" component={ForumSections} />
         <Stack.Screen name="PoultryForum" component={PoultryForum} />
