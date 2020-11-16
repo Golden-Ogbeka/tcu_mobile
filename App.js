@@ -17,7 +17,6 @@ import NavLayout from './components/layout/NavLayout';
 import WelcomeScreen from './components/WelcomeScreen';
 import Login from './components/userAuth/Login';
 import Register from './components/userAuth/Register';
-import PublicScreens from './components/PublicScreens';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import ProductsHome from './components/products/ProductsHome';
 import ForumHome from './components/forum/ForumHome';
