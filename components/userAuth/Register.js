@@ -10,7 +10,7 @@ import {Button, CheckBox, Input, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-const logo = require('../../assets/logo/tcu.png');
+const logo = require('../../assets/images/logo/tcu.png');
 
 export default function Register({navigation}) {
   const [userDetails, setUserDetails] = useState({

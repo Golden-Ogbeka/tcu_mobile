@@ -9,7 +9,7 @@ import {
 import {Button, Input, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // const logo = {uri: 'https://picsum.photos/200'};
-const logo = require('../../assets/logo/tcu.png');
+const logo = require('../../assets/images/logo/tcu.png');
 
 export default function Login({navigation}) {
   const [userDetails, setUserDetails] = useState({

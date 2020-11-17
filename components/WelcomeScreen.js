@@ -8,7 +8,7 @@ export default function WelcomeScreen(props) {
     <SafeAreaView style={styles.logoContainer}>
       <Image
         resizeMode="contain"
-        source={require('../assets/logo/tcu.png')}
+        source={require('../assets/images/logo/tcu.png')}
         style={styles.logoImage}
       />
       <View

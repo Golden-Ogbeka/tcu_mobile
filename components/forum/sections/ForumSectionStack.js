@@ -13,15 +13,52 @@ const Stack = createStackNavigator();
 export default function ForumSectionStack() {
   return (
     <View style={{flex: 1}}>
-      <Text>Forum Description</Text>
-      <Stack.Navigator>
-        <Stack.Screen name="Sections" component={ForumSections} />
-        <Stack.Screen name="PoultryForum" component={PoultryForum} />
-        <Stack.Screen name="FoodForum" component={FoodForum} />
-        <Stack.Screen name="EquipmentForum" component={EquipmentForum} />
-        <Stack.Screen name="ContactForum" component={ContactForum} />
-        <Stack.Screen name="TrainingForum" component={TrainingForum} />
-        <Stack.Screen name="MedicationForum" component={MedicationForum} />
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#910000',
+          },
+          headerTitleStyle: {
+            fontSize: 30,
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: 'center',
+        }}>
+        <Stack.Screen
+          name="Sections"
+          component={ForumSections}
+          options={{title: 'Forum Sections'}}
+        />
+        <Stack.Screen
+          name="PoultryForum"
+          component={PoultryForum}
+          options={{title: 'Poultry Forum'}}
+        />
+        <Stack.Screen
+          name="FoodForum"
+          component={FoodForum}
+          options={{title: 'Food Forum'}}
+        />
+        <Stack.Screen
+          name="EquipmentForum"
+          component={EquipmentForum}
+          options={{title: 'Equipment Forum'}}
+        />
+        <Stack.Screen
+          name="ContactForum"
+          component={ContactForum}
+          options={{title: 'Contact Forum'}}
+        />
+        <Stack.Screen
+          name="TrainingForum"
+          component={TrainingForum}
+          options={{title: 'Training Forum'}}
+        />
+        <Stack.Screen
+          name="MedicationForum"
+          component={MedicationForum}
+          options={{title: 'Medication Forum'}}
+        />
       </Stack.Navigator>
     </View>
   );
