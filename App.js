@@ -25,6 +25,8 @@ import ProducerTab from './components/producer/ProducerTab';
 import GroupsTab from './components/groups/GroupsTab';
 import Messages from './components/user/Messages';
 import About from './components/About';
+import {Icon} from 'react-native-elements';
+import {color} from 'react-native-reanimated';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,14 +53,77 @@ const App = () => {
             <Drawer.Screen name="About" component={About} />
           </Drawer.Navigator> */}
           {/* When Logged in */}
-          <Drawer.Navigator>
-            <Drawer.Screen name="Products" component={ProductsHome} />
-            <Drawer.Screen name="Forum" component={ForumHome} />
-            <Drawer.Screen name="Groups" component={GroupsTab} />
-            <Drawer.Screen name="Profile" component={UserProfileTab} />
-            <Drawer.Screen name="Producer Mode" component={ProducerTab} />
-            <Drawer.Screen name="Messages" component={Messages} />
-            <Drawer.Screen name="About" component={About} />
+          <Drawer.Navigator
+            drawerContentOptions={{
+              activeBackgroundColor: '#910000',
+              activeTintColor: 'white',
+              inactiveTintColor: 'black',
+              style: {
+                borderRightWidth: 1,
+                borderColor: '#910000',
+              },
+              labelStyle: {
+                fontSize: 20,
+                fontWeight: 'bold',
+              },
+            }}>
+            <Drawer.Screen
+              name="Products"
+              component={ProductsHome}
+              options={{
+                drawerIcon: () => (
+                  <Icon name="box-open" type="font-awesome-5" color="#C0C0C0" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Forum"
+              component={ForumHome}
+              options={{
+                drawerIcon: () => (
+                  <Icon name="pen" type="font-awesome-5" color="#C0C0C0" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Groups"
+              component={GroupsTab}
+              options={{
+                drawerIcon: () => (
+                  <Icon name="group" type="font-awesome" color="#C0C0C0" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Profile"
+              component={UserProfileTab}
+              options={{
+                drawerIcon: () => (
+                  <Icon name="user" type="font-awesome-5" color="#C0C0C0" />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Producer Mode"
+              component={ProducerTab}
+              options={{
+                drawerIcon: () => <Icon name="attach-money" color="#C0C0C0" />,
+              }}
+            />
+            <Drawer.Screen
+              name="Messages"
+              component={Messages}
+              options={{
+                drawerIcon: () => <Icon name="message" color="#C0C0C0" />,
+              }}
+            />
+            <Drawer.Screen
+              name="About"
+              component={About}
+              options={{
+                drawerIcon: () => <Icon name="info" color="#C0C0C0" />,
+              }}
+            />
           </Drawer.Navigator>
         </NavigationContainer>
       </View>
