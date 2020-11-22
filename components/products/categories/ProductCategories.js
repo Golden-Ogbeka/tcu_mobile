@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: Card.width,
+    height: 200,
     resizeMode: 'contain',
   },
   text: {

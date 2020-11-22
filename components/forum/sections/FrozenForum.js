@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
 
-export default function FoodForum() {
+export default function FrozenForum() {
   return (
     <ScrollView>
       <Card>

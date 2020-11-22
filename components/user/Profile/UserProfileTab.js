@@ -27,6 +27,7 @@ export default function UserProfileTab() {
         name="UserProfile"
         component={UserProfile}
         options={{
+          title: 'User Profile',
           tabBarIcon: () => (
             <Icon name="user" type="font-awesome-5" size={40} />
           ),
@@ -36,6 +37,7 @@ export default function UserProfileTab() {
         name="ProducerProfile"
         component={ProducerProfile}
         options={{
+          title: 'Producer Profile',
           tabBarIcon: () => <Icon name="attach-money" size={40} />,
         }}
       />
@@ -43,6 +45,7 @@ export default function UserProfileTab() {
         name="ForumProfile"
         component={ForumProfile}
         options={{
+          title: 'Forum Profile',
           tabBarIcon: () => (
             <Icon name="pen-alt" type="font-awesome-5" size={40} />
           ),

@@ -2,9 +2,14 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
 
-export default function FoodForum() {
+export default function UserTopics() {
   return (
     <ScrollView>
+      <View style={styles.title}>
+        <Text h3 style={{color: 'white'}}>
+          Your Topics
+        </Text>
+      </View>
       <Card>
         <Card.Title onPress={() => navigation.navigate('PoultryProducts')}>
           <Text h4>Topic</Text>

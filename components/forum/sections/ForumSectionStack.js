@@ -8,6 +8,7 @@ import TrainingForum from '../sections/TrainingForum';
 import MedicationForum from '../sections/MedicationForum';
 import ContactForum from '../sections/ContactForum';
 import EquipmentForum from '../sections/EquipmentForum';
+import FrozenForum from './FrozenForum';
 
 const Stack = createStackNavigator();
 export default function ForumSectionStack() {
@@ -38,6 +39,11 @@ export default function ForumSectionStack() {
           name="FoodForum"
           component={FoodForum}
           options={{title: 'Food Forum'}}
+        />
+        <Stack.Screen
+          name="FrozenForum"
+          component={FrozenForum}
+          options={{title: 'Frozen Forum'}}
         />
         <Stack.Screen
           name="EquipmentForum"

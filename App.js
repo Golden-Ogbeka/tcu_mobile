@@ -27,6 +27,7 @@ import Messages from './components/user/Messages';
 import About from './components/About';
 import {Icon} from 'react-native-elements';
 import {color} from 'react-native-reanimated';
+import UserStats from './components/user/UserStats';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -115,6 +116,13 @@ const App = () => {
               component={Messages}
               options={{
                 drawerIcon: () => <Icon name="message" color="#C0C0C0" />,
+              }}
+            />
+            <Drawer.Screen
+              name="Your Statistics"
+              component={UserStats}
+              options={{
+                drawerIcon: () => <Icon name="hourglass-top" color="#C0C0C0" />,
               }}
             />
             <Drawer.Screen

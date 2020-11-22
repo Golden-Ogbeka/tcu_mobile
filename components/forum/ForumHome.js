@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import ForumProfile from './ForumProfile';
+import UserTopics from './UserTopics';
 import NewTopic from './NewTopic';
 import ForumSections from './sections/ForumSections';
 import ForumSectionStack from './sections/ForumSectionStack';
@@ -49,11 +49,11 @@ export default function ForumHome() {
           }}
         />
         <Tab.Screen
-          name="Profile"
-          component={ForumProfile}
+          name="Your Topics"
+          component={UserTopics}
           options={{
             tabBarIcon: () => (
-              <Icon name="user" type="font-awesome-5" size={40} />
+              <Icon name="list" type="font-awesome-5" size={40} />
             ),
           }}
         />

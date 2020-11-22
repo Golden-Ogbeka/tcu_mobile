@@ -32,6 +32,8 @@ export default function EquipmentProducts({navigation}) {
 const styles = StyleSheet.create({
   image: {
     width: Card.width,
+    height: 200,
+    resizeMode: 'contain',
   },
   brand: {
     marginBottom: 10,
