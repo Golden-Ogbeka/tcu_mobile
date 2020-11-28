@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -26,14 +26,26 @@ import GroupsTab from './components/groups/GroupsTab';
 import Messages from './components/user/Messages';
 import About from './components/About';
 import {Icon} from 'react-native-elements';
-import {color} from 'react-native-reanimated';
 import UserStats from './components/user/UserStats';
+import Axios from 'axios';
+import {API_URL} from './app.json';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const App = () => {
+  useEffect(() => {
+    const func = async () => {
+      try {
+        const response = await Axios.get(`${API_URL}/testing`);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    func();
+  });
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
