@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Image,
   ScrollView,
   StyleSheet,
@@ -9,6 +10,8 @@ import {
 import {Button, CheckBox, Input, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {API_URL} from '../../app.json';
+import Axios from 'axios';
 
 const logo = require('../../assets/images/logo/tcu.png');
 
@@ -17,11 +20,20 @@ export default function Register({navigation}) {
     name: '',
     email: '',
     password: '',
-    password2: '',
+    confirmPassword: '',
     checked: false,
   });
+  const [loading, setLoading] = useState(false);
   const submitDetails = async () => {
-    console.log(userDetails);
+    try {
+      setLoading(true);
+      const response = await Axios.post(`${API_URL}/api/register`, userDetails);
+      Alert.alert('Success', response.data);
+      setLoading(false);
+    } catch (error) {
+      Alert.alert('Error', error.response.data);
+      setLoading(false);
+    }
   };
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -62,9 +74,9 @@ export default function Register({navigation}) {
           placeholder="Enter your password again"
           secureTextEntry={true}
           rightIcon={{name: 'lock', type: 'font-awesome'}}
-          value={userDetails.password2}
+          value={userDetails.confirmPassword}
           onChangeText={(text) =>
-            setUserDetails({...userDetails, password2: text})
+            setUserDetails({...userDetails, confirmPassword: text})
           }
         />
         <CheckBox
@@ -74,22 +86,27 @@ export default function Register({navigation}) {
             setUserDetails({...userDetails, checked: !userDetails.checked})
           }
         />
-        <Button
-          title="REGISTER"
-          raised
-          icon={
-            <Icon
-              name="user"
-              size={20}
-              color="white"
-              style={{paddingLeft: 10}}
-            />
-          }
-          iconRight
-          titleStyle={{fontSize: 20}}
-          buttonStyle={{backgroundColor: 'red', height: 50, width: 150}}
-          onPress={() => submitDetails()}
-        />
+        {loading ? (
+          <ActivityIndicator size="large" color="#910000" />
+        ) : (
+          <Button
+            title="REGISTER"
+            raised
+            icon={
+              <Icon
+                name="user"
+                size={20}
+                color="white"
+                style={{paddingLeft: 10}}
+              />
+            }
+            iconRight
+            titleStyle={{fontSize: 20}}
+            buttonStyle={{backgroundColor: '#910000', height: 50, width: 150}}
+            onPress={() => submitDetails()}
+          />
+        )}
+
         <Text
           style={{fontSize: 18, marginTop: 20, color: 'grey'}}
           onPress={() => navigation.navigate('Login')}>

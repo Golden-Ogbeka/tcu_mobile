@@ -35,24 +35,13 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const App = () => {
-  useEffect(() => {
-    const func = async () => {
-      try {
-        const response = await Axios.get(`${API_URL}/testing`);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    func();
-  });
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
         <StatusBar />
         <NavigationContainer>
           {/* When not logged in */}
-          {/* <Drawer.Navigator
+          <Drawer.Navigator
             screenOptions={{
               headerStyle: {
                 backgroundColor: '#910000',
@@ -64,9 +53,9 @@ const App = () => {
             <Drawer.Screen name="Login" component={Login} />
             <Drawer.Screen name="Register" component={Register} />
             <Drawer.Screen name="About" component={About} />
-          </Drawer.Navigator> */}
+          </Drawer.Navigator>
           {/* When Logged in */}
-          <Drawer.Navigator
+          {/* <Drawer.Navigator
             drawerContentOptions={{
               activeBackgroundColor: '#910000',
               activeTintColor: 'white',
@@ -144,7 +133,7 @@ const App = () => {
                 drawerIcon: () => <Icon name="info" color="#C0C0C0" />,
               }}
             />
-          </Drawer.Navigator>
+          </Drawer.Navigator> */}
         </NavigationContainer>
       </View>
     </SafeAreaProvider>

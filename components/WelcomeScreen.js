@@ -19,17 +19,19 @@ export default function WelcomeScreen(props) {
         }}>
         <Button
           title="Login"
-          icon={<Icon raised name="sign-in" type="font-awesome" color="#f50" />}
+          icon={
+            <Icon raised name="sign-in" type="font-awesome" color="#910000" />
+          }
           onPress={() => props.navigation.navigate('Login')}
           type="clear"
-          titleStyle={{color: 'red', fontSize: 22}}
+          titleStyle={{color: '#910000', fontSize: 22}}
         />
         <Button
           title="Register"
-          icon={<Icon raised name="user" type="font-awesome" color="#f50" />}
+          icon={<Icon raised name="user" type="font-awesome" color="#910000" />}
           onPress={() => props.navigation.navigate('Register')}
           type="clear"
-          titleStyle={{color: 'red', fontSize: 22}}
+          titleStyle={{color: '#910000', fontSize: 22}}
         />
       </View>
     </SafeAreaView>
