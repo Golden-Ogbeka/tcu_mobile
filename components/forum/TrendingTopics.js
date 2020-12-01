@@ -1,8 +1,36 @@
-import React from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
+import Axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
+import {API_URL} from '../../app.json';
+import LoadingIndicator from '../layout/LoadingIndicator';
+import ForumTopics from './layout/ForumTopics';
 
 export default function TrendingTopics() {
+  const [trendingTopics, setTrendingTopics] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getTrendingTopics = async () => {
+      try {
+        setLoading(true);
+        const response = await Axios.get(`${API_URL}/api/trendingTopics`);
+        const trendingTopics = response.data;
+        setTrendingTopics(trendingTopics);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        setTrendingTopics([]);
+      }
+    };
+    getTrendingTopics();
+  }, []);
   return (
     <ScrollView>
       <View style={styles.title}>
@@ -10,25 +38,21 @@ export default function TrendingTopics() {
           Trending Topics
         </Text>
       </View>
-      <Card>
-        <Card.Title onPress={() => navigation.navigate('PoultryProducts')}>
-          <Text h4>Topic</Text>
-        </Card.Title>
-        <Card.Divider style={styles.divider} />
-        <Text style={styles.content}>Content</Text>
-        <Divider style={styles.divider} />
-        <Text style={styles.details}>Writer: </Text>
-        <View style={styles.topicDetails}>
-          <Text style={styles.details}>Views: </Text>
-          <Text style={styles.details}>Likes:</Text>
-        </View>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
-          title="View Topic Details"
-          buttonStyle={styles.button}
-          onPress={() => navigation.navigate('PoultryProducts')}
-        />
-      </Card>
+      {loading === false ? (
+        trendingTopics.length > 0 ? (
+          trendingTopics.map((topic) => (
+            <View key={topic._id}>
+              <ForumTopics topicID={topic._id} />
+            </View>
+          ))
+        ) : (
+          <View style={{alignItems: 'center'}}>
+            <Text h3>No trending topics</Text>
+          </View>
+        )
+      ) : (
+        <LoadingIndicator />
+      )}
     </ScrollView>
   );
 }

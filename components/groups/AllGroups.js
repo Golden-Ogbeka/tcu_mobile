@@ -1,68 +1,60 @@
-import React from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
+import Axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {Text} from 'react-native-elements';
+import LoadingIndicator from '../layout/LoadingIndicator';
+import GroupList from './layout/GroupList';
+import {API_URL} from '../../app.json';
 
 export default function AllGroups() {
+  const [groups, setGroups] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getGroups = async () => {
+      try {
+        setLoading(true);
+        const response = await Axios.get(`${API_URL}/api/groups/user`);
+        const groupsReceived = response.data;
+        setGroups(groupsReceived);
+        setLoading(false);
+      } catch (error) {
+        setGroups([]);
+        setLoading(false);
+      }
+    };
+    getGroups();
+  }, []);
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.title}>
         <Text h3 style={{color: 'white'}}>
           All Groups
         </Text>
       </View>
-      <Card>
-        <Image
-          source={require('../../assets/images/logo/tcu.png')}
-          accessibilityLabel="Group Image"
-          style={styles.image}
-        />
-        <Divider />
-        <Card.Title onPress={() => navigation.navigate('PoultryProducts')}>
-          <Text h4>Group Name</Text>
-        </Card.Title>
-        <Card.Divider />
-        <Text style={styles.founder}>Founder</Text>
-        <Text style={styles.description}>Group Description</Text>
-        <Text style={styles.members}>Members</Text>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
-          title="View Group Details"
-          buttonStyle={styles.button}
-          onPress={() => navigation.navigate('PoultryProducts')}
-        />
-      </Card>
+      {loading === false ? (
+        groups.length > 0 ? (
+          <GroupList all={true} />
+        ) : (
+          <View style={{alignItems: 'center'}}>
+            <Text h3>No group found</Text>
+          </View>
+        )
+      ) : (
+        <LoadingIndicator />
+      )}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 20,
+  },
   title: {
     justifyContent: 'center',
     alignItems: 'center',
     height: 55,
-    backgroundColor: '#910000',
-  },
-  image: {
-    width: Card.width,
-    height: 200,
-    resizeMode: 'contain',
-  },
-  founder: {
-    marginBottom: 10,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  description: {
-    marginBottom: 10,
-    fontSize: 20,
-    fontStyle: 'italic',
-  },
-  members: {
-    marginBottom: 10,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  button: {
     backgroundColor: '#910000',
   },
 });

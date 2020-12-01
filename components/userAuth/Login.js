@@ -7,28 +7,23 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  TextInput,
 } from 'react-native';
 import {Button, Input, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {API_URL} from '../../app.json';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 const logo = require('../../assets/images/logo/tcu.png');
 
 export default function Login({navigation}) {
-  const [userDetails, setUserDetails] = useState({
-    email: '',
-    password: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const submitDetails = async () => {
+  const submitDetails = async (values) => {
     try {
-      setLoading(true);
-      const response = await Axios.post(`${API_URL}/api/login`, userDetails);
+      const response = await Axios.post(`${API_URL}/api/login`, values);
       Alert.alert('Success', 'Logged in');
-      setLoading(false);
     } catch (error) {
       Alert.alert('Error', error.response.data);
-      setLoading(false);
     }
   };
   return (
@@ -44,46 +39,65 @@ export default function Login({navigation}) {
           // }}
         />
       </View>
-      <Input
-        placeholder="Enter your email"
-        rightIcon={{name: 'envelope', type: 'font-awesome'}}
-        value={userDetails.email}
-        onChangeText={(text) => setUserDetails({...userDetails, email: text})}
-      />
-      <Input
-        placeholder="Enter your password"
-        secureTextEntry={true}
-        rightIcon={{name: 'lock', type: 'font-awesome'}}
-        value={userDetails.password}
-        onChangeText={(text) =>
-          setUserDetails({...userDetails, password: text})
-        }
-      />
-      {loading ? (
-        <ActivityIndicator color="#910000" size="large" />
-      ) : (
-        <Button
-          title="LOGIN"
-          raised
-          titleStyle={{fontSize: 18}}
-          icon={
-            <Icon
-              name="sign-in"
-              size={18}
-              color="white"
-              style={{paddingLeft: 10}}
+      <Formik
+        initialValues={{email: '', password: ''}}
+        onSubmit={(values) => submitDetails(values)}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .email('Invalid Email')
+            .required('Email is required'),
+          password: Yup.string().required('Password is required'),
+        })}>
+        {({values, ...props}) => (
+          <>
+            <Input
+              placeholder="Enter your email"
+              rightIcon={{name: 'envelope', type: 'font-awesome'}}
+              value={values.email}
+              onChangeText={props.handleChange('email')}
+              onBlur={props.handleBlur('email')}
+              style={styles.input}
             />
-          }
-          iconRight
-          buttonStyle={{backgroundColor: '#910000', height: 50, width: 150}}
-          onPress={() => submitDetails()}
-        />
-      )}
-
+            {props.touched.email && props.errors.email && (
+              <Text style={styles.errorText}>* {props.errors.email}</Text>
+            )}
+            <Input
+              placeholder="Enter your password"
+              secureTextEntry
+              rightIcon={{name: 'lock', type: 'font-awesome-5'}}
+              value={values.password}
+              onChangeText={props.handleChange('password')}
+              onBlur={props.handleBlur('password')}
+              style={styles.input}
+            />
+            {props.touched.password && props.errors.password && (
+              <Text style={styles.errorText}>* {props.errors.password}</Text>
+            )}
+            <Button
+              title="LOGIN"
+              raised
+              titleStyle={{fontSize: 18}}
+              icon={
+                <Icon
+                  name="sign-in"
+                  size={18}
+                  color="white"
+                  style={{paddingLeft: 10}}
+                />
+              }
+              iconRight
+              buttonStyle={{backgroundColor: '#910000', height: 50, width: 150}}
+              onPress={props.handleSubmit}
+              disabled={!props.isValid}
+              loading={props.isSubmitting}
+            />
+          </>
+        )}
+      </Formik>
       <Text
-        style={{fontSize: 18, marginTop: 20, color: 'grey'}}
+        style={{fontSize: 22, marginTop: 20, color: 'grey'}}
         onPress={() => navigation.navigate('Register')}>
-        Not registered? Login Here
+        Not registered? Register Here
       </Text>
     </ScrollView>
   );
@@ -94,10 +108,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  input: {
-    backgroundColor: 'grey',
+  errorText: {
+    color: '#910000',
     fontSize: 20,
-    width: 300,
+    paddingBottom: 20,
+  },
+  input: {
+    fontSize: 20,
   },
   logoImage: {
     width: 300,
