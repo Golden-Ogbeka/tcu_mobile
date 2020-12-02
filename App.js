@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -12,6 +12,7 @@ import {
   Image,
   TouchableOpacity,
   Text,
+  Alert,
 } from 'react-native';
 import NavLayout from './components/layout/NavLayout';
 import WelcomeScreen from './components/WelcomeScreen';
@@ -30,113 +31,176 @@ import UserStats from './components/user/UserStats';
 import Axios from 'axios';
 import {API_URL} from './app.json';
 
+// Context
+import {AppContext} from './context/AppContext';
+import Logout from './components/userAuth/Logout';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const App = () => {
+  const [contextVariables, setContextVariables] = useState({
+    user: {},
+  });
+  const [loggedIn, setLoggedInStatus] = useState(false);
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await Axios.get(`${API_URL}/api/user`);
+        const userData = response.data;
+        setContextVariables({
+          ...contextVariables,
+          user: userData,
+        });
+      } catch (error) {
+        setContextVariables({
+          ...contextVariables,
+          user: {},
+        });
+      }
+    };
+    getUserData();
+    const verifyUser = async () => {
+      try {
+        await Axios.get(`${API_URL}/api/verifyUser`);
+        setLoggedInStatus(true);
+      } catch (error) {
+        setLoggedInStatus(false);
+        Alert.alert('Login Error', 'You are not logged in');
+      }
+    };
+    verifyUser();
+  }, []);
+
   return (
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <StatusBar />
-        <NavigationContainer>
-          {/* When not logged in */}
-          {/* <Drawer.Navigator
-            screenOptions={{
-              headerStyle: {
-                backgroundColor: '#910000',
-              },
-              headerTintColor: 'white',
-              headerTitleAlign: 'center',
-            }}>
-            <Drawer.Screen name="Home" component={WelcomeScreen} />
-            <Drawer.Screen name="Login" component={Login} />
-            <Drawer.Screen name="Register" component={Register} />
-            <Drawer.Screen name="About" component={About} />
-          </Drawer.Navigator> */}
-          {/* When Logged in */}
-          <Drawer.Navigator
-            drawerContentOptions={{
-              activeBackgroundColor: '#910000',
-              activeTintColor: 'white',
-              inactiveTintColor: 'black',
-              style: {
-                borderRightWidth: 1,
-                borderColor: '#910000',
-              },
-              labelStyle: {
-                fontSize: 20,
-                fontWeight: 'bold',
-              },
-            }}>
-            <Drawer.Screen
-              name="Products"
-              component={ProductsHome}
-              options={{
-                drawerIcon: () => (
-                  <Icon name="box-open" type="font-awesome-5" color="#C0C0C0" />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="Forum"
-              component={ForumHome}
-              options={{
-                drawerIcon: () => (
-                  <Icon name="pen" type="font-awesome-5" color="#C0C0C0" />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="Groups"
-              component={GroupsTab}
-              options={{
-                drawerIcon: () => (
-                  <Icon name="group" type="font-awesome" color="#C0C0C0" />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="Profile"
-              component={UserProfileTab}
-              options={{
-                drawerIcon: () => (
-                  <Icon name="user" type="font-awesome-5" color="#C0C0C0" />
-                ),
-              }}
-            />
-            <Drawer.Screen
-              name="Producer Mode"
-              component={ProducerTab}
-              options={{
-                drawerIcon: () => <Icon name="attach-money" color="#C0C0C0" />,
-              }}
-            />
-            <Drawer.Screen
-              name="Messages"
-              component={Messages}
-              options={{
-                drawerIcon: () => <Icon name="message" color="#C0C0C0" />,
-              }}
-            />
-            <Drawer.Screen
-              name="Your Statistics"
-              component={UserStats}
-              options={{
-                drawerIcon: () => <Icon name="hourglass-top" color="#C0C0C0" />,
-              }}
-            />
-            <Drawer.Screen
-              name="About"
-              component={About}
-              options={{
-                drawerIcon: () => <Icon name="info" color="#C0C0C0" />,
-              }}
-            />
-          </Drawer.Navigator>
-        </NavigationContainer>
-      </View>
-    </SafeAreaProvider>
+    <AppContext.Provider value={{contextVariables, setContextVariables}}>
+      <SafeAreaProvider>
+        <View style={styles.container}>
+          <StatusBar />
+          <NavigationContainer>
+            {loggedIn === false ? (
+              // Not logged in
+              <Drawer.Navigator
+                screenOptions={{
+                  headerStyle: {
+                    backgroundColor: '#910000',
+                  },
+                  headerTintColor: 'white',
+                  headerTitleAlign: 'center',
+                }}>
+                <Drawer.Screen name="Home" component={WelcomeScreen} />
+                <Drawer.Screen name="Login" component={Login} />
+                <Drawer.Screen name="Register" component={Register} />
+                <Drawer.Screen name="About" component={About} />
+              </Drawer.Navigator>
+            ) : (
+              // Logged in
+              <Drawer.Navigator
+                drawerContentOptions={{
+                  activeBackgroundColor: '#910000',
+                  activeTintColor: 'white',
+                  inactiveTintColor: 'black',
+                  style: {
+                    borderRightWidth: 1,
+                    borderColor: '#910000',
+                  },
+                  labelStyle: {
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                  },
+                }}>
+                <Drawer.Screen
+                  name="Products"
+                  component={ProductsHome}
+                  options={{
+                    drawerIcon: () => (
+                      <Icon
+                        name="box-open"
+                        type="font-awesome-5"
+                        color="#C0C0C0"
+                      />
+                    ),
+                  }}
+                />
+                <Drawer.Screen
+                  name="Forum"
+                  component={ForumHome}
+                  options={{
+                    drawerIcon: () => (
+                      <Icon name="pen" type="font-awesome-5" color="#C0C0C0" />
+                    ),
+                  }}
+                />
+                <Drawer.Screen
+                  name="Groups"
+                  component={GroupsTab}
+                  options={{
+                    drawerIcon: () => (
+                      <Icon name="group" type="font-awesome" color="#C0C0C0" />
+                    ),
+                  }}
+                />
+                <Drawer.Screen
+                  name="Profile"
+                  component={UserProfileTab}
+                  options={{
+                    drawerIcon: () => (
+                      <Icon name="user" type="font-awesome-5" color="#C0C0C0" />
+                    ),
+                  }}
+                />
+                <Drawer.Screen
+                  name="Producer Mode"
+                  component={ProducerTab}
+                  options={{
+                    drawerIcon: () => (
+                      <Icon name="attach-money" color="#C0C0C0" />
+                    ),
+                  }}
+                />
+                <Drawer.Screen
+                  name="Messages"
+                  component={Messages}
+                  options={{
+                    drawerIcon: () => <Icon name="message" color="#C0C0C0" />,
+                  }}
+                />
+                <Drawer.Screen
+                  name="Your Statistics"
+                  component={UserStats}
+                  options={{
+                    drawerIcon: () => (
+                      <Icon name="hourglass-top" color="#C0C0C0" />
+                    ),
+                  }}
+                />
+                <Drawer.Screen
+                  name="About"
+                  component={About}
+                  options={{
+                    drawerIcon: () => <Icon name="info" color="#C0C0C0" />,
+                  }}
+                />
+                <Drawer.Screen
+                  name="Logout"
+                  component={Logout}
+                  options={{
+                    drawerIcon: () => (
+                      <Icon
+                        name="sign-out"
+                        type="font-awesome"
+                        color="#C0C0C0"
+                      />
+                    ),
+                  }}
+                />
+              </Drawer.Navigator>
+            )}
+          </NavigationContainer>
+        </View>
+      </SafeAreaProvider>
+    </AppContext.Provider>
   );
 };
 

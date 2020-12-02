@@ -3,19 +3,21 @@ import React, {useEffect, useState} from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
 import {API_URL} from '../../app.json';
+import {useAppContext} from '../../context/AppContext';
 import LoadingIndicator from '../layout/LoadingIndicator';
 import ForumTopics from './layout/ForumTopics';
 
 export default function UserTopics() {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {contextVariables, setContextVariables} = useAppContext();
 
   useEffect(() => {
     const getTopics = async () => {
       try {
         setLoading(true);
         const response = await Axios.get(
-          `${API_URL}/api/topics/?brandName=GOLDEN`,
+          `${API_URL}/api/topics/?brandName=${contextVariables.user.brandName}`,
         );
         const topicsReceived = response.data;
         setTopics(topicsReceived);

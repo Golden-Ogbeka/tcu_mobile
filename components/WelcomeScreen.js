@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useAppContext} from '../context/AppContext';
 
 export default function WelcomeScreen(props) {
   return (
