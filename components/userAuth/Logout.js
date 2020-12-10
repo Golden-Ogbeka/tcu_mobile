@@ -3,14 +3,19 @@ import React from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import {Button, Icon, Text} from 'react-native-elements';
 import {API_URL} from '../../app.json';
+import {useAppContext} from '../../context/AppContext';
 
 export default function Logout(props) {
+  const {contextVariables, setContextVariables} = useAppContext();
   const logoutFunction = async () => {
     try {
       const response = await Axios.get(`${API_URL}/api/logout`);
       Alert.alert('Logout Successful', response.data);
-      //   props.navigation.navigate('Products');
-      // Send to login page
+      setContextVariables({
+        ...contextVariables,
+        loggedIn: false,
+      });
+      props.navigation.navigate('Home');
     } catch (error) {
       console.log(error);
       Alert.alert('Error', error.response.data);
