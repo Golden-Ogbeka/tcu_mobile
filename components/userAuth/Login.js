@@ -14,14 +14,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {API_URL} from '../../app.json';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import {useAppContext} from '../../context/AppContext';
 
 const logo = require('../../assets/images/logo/tcu.png');
 
 export default function Login({navigation}) {
+  const {contextVariables, setContextVariables} = useAppContext();
   const submitDetails = async (values) => {
     try {
       const response = await Axios.post(`${API_URL}/api/login`, values);
       Alert.alert('Success', 'Logged in');
+      setContextVariables({
+        ...contextVariables,
+        loggedIn: true,
+      });
+      return navigation.navigate('Home');
     } catch (error) {
       Alert.alert('Error', error.response.data);
     }
