@@ -14,6 +14,7 @@ export default function Logout(props) {
       setContextVariables({
         ...contextVariables,
         loggedIn: false,
+        user: {},
       });
       props.navigation.navigate('Home');
     } catch (error) {

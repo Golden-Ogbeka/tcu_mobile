@@ -22,6 +22,7 @@ export default function Register({navigation}) {
     try {
       const response = await Axios.post(`${API_URL}/api/register`, values);
       Alert.alert('Success', response.data);
+      return navigation.navigate('Login');
     } catch (error) {
       Alert.alert('Error', error.response.data);
     }

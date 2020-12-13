@@ -25,7 +25,7 @@ export default function ProducerProducts({navigation}) {
     getProducts();
   }, []);
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{paddingBottom: 20}}>
       <View style={styles.title}>
         <Text h3 style={{color: 'white'}}>
           Your Products

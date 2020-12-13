@@ -2,8 +2,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
-import ForumProfile from '../../forum/ForumProfile';
-import ProducerProfile from '../../producer/ProducerProfile';
+import ForumProfile from '../../forum/profile/ForumProfile';
+import ProducerProfile from '../../producer/profile/ProducerProfile';
 import UserProfile from './UserProfile';
 
 const Tab = createBottomTabNavigator();

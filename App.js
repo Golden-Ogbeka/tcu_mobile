@@ -21,7 +21,7 @@ import Register from './components/userAuth/Register';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import ProductsHome from './components/products/ProductsHome';
 import ForumHome from './components/forum/ForumHome';
-import UserProfileTab from './components/user/Profile/UserProfileTab';
+import UserProfileTab from './components/user/profile/UserProfileTab';
 import ProducerTab from './components/producer/ProducerTab';
 import GroupsTab from './components/groups/GroupsTab';
 import Messages from './components/user/Messages';
@@ -58,6 +58,7 @@ const App = () => {
         setContextVariables({
           ...contextVariables,
           user: {},
+          loggedIn: false,
         });
       }
     };
@@ -74,7 +75,6 @@ const App = () => {
           ...contextVariables,
           loggedIn: false,
         });
-        Alert.alert('Login Error', 'You are not logged in');
       }
     };
     verifyUser();

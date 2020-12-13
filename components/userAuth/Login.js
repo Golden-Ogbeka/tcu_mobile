@@ -27,6 +27,7 @@ export default function Login({navigation}) {
       setContextVariables({
         ...contextVariables,
         loggedIn: true,
+        user: response.data,
       });
       return navigation.navigate('Home');
     } catch (error) {
