@@ -3,6 +3,7 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
 import {API_URL} from '../../../app.json';
 import Axios from 'axios';
+import ButtonComponent from '../../layout/ButtonComponent';
 
 export default function ForumTopics(props) {
   const [topics, setTopics] = useState([]);
@@ -58,9 +59,9 @@ export default function ForumTopics(props) {
                 Likes: {topic.likes ? topic.likes.length : 0}
               </Text>
             </View>
-            <Button
+            <ButtonComponent
               icon={
-                <Icon name="info" style={{marginRight: 2}} color="#ffffff" />
+                <Icon name="info" style={{paddingRight: 10}} color="#ffffff" />
               }
               title="View Topic Details"
               buttonStyle={styles.button}

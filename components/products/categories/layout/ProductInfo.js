@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {Button, Card, Icon, Text} from 'react-native-elements';
 import {API_URL} from '../../../../app.json';
+import ButtonComponent from '../../../layout/ButtonComponent';
 
 export default function ProductInfo(props) {
   const [productDetails, setProductDetails] = useState([]);
@@ -56,9 +57,9 @@ export default function ProductInfo(props) {
             <Text style={styles.brand}>{product.brandName}</Text>
             <Text style={styles.description}>{product.productDescription}</Text>
             <Text style={styles.price}>NGN {product.price}</Text>
-            <Button
+            <ButtonComponent
               icon={
-                <Icon name="info" style={{marginRight: 2}} color="#ffffff" />
+                <Icon name="info" style={{paddingRight: 10}} color="#ffffff" />
               }
               title="View Product Details"
               buttonStyle={styles.button}

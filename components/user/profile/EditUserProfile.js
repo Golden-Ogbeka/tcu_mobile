@@ -6,10 +6,13 @@ import {useAppContext} from '../../../context/AppContext';
 import * as Yup from 'yup';
 import Axios from 'axios';
 import {API_URL} from '../../../app.json';
+import InputComponent from '../../layout/InputComponent';
+import SelectComponent from '../../layout/SelectComponent';
+import NigerianStates from '../../layout/NigerianStates';
+import ButtonComponent from '../../layout/ButtonComponent';
 
 export default function EditUserProfile(props) {
   const {contextVariables, setContextVariables} = useAppContext();
-
   const updateProfile = async (values) => {
     try {
       const response = await Axios.post(
@@ -42,102 +45,82 @@ export default function EditUserProfile(props) {
           }}
           enableReinitialize
           validationSchema={Yup.object({
-            name: Yup.string().required("Brand's Name is required"),
+            name: Yup.string().required('Your full name is required'),
             email: Yup.string().email('Invalid Email'),
             phoneNumber: Yup.number().required('Invalid Phone Number'),
-            state: Yup.string().required("Brand's State is required"),
-            address: Yup.string().required("Brand's Address is required"),
-            gender: Yup.string().required("Brand's Description is required"),
+            state: Yup.string().required('State is required'),
+            address: Yup.string().required('Address is required'),
+            gender: Yup.string().required('Gender is required'),
           })}
           onSubmit={(values) => updateProfile(values)}>
           {(props) => (
             <>
-              <Input
+              <InputComponent
                 label="Full Name"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'user', type: 'font-awesome'}}
+                touched={props.touched.name}
+                errors={props.errors.name}
+                rightIcon={{name: 'user', type: 'font-awesome', size: 30}}
                 onChangeText={props.handleChange('name')}
                 onBlur={props.handleBlur('name')}
-                placeholder="Input your full name"
                 value={props.values.name}
+                placeholder="Input your full name"
               />
-              {props.touched.name && props.errors.name && (
-                <Text style={styles.errorText}>* {props.errors.name}</Text>
-              )}
-              <Input
+              <SelectComponent
+                title="State"
+                searchable
+                value={props.values.state}
+                items={NigerianStates}
+                onChangeItem={(item) => {
+                  props.setFieldValue('state', item.value);
+                }}
+                touched={props.touched.state}
+                errors={props.errors.state}
+              />
+              <InputComponent
                 label="Phone Number"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'envelope', type: 'font-awesome'}}
+                touched={props.touched.phoneNumber}
+                errors={props.errors.phoneNumber}
+                keyboardType="numeric"
+                rightIcon={{name: 'phone', type: 'font-awesome-5'}}
                 onChangeText={props.handleChange('phoneNumber')}
                 onBlur={props.handleBlur('phoneNumber')}
                 placeholder="Input your phone number"
                 value={props.values.phoneNumber}
               />
-              {props.touched.phoneNumber && props.errors.phoneNumber && (
-                <Text style={styles.errorText}>
-                  * {props.errors.phoneNumber}
-                </Text>
-              )}
-              <Input
-                label="State"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'list', type: 'font-awesome'}}
-                onChangeText={props.handleChange('state')}
-                onBlur={props.handleBlur('state')}
-                placeholder="Input your state'"
-                value={props.values.state}
+              <SelectComponent
+                title="Gender"
+                value={props.values.gender}
+                items={['Male', 'Female']}
+                onChangeItem={(item) => {
+                  props.setFieldValue('gender', item.value);
+                }}
+                touched={props.touched.gender}
+                errors={props.errors.gender}
               />
-              {props.touched.state && props.errors.state && (
-                <Text style={styles.errorText}>* {props.errors.state}</Text>
-              )}
-              <Input
+
+              <InputComponent
                 label="Address"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'list', type: 'font-awesome'}}
+                multiline
+                touched={props.touched.address}
+                errors={props.errors.address}
+                rightIcon={{name: 'location-pin', size: 40}}
                 onChangeText={props.handleChange('address')}
                 onBlur={props.handleBlur('address')}
                 placeholder="Input your address'"
                 value={props.values.address}
               />
-              {props.touched.address && props.errors.address && (
-                <Text style={styles.errorText}>* {props.errors.address}</Text>
-              )}
-              <Input
-                label="Gender"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'users', type: 'font-awesome'}}
-                onChangeText={props.handleChange('gender')}
-                onBlur={props.handleBlur('gender')}
-                placeholder="Input your gender"
-                value={props.values.gender}
-              />
-              {props.touched.gender && props.errors.gender && (
-                <Text style={styles.errorText}>* {props.errors.gender}</Text>
-              )}
 
-              <Button
+              <ButtonComponent
                 title="Update Profile"
-                raised
-                titleStyle={{fontSize: 18}}
                 icon={
                   <Icon
-                    name="pen"
+                    name="save"
                     type="font-awesome-5"
-                    size={18}
+                    size={25}
                     color="white"
                     style={{paddingRight: 10}}
                   />
                 }
-                buttonStyle={{
-                  backgroundColor: '#910000',
-                  height: 50,
-                  width: 200,
-                }}
                 onPress={props.handleSubmit}
                 disabled={!props.isValid}
                 loading={props.isSubmitting}

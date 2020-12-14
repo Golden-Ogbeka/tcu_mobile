@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Avatar, Button, Card, ListItem, Text} from 'react-native-elements';
+import ButtonComponent from '../../layout/ButtonComponent';
 
 export default function ForumSections({navigation}) {
   return (
@@ -19,7 +20,7 @@ export default function ForumSections({navigation}) {
           </ListItem.Title>
           <ListItem.Subtitle>About Live Chickens, Eggs, etc.</ListItem.Subtitle>
         </ListItem.Content>
-        <Button
+        <ButtonComponent
           title="View"
           onPress={() => navigation.navigate('PoultryForum')}
           buttonStyle={{backgroundColor: '#910000'}}
@@ -39,7 +40,7 @@ export default function ForumSections({navigation}) {
           </ListItem.Title>
           <ListItem.Subtitle>About Fast Food, Snacks, etc. </ListItem.Subtitle>
         </ListItem.Content>
-        <Button
+        <ButtonComponent
           title="View"
           onPress={() => navigation.navigate('FoodForum')}
           buttonStyle={{backgroundColor: '#910000'}}
@@ -61,7 +62,7 @@ export default function ForumSections({navigation}) {
             About Frozen Food, Cold rooms, etc.
           </ListItem.Subtitle>
         </ListItem.Content>
-        <Button
+        <ButtonComponent
           title="View"
           onPress={() => navigation.navigate('FrozenForum')}
           buttonStyle={{backgroundColor: '#910000'}}
@@ -81,7 +82,7 @@ export default function ForumSections({navigation}) {
           </ListItem.Title>
           <ListItem.Subtitle>About Tranings, Seminars, etc. </ListItem.Subtitle>
         </ListItem.Content>
-        <Button
+        <ButtonComponent
           title="View"
           onPress={() => navigation.navigate('TrainingForum')}
           buttonStyle={{backgroundColor: '#910000'}}
@@ -103,7 +104,7 @@ export default function ForumSections({navigation}) {
             About Feed, Tools, Equipment, etc.{' '}
           </ListItem.Subtitle>
         </ListItem.Content>
-        <Button
+        <ButtonComponent
           title="View"
           onPress={() => navigation.navigate('EquipmentForum')}
           buttonStyle={{backgroundColor: '#910000'}}
@@ -126,7 +127,7 @@ export default function ForumSections({navigation}) {
             About Live Chickens, Eggs, etc.{' '}
           </ListItem.Subtitle>
         </ListItem.Content>
-        <Button
+        <ButtonComponent
           title="View"
           onPress={() => navigation.navigate('MedicationForum')}
           buttonStyle={{backgroundColor: '#910000'}}
@@ -148,7 +149,7 @@ export default function ForumSections({navigation}) {
             Brand Descriptions, Contact, etc
           </ListItem.Subtitle>
         </ListItem.Content>
-        <Button
+        <ButtonComponent
           title="View"
           onPress={() => navigation.navigate('ContactForum')}
           buttonStyle={{backgroundColor: '#910000'}}

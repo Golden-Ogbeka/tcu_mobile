@@ -6,6 +6,10 @@ import {useAppContext} from '../../../context/AppContext';
 import * as Yup from 'yup';
 import Axios from 'axios';
 import {API_URL} from '../../../app.json';
+import InputComponent from '../../layout/InputComponent';
+import NigerianStates from '../../layout/NigerianStates';
+import SelectComponent from '../../layout/SelectComponent';
+import ButtonComponent from '../../layout/ButtonComponent';
 
 export default function EditProducerProfile(props) {
   const {contextVariables, setContextVariables} = useAppContext();
@@ -60,156 +64,114 @@ export default function EditProducerProfile(props) {
           onSubmit={(values) => updateProfile(values)}>
           {(props) => (
             <>
-              <Input
+              <InputComponent
                 label="Brand's Name"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
+                touched={props.touched.name}
+                errors={props.errors.name}
                 rightIcon={{name: 'user', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandName')}
                 onBlur={props.handleBlur('brandName')}
                 placeholder="Input your brand name"
                 value={props.values.brandName}
               />
-              {props.touched.brandName && props.errors.brandName && (
-                <Text style={styles.errorText}>* {props.errors.brandName}</Text>
-              )}
-              <Input
+              <InputComponent
                 label="Brand's Email"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
+                touched={props.touched.email}
+                errors={props.errors.email}
                 rightIcon={{name: 'envelope', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandEmail')}
                 onBlur={props.handleBlur('brandEmail')}
                 placeholder="Input your brand's email"
                 value={props.values.brandEmail}
               />
-              {props.touched.brandEmail && props.errors.brandEmail && (
-                <Text style={styles.errorText}>
-                  * {props.errors.brandEmail}
-                </Text>
-              )}
-              <Input
+              <InputComponent
                 label="Brand's Number"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
+                touched={props.touched.name}
+                errors={props.errors.name}
                 rightIcon={{name: 'phone', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandNumber')}
                 onBlur={props.handleBlur('brandNumber')}
                 placeholder="Input your brand's number"
                 value={props.values.brandNumber}
               />
-              {props.touched.brandNumber && props.errors.brandNumber && (
-                <Text style={styles.errorText}>
-                  * {props.errors.brandNumber}
-                </Text>
-              )}
-              <Input
-                label="Brand's State"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'list', type: 'font-awesome'}}
-                onChangeText={props.handleChange('brandState')}
-                onBlur={props.handleBlur('brandState')}
-                placeholder="Input your brand's state'"
+              <SelectComponent
+                title="State"
                 value={props.values.brandState}
+                searchable
+                items={NigerianStates}
+                onChangeItem={(item) => {
+                  props.setFieldValue('brandState', item.value);
+                }}
+                touched={props.touched.brandState}
+                errors={props.errors.brandState}
               />
-              {props.touched.brandState && props.errors.brandState && (
-                <Text style={styles.errorText}>
-                  * {props.errors.brandState}
-                </Text>
-              )}
-              <Input
+              <InputComponent
                 label="Brand's Address"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'list', type: 'font-awesome'}}
+                touched={props.touched.brandAddress}
+                errors={props.errors.brandAddress}
+                rightIcon={{name: 'location-pin', size: 30}}
                 onChangeText={props.handleChange('brandAddress')}
                 onBlur={props.handleBlur('brandAddress')}
                 placeholder="Input your brand's address'"
                 value={props.values.brandAddress}
               />
-              {props.touched.brandAddress && props.errors.brandAddress && (
-                <Text style={styles.errorText}>
-                  * {props.errors.brandAddress}
-                </Text>
-              )}
-              <Input
+
+              <InputComponent
                 label="Brand's Description"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'info', type: 'font-awesome'}}
+                touched={props.touched.brandDescription}
+                errors={props.errors.brandDescription}
+                rightIcon={{name: 'description', size: 30}}
                 onChangeText={props.handleChange('brandDescription')}
                 onBlur={props.handleBlur('brandDescription')}
                 placeholder="Input your brand's description'"
                 value={props.values.brandDescription}
               />
-              {props.touched.brandDescription &&
-                props.errors.brandDescription && (
-                  <Text style={styles.errorText}>
-                    * {props.errors.brandDescription}
-                  </Text>
-                )}
-              <Input
+
+              <InputComponent
                 label="Brand's Motto"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
+                touched={props.touched.brandMotto}
+                errors={props.errors.brandMotto}
                 rightIcon={{name: 'info', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandMotto')}
                 onBlur={props.handleBlur('brandMotto')}
                 placeholder="Input your brand's motto'"
                 value={props.values.brandMotto}
               />
-              {props.touched.brandMotto && props.errors.brandMotto && (
-                <Text style={styles.errorText}>
-                  * {props.errors.brandMotto}
-                </Text>
-              )}
-              <Input
+
+              <InputComponent
                 label="Brand's Vision"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
+                touched={props.touched.brandVision}
+                errors={props.errors.brandVision}
                 rightIcon={{name: 'info', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandVision')}
                 onBlur={props.handleBlur('brandVision')}
                 placeholder="Input your brand's vision'"
                 value={props.values.brandVision}
               />
-              {props.touched.brandVision && props.errors.brandVision && (
-                <Text style={styles.errorText}>
-                  * {props.errors.brandVision}
-                </Text>
-              )}
-              <Input
+
+              {/* Use Date Picker */}
+              <InputComponent
                 label="Brand's Founding Date"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'info', type: 'font-awesome'}}
+                touched={props.touched.brandDate}
+                errors={props.errors.brandDate}
+                rightIcon={{name: 'calendar', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandDate')}
                 onBlur={props.handleBlur('brandDate')}
                 placeholder="Input your brand's founding date'"
                 value={props.values.brandDate}
               />
-              {props.touched.brandDate && props.errors.brandDate && (
-                <Text style={styles.errorText}>* {props.errors.brandDate}</Text>
-              )}
-              <Button
+
+              <ButtonComponent
                 title="Update Profile"
-                raised
-                titleStyle={{fontSize: 18}}
                 icon={
                   <Icon
-                    name="pen"
+                    name="save"
                     type="font-awesome-5"
-                    size={18}
+                    size={25}
                     color="white"
                     style={{paddingRight: 10}}
                   />
                 }
-                buttonStyle={{
-                  backgroundColor: '#910000',
-                  height: 50,
-                  width: 200,
-                }}
                 onPress={props.handleSubmit}
                 disabled={!props.isValid}
                 loading={props.isSubmitting}

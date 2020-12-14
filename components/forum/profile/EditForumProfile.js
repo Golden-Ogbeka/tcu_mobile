@@ -6,6 +6,10 @@ import {useAppContext} from '../../../context/AppContext';
 import * as Yup from 'yup';
 import Axios from 'axios';
 import {API_URL} from '../../../app.json';
+import InputComponent from '../../layout/InputComponent';
+import ButtonComponent from '../../layout/ButtonComponent';
+import SelectComponent from '../../layout/SelectComponent';
+import NigerianStates from '../../layout/NigerianStates';
 
 export default function EditForumProfile(props) {
   const {contextVariables, setContextVariables} = useAppContext();
@@ -46,63 +50,48 @@ export default function EditForumProfile(props) {
           onSubmit={(values) => updateProfile(values)}>
           {(props) => (
             <>
-              <Input
+              <InputComponent
                 label="Brand's Name"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
+                touched={props.touched.brandName}
+                errors={props.errors.brandName}
                 rightIcon={{name: 'user', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandName')}
                 onBlur={props.handleBlur('brandName')}
                 placeholder="Input your brand's name"
                 value={props.values.brandName}
               />
-              {props.touched.brandName && props.errors.brandName && (
-                <Text style={styles.errorText}>* {props.errors.brandName}</Text>
-              )}
-              <Input
-                label="State"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
-                rightIcon={{name: 'list', type: 'font-awesome'}}
-                onChangeText={props.handleChange('state')}
-                onBlur={props.handleBlur('state')}
-                placeholder="Input your state"
+              <SelectComponent
+                title="State"
+                searchable
                 value={props.values.state}
+                items={NigerianStates}
+                onChangeItem={(item) => {
+                  props.setFieldValue('state', item.value);
+                }}
+                touched={props.touched.state}
+                errors={props.errors.state}
               />
-              {props.touched.state && props.errors.state && (
-                <Text style={styles.errorText}>* {props.errors.state}</Text>
-              )}
               <Input
                 label="Address"
-                style={styles.textInput}
-                labelStyle={styles.textLabel}
+                touched={props.touched.address}
+                errors={props.errors.address}
                 rightIcon={{name: 'list', type: 'font-awesome'}}
                 onChangeText={props.handleChange('address')}
                 onBlur={props.handleBlur('address')}
                 placeholder="Input your address"
                 value={props.values.address}
               />
-              {props.touched.address && props.errors.address && (
-                <Text style={styles.errorText}>* {props.errors.address}</Text>
-              )}
-              <Button
+              <ButtonComponent
                 title="Update Profile"
-                raised
-                titleStyle={{fontSize: 18}}
                 icon={
                   <Icon
-                    name="pen"
+                    name="save"
                     type="font-awesome-5"
-                    size={18}
+                    size={25}
                     color="white"
                     style={{paddingRight: 10}}
                   />
                 }
-                buttonStyle={{
-                  backgroundColor: '#910000',
-                  height: 50,
-                  width: 200,
-                }}
                 onPress={props.handleSubmit}
                 disabled={!props.isValid}
                 loading={props.isSubmitting}

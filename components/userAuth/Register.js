@@ -14,6 +14,9 @@ import {API_URL} from '../../app.json';
 import Axios from 'axios';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import InputComponent from '../layout/InputComponent';
+import CheckBoxComponent from '../layout/CheckBoxComponent';
+import ButtonComponent from '../layout/ButtonComponent';
 
 const logo = require('../../assets/images/logo/tcu.png');
 
@@ -64,68 +67,58 @@ export default function Register({navigation}) {
               'You are required to agree with the terms',
             ),
           })}>
-          {({values, ...props}) => (
+          {(props) => (
             <>
-              <Input
+              <InputComponent
+                touched={props.touched.name}
+                errors={props.errors.name}
+                handleChange={props.handleChange('name')}
+                handleBlur={props.handleBlur('name')}
+                value={props.values.name}
                 placeholder="Enter your full name"
                 rightIcon={{name: 'user', type: 'font-awesome', size: 30}}
-                value={values.name}
-                onChangeText={props.handleChange('name')}
-                onBlur={props.handleBlur('name')}
-                style={styles.input}
               />
-              {props.touched.name && props.errors.name && (
-                <Text style={styles.errorText}>{props.errors.name}</Text>
-              )}
-              <Input
+              <InputComponent
+                touched={props.touched.email}
+                errors={props.errors.email}
+                handleChange={props.handleChange('email')}
+                handleBlur={props.handleBlur('email')}
+                value={props.values.email}
                 placeholder="Enter your email"
                 rightIcon={{name: 'envelope', type: 'font-awesome'}}
-                value={values.email}
-                onChangeText={props.handleChange('email')}
-                onBlur={props.handleBlur('email')}
-                style={styles.input}
               />
-              {props.touched.email && props.errors.email && (
-                <Text style={styles.errorText}>{props.errors.email}</Text>
-              )}
-              <Input
+              <InputComponent
+                touched={props.touched.password}
+                errors={props.errors.password}
+                handleChange={props.handleChange('password')}
+                handleBlur={props.handleBlur('password')}
+                value={props.values.password}
                 placeholder="Enter your password"
-                secureTextEntry={true}
-                rightIcon={{name: 'lock', type: 'font-awesome'}}
-                value={values.password}
-                onChangeText={props.handleChange('password')}
-                onBlur={props.handleBlur('password')}
-                style={styles.input}
+                rightIcon={{name: 'lock', type: 'font-awesome-5'}}
+                secureTextEntry
               />
-              {props.touched.password && props.errors.password && (
-                <Text style={styles.errorText}>{props.errors.password}</Text>
-              )}
-              <Input
-                placeholder="Enter your password again"
-                secureTextEntry={true}
-                rightIcon={{name: 'lock', type: 'font-awesome'}}
-                value={values.confirmPassword}
-                onChangeText={props.handleChange('confirmPassword')}
-                onBlur={props.handleBlur('confirmPassword')}
-                style={styles.input}
+              <InputComponent
+                touched={props.touched.confirmPassword}
+                errors={props.errors.confirmPassword}
+                handleChange={props.handleChange('confirmPassword')}
+                handleBlur={props.handleBlur('confirmPassword')}
+                value={props.values.confirmPassword}
+                placeholder="Re-enter your password"
+                rightIcon={{name: 'lock', type: 'font-awesome-5'}}
+                secureTextEntry
               />
-              {props.touched.confirmPassword &&
-                props.errors.confirmPassword && (
-                  <Text style={styles.errorText}>
-                    {props.errors.confirmPassword}
-                  </Text>
-                )}
-              <CheckBox
+              <CheckBoxComponent
                 title="I agree with the terms"
-                checked={values.checked}
-                onPress={() => props.setFieldValue('checked', !values.checked)}
+                checked={props.values.checked}
+                touched={props.touched.checked}
+                errors={props.errors.checked}
+                onPress={() =>
+                  props.setFieldValue('checked', !props.values.checked)
+                }
                 onBlur={props.handleBlur('checked')}
-                style={styles.input}
               />
-              {props.touched.checked && props.errors.checked && (
-                <Text style={styles.errorText}>{props.errors.checked}</Text>
-              )}
-              <Button
+
+              <ButtonComponent
                 title="REGISTER"
                 raised
                 icon={
@@ -137,12 +130,6 @@ export default function Register({navigation}) {
                   />
                 }
                 iconRight
-                titleStyle={{fontSize: 20}}
-                buttonStyle={{
-                  backgroundColor: '#910000',
-                  height: 50,
-                  width: 150,
-                }}
                 onPress={props.handleSubmit}
                 disabled={!props.isValid}
                 loading={props.isSubmitting}
@@ -166,14 +153,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 20,
-  },
-  input: {
-    fontSize: 20,
-  },
-  errorText: {
-    color: '#910000',
-    paddingBottom: 20,
-    fontSize: 20,
   },
   logoImage: {
     width: 300,

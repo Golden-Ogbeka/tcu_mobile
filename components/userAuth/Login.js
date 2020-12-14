@@ -15,6 +15,8 @@ import {API_URL} from '../../app.json';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {useAppContext} from '../../context/AppContext';
+import InputComponent from '../layout/InputComponent';
+import ButtonComponent from '../layout/ButtonComponent';
 
 const logo = require('../../assets/images/logo/tcu.png');
 
@@ -56,35 +58,30 @@ export default function Login({navigation}) {
             .required('Email is required'),
           password: Yup.string().required('Password is required'),
         })}>
-        {({values, ...props}) => (
+        {(props) => (
           <>
-            <Input
+            <InputComponent
+              touched={props.touched.email}
+              errors={props.errors.email}
+              handleChange={props.handleChange('email')}
+              handleBlur={props.handleBlur('email')}
+              value={props.values.email}
               placeholder="Enter your email"
               rightIcon={{name: 'envelope', type: 'font-awesome'}}
-              value={values.email}
-              onChangeText={props.handleChange('email')}
-              onBlur={props.handleBlur('email')}
-              style={styles.input}
             />
-            {props.touched.email && props.errors.email && (
-              <Text style={styles.errorText}>* {props.errors.email}</Text>
-            )}
-            <Input
+            <InputComponent
+              touched={props.touched.password}
+              errors={props.errors.password}
+              handleChange={props.handleChange('password')}
+              handleBlur={props.handleBlur('password')}
+              value={props.values.password}
               placeholder="Enter your password"
-              secureTextEntry
               rightIcon={{name: 'lock', type: 'font-awesome-5'}}
-              value={values.password}
-              onChangeText={props.handleChange('password')}
-              onBlur={props.handleBlur('password')}
-              style={styles.input}
+              secureTextEntry
             />
-            {props.touched.password && props.errors.password && (
-              <Text style={styles.errorText}>* {props.errors.password}</Text>
-            )}
-            <Button
+            <ButtonComponent
               title="LOGIN"
               raised
-              titleStyle={{fontSize: 18}}
               icon={
                 <Icon
                   name="sign-in"
@@ -94,7 +91,6 @@ export default function Login({navigation}) {
                 />
               }
               iconRight
-              buttonStyle={{backgroundColor: '#910000', height: 50, width: 150}}
               onPress={props.handleSubmit}
               disabled={!props.isValid}
               loading={props.isSubmitting}
@@ -115,14 +111,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  errorText: {
-    color: '#910000',
-    fontSize: 20,
-    paddingBottom: 20,
-  },
-  input: {
-    fontSize: 20,
   },
   logoImage: {
     width: 300,

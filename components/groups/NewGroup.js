@@ -3,6 +3,9 @@ import React from 'react';
 import {AppState, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text, Input, Icon} from 'react-native-elements';
 import * as Yup from 'yup';
+import ButtonComponent from '../layout/ButtonComponent';
+import InputComponent from '../layout/InputComponent';
+import SelectComponent from '../layout/SelectComponent';
 
 export default function NewGroup() {
   const createGroup = async (values) => {};
@@ -32,60 +35,51 @@ export default function NewGroup() {
         onSubmit={(values) => createGroup(values)}>
         {(props) => (
           <View style={styles.inputContainer}>
-            <Input
+            <InputComponent
               label="Group's Name"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('name')}
-              onBlur={props.handleBlur('name')}
-              placeholder="Input the Group's name"
+              touched={props.touched.name}
+              errors={props.errors.name}
+              onChangeText={props.handleChange('phoneNumber')}
+              onBlur={props.handleBlur('phoneNumber')}
               value={props.values.name}
+              placeholder="Input the Group's name"
             />
-            {props.touched.name && props.errors.name && (
-              <Text style={styles.errorText}>* {props.errors.name}</Text>
-            )}
-            <Input
-              label="Group's Type"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('type')}
-              onBlur={props.handleBlur('type')}
-              placeholder="Input the Group's type"
+            <SelectComponent
+              title="Group's Type"
               value={props.values.type}
+              items={['Public', 'Private']}
+              onChangeItem={(item) => {
+                props.setFieldValue('type', item.value);
+              }}
+              touched={props.touched.type}
+              errors={props.errors.type}
             />
-            {props.touched.type && props.errors.type && (
-              <Text style={styles.errorText}>* {props.errors.type}</Text>
-            )}
-            <Input
+            <InputComponent
               label="Group's Description"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('description')}
-              onBlur={props.handleBlur('description')}
-              placeholder="Input the Group's description"
+              multiline
+              touched={props.touched.description}
+              errors={props.errors.description}
+              onChangeText={props.handleChange('phoneNumber')}
+              onBlur={props.handleBlur('phoneNumber')}
               value={props.values.description}
+              placeholder="Input the Group's description"
             />
-            {props.touched.description && props.errors.description && (
-              <Text style={styles.errorText}>* {props.errors.description}</Text>
-            )}
-            <Input
+            <InputComponent
               label="Group's Rules"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('rules')}
-              onBlur={props.handleBlur('rules')}
-              placeholder="Input the Group's rules"
+              multiline
+              touched={props.touched.rules}
+              errors={props.errors.rules}
+              onChangeText={props.handleChange('phoneNumber')}
+              onBlur={props.handleBlur('phoneNumber')}
               value={props.values.rules}
+              placeholder="Input the Group's rules"
             />
-            {props.touched.rules && props.errors.rules && (
-              <Text style={styles.errorText}>* {props.errors.rules}</Text>
-            )}
+
             {/* Group's Image */}
 
-            <Button
+            <ButtonComponent
               title="Create Group"
               raised
-              titleStyle={{fontSize: 18}}
               icon={
                 <Icon
                   name="plus"
@@ -95,11 +89,6 @@ export default function NewGroup() {
                   style={{paddingRight: 10}}
                 />
               }
-              buttonStyle={{
-                backgroundColor: '#910000',
-                height: 50,
-                width: 200,
-              }}
               onPress={props.handleSubmit}
               disabled={!props.isValid}
               loading={props.isSubmitting}

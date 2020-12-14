@@ -3,6 +3,9 @@ import React from 'react';
 import {AppState, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text, Input, Icon} from 'react-native-elements';
 import * as Yup from 'yup';
+import ButtonComponent from '../layout/ButtonComponent';
+import InputComponent from '../layout/InputComponent';
+import SelectComponent from '../layout/SelectComponent';
 
 export default function NewTopic() {
   const createTopic = async (values) => {
@@ -32,48 +35,45 @@ export default function NewTopic() {
         onSubmit={(values) => createTopic(values)}>
         {(props) => (
           <View style={styles.inputContainer}>
-            <Input
+            <InputComponent
               label="Topic"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('topic')}
-              onBlur={props.handleBlur('topic')}
-              placeholder="Input the Topic"
+              touched={props.touched.topic}
+              errors={props.errors.topic}
+              onChangeText={props.handleChange('phoneNumber')}
+              onBlur={props.handleBlur('phoneNumber')}
               value={props.values.topic}
+              placeholder="Input the topic"
             />
-            {props.touched.topic && props.errors.topic && (
-              <Text style={styles.errorText}>* {props.errors.topic}</Text>
-            )}
-            <Input
-              label="Topic's Section"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('section')}
-              onBlur={props.handleBlur('section')}
-              placeholder="Input the Topic's section"
+            <SelectComponent
+              title="Section"
               value={props.values.section}
+              items={[
+                'Poultry',
+                'Food',
+                'Equipment',
+                'Training',
+                'Medication',
+                'Contact',
+              ]}
+              onChangeItem={(item) => {
+                props.setFieldValue('section', item.value);
+              }}
+              touched={props.touched.section}
+              errors={props.errors.section}
             />
-            {props.touched.section && props.errors.section && (
-              <Text style={styles.errorText}>* {props.errors.section}</Text>
-            )}
-            <Input
-              multiline
+            <InputComponent
               label="Content"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('content')}
-              onBlur={props.handleBlur('content')}
-              placeholder="Input the Topic's content"
+              multiline
+              touched={props.touched.content}
+              errors={props.errors.content}
+              onChangeText={props.handleChange('phoneNumber')}
+              onBlur={props.handleBlur('phoneNumber')}
               value={props.values.content}
+              placeholder="Input the topic's content"
             />
-            {props.touched.content && props.errors.content && (
-              <Text style={styles.errorText}>* {props.errors.content}</Text>
-            )}
-
-            <Button
+            <ButtonComponent
               title="Create Topic"
               raised
-              titleStyle={{fontSize: 18}}
               icon={{
                 name: 'plus',
                 type: 'font-awesome-5',
@@ -81,11 +81,6 @@ export default function NewTopic() {
                 size: 18,
               }}
               iconContainerStyle={{paddingRight: 10}}
-              buttonStyle={{
-                backgroundColor: '#910000',
-                height: 50,
-                width: 200,
-              }}
               onPress={props.handleSubmit}
               disabled={!props.isValid}
               loading={props.isSubmitting}

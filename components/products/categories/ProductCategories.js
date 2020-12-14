@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Card, Icon, Text} from 'react-native-elements';
-// import {ScrollView} from 'react-native-gesture-handler';
+import ButtonComponent from '../../layout/ButtonComponent';
 
 export default function ProductCategories({navigation}) {
   return (
@@ -15,11 +15,11 @@ export default function ProductCategories({navigation}) {
           source={require('../../../assets/images/productCategories/tcu-poultry.jpg')}
           style={styles.image}
         />
-        <Text style={styles.text}>
-          Live Poultry, Eggs, Chicks, Turkeys, etc.
-        </Text>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Poultry, Eggs, Chicks, Turkeys, etc</Text>
+        </View>
+        <ButtonComponent
+          icon={<Icon name="info" style={{paddingRight: 10}} color="#ffffff" />}
           title="View Poultry Products"
           buttonStyle={styles.button}
           onPress={() => navigation.navigate('PoultryProducts')}
@@ -34,9 +34,11 @@ export default function ProductCategories({navigation}) {
           source={require('../../../assets/images/productCategories/tcu-food.jpg')}
           style={styles.image}
         />
-        <Text style={styles.text}>Fast Food, Snacks, Varieties, etc</Text>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Fast Food, Snacks, Varieties, etc</Text>
+        </View>
+        <ButtonComponent
+          icon={<Icon name="info" style={{paddingRight: 10}} color="#ffffff" />}
           title="View Food Products"
           buttonStyle={styles.button}
           onPress={() => navigation.navigate('FoodProducts')}
@@ -51,9 +53,11 @@ export default function ProductCategories({navigation}) {
           source={require('../../../assets/images/productCategories/tcu-frozen.jpg')}
           style={styles.image}
         />
-        <Text style={styles.text}>Wholesale and retail frozen food</Text>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Wholesale and retail frozen food</Text>
+        </View>
+        <ButtonComponent
+          icon={<Icon name="info" style={{paddingRight: 10}} color="#ffffff" />}
           title="View Frozen Products"
           buttonStyle={styles.button}
           onPress={() => navigation.navigate('FrozenProducts')}
@@ -68,9 +72,11 @@ export default function ProductCategories({navigation}) {
           source={require('../../../assets/images/productCategories/tcu-training.jpg')}
           style={styles.image}
         />
-        <Text style={styles.text}>Seminars, Trainings, Workshops, etc.</Text>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Seminars, Trainings, Workshops, etc.</Text>
+        </View>
+        <ButtonComponent
+          icon={<Icon name="info" style={{paddingRight: 10}} color="#ffffff" />}
           title="View Training Products"
           buttonStyle={styles.button}
           onPress={() => navigation.navigate('TrainingProducts')}
@@ -85,9 +91,11 @@ export default function ProductCategories({navigation}) {
           source={require('../../../assets/images/productCategories/tcu-equipment.jpg')}
           style={styles.image}
         />
-        <Text style={styles.text}>Feed, Drinkers, tools, cages, etc</Text>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Feed, Drinkers, tools, cages, etc</Text>
+        </View>
+        <ButtonComponent
+          icon={<Icon name="info" style={{paddingRight: 10}} color="#ffffff" />}
           title="View Equipment Products"
           buttonStyle={styles.button}
           onPress={() => navigation.navigate('EquipmentProducts')}
@@ -102,9 +110,11 @@ export default function ProductCategories({navigation}) {
           source={require('../../../assets/images/productCategories/tcu-medication.jpg')}
           style={styles.image}
         />
-        <Text style={styles.text}>Vaccines, Drugs, etc</Text>
-        <Button
-          icon={<Icon name="info" style={{marginRight: 2}} color="#ffffff" />}
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>Vaccines, Drugs, etc</Text>
+        </View>
+        <ButtonComponent
+          icon={<Icon name="info" style={{paddingRight: 10}} color="#ffffff" />}
           title="View Medication Products"
           buttonStyle={styles.button}
           onPress={() => navigation.navigate('MedicationProducts')}
@@ -125,9 +135,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   text: {
-    marginBottom: 10,
     fontSize: 20,
-    fontStyle: 'italic',
+  },
+  textContainer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignItems: 'center',
   },
   button: {
     backgroundColor: '#910000',

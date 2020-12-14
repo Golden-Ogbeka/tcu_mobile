@@ -3,9 +3,13 @@ import React from 'react';
 import {AppState, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text, Input, Icon} from 'react-native-elements';
 import * as Yup from 'yup';
+import InputComponent from '../layout/InputComponent';
+import SelectComponent from '../layout/SelectComponent';
 
 export default function NewProduct() {
-  const addProduct = async (values) => {};
+  const addProduct = async (values) => {
+    console.log(values);
+  };
   return (
     <ScrollView>
       <View style={styles.title}>
@@ -23,68 +27,66 @@ export default function NewProduct() {
         }}
         enableReinitialize
         validationSchema={Yup.object({
-          productName: Yup.string().required('Product name is required'),
-          productType: Yup.string().required('Product type is required'),
+          productName: Yup.string().required("Product's name is required"),
+          productType: Yup.string().required('Select a product type'),
           productDescription: Yup.string().required(
-            'Product description is required',
+            "Product's description is required",
           ),
-          price: Yup.number().required('Product price is required'),
+          price: Yup.number('Price must be a number').required(
+            "Product's price is required",
+          ),
           // productImage: Yup.
         })}
         onSubmit={(values) => addProduct(values)}>
         {(props) => (
           <View style={styles.inputContainer}>
-            <Input
+            <InputComponent
               label="Product's Name"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
+              touched={props.touched.productName}
+              errors={props.errors.productName}
               onChangeText={props.handleChange('productName')}
               onBlur={props.handleBlur('productName')}
               placeholder="Input the product's name"
               value={props.values.productName}
             />
-            {props.touched.productName && props.errors.productName && (
-              <Text style={styles.errorText}>* {props.errors.productName}</Text>
-            )}
-            <Input
-              label="Product's Type"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
-              onChangeText={props.handleChange('productType')}
-              onBlur={props.handleBlur('productType')}
-              placeholder="Input the product's type"
+            <SelectComponent
+              title="Product's type"
               value={props.values.productType}
+              items={[
+                'Poultry',
+                'Food',
+                'Frozen',
+                'Equipment',
+                'Training',
+                'Medication',
+              ]}
+              onChangeItem={(item) => {
+                props.setFieldValue('productType', item.value);
+              }}
+              touched={props.touched.productType}
+              errors={props.errors.productType}
             />
-            {props.touched.productType && props.errors.productType && (
-              <Text style={styles.errorText}>* {props.errors.productType}</Text>
-            )}
-            <Input
+            <InputComponent
               label="Product's Description"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
+              multiline
+              touched={props.touched.productDescription}
+              errors={props.errors.productDescription}
               onChangeText={props.handleChange('productDescription')}
               onBlur={props.handleBlur('productDescription')}
               placeholder="Input the product's description"
               value={props.values.productDescription}
             />
-            {props.touched.productDescription &&
-              props.errors.productDescription && (
-                <Text style={styles.errorText}>
-                  * {props.errors.productDescription}
-                </Text>
-              )}
-            <Input
+            <InputComponent
               label="Price"
-              style={styles.textInput}
-              labelStyle={styles.textLabel}
+              keyboardType="numeric"
+              touched={props.touched.price}
+              errors={props.errors.price}
               onChangeText={props.handleChange('price')}
               onBlur={props.handleBlur('price')}
               placeholder="Input the product's price"
               value={props.values.price}
             />
-            {props.touched.price && props.errors.price && (
-              <Text style={styles.errorText}>* {props.errors.price}</Text>
-            )}
+
             {/* Product Image */}
 
             <Button
@@ -122,16 +124,15 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   errorText: {
-    color: '#910000',
+    color: 'red',
     fontSize: 20,
-    paddingBottom: 20,
   },
   textInput: {
     fontSize: 23,
   },
   textLabel: {
     color: '#910000',
-    fontSize: 20,
+    fontSize: 25,
   },
   title: {
     justifyContent: 'center',
