@@ -14,7 +14,7 @@ export default function FoodProducts({navigation}) {
       try {
         setLoading(true);
         const response = await Axios.get(
-          `${API_URL}/api/products?productType=Food`,
+          `${API_URL}/api/products?productType=Food/Catering`,
         );
         const allProducts = response.data;
         setProducts(allProducts);
@@ -30,7 +30,7 @@ export default function FoodProducts({navigation}) {
     <ScrollView>
       {loading === false ? (
         products.length > 0 ? (
-          <ProductInfo section="Food" />
+          <ProductInfo type="Food/Catering" />
         ) : (
           <View style={styles.container}>
             <Text h3>No products found</Text>

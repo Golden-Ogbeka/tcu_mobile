@@ -71,11 +71,12 @@ export default function EditForumProfile(props) {
                 touched={props.touched.state}
                 errors={props.errors.state}
               />
-              <Input
+              <InputComponent
                 label="Address"
+                multiline
                 touched={props.touched.address}
                 errors={props.errors.address}
-                rightIcon={{name: 'list', type: 'font-awesome'}}
+                rightIcon={{name: 'location-pin', size: 25}}
                 onChangeText={props.handleChange('address')}
                 onBlur={props.handleBlur('address')}
                 placeholder="Input your address"

@@ -14,7 +14,7 @@ export default function FrozenProducts({navigation}) {
       try {
         setLoading(true);
         const response = await Axios.get(
-          `${API_URL}/api/products?productType=Frozen`,
+          `${API_URL}/api/products?productType=Frozen Food`,
         );
         const allProducts = response.data;
         setProducts(allProducts);
@@ -30,7 +30,7 @@ export default function FrozenProducts({navigation}) {
     <ScrollView>
       {loading === false ? (
         products.length > 0 ? (
-          <ProductInfo section="Frozen" />
+          <ProductInfo type="Frozen Food" />
         ) : (
           <View style={styles.container}>
             <Text h3>No products found</Text>

@@ -4,6 +4,7 @@ import Axios from 'axios';
 import {API_URL} from '../../../app.json';
 import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
+import ImageComponent from '../../layout/ImageComponent';
 
 export default function GroupList(props) {
   const [groups, setGroups] = useState([]);
@@ -47,11 +48,7 @@ export default function GroupList(props) {
       {groups &&
         groups.map((group) => (
           <Card key={group._id}>
-            <Image
-              source={`${group.image}`}
-              accessibilityLabel="Group Image"
-              style={styles.image}
-            />
+            <ImageComponent uri={group.image} style={styles.image} />
             <Divider />
             <Card.Title onPress={() => navigation.navigate('PoultryProducts')}>
               <Text h4>{group.name}</Text>
@@ -86,7 +83,8 @@ const styles = StyleSheet.create({
   image: {
     width: Card.width,
     height: 200,
-    resizeMode: 'contain',
+    // resizeMode: 'stretch',
+    borderRadius: 20,
   },
   founder: {
     marginBottom: 10,

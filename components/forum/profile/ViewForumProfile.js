@@ -1,13 +1,27 @@
-import React from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Text, Button, ListItem, Avatar, Icon} from 'react-native-elements';
-import {useAppContext} from '../../../context/AppContext';
+import Axios from 'axios';
+import React, {useState, useEffect} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {Text, ListItem, Avatar, Icon} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
+import ImageComponent from '../../layout/ImageComponent';
+import {API_URL} from '../../../app.json';
 
 export default function ViewForumProfile(props) {
-  const {contextVariables, setContextVariables} = useAppContext();
+  const [userDetails, setUserDetails] = useState({});
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await Axios.get(`${API_URL}/api/user`);
+        const userData = response.data;
+        setUserDetails(userData);
+      } catch (error) {
+        setUserDetails({});
+      }
+    };
+    getUserData();
+  }, [userDetails]);
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor: 'white'}}>
       <View style={styles.editButtonView}>
         <ButtonComponent
           title="Edit Profile"
@@ -25,7 +39,7 @@ export default function ViewForumProfile(props) {
         />
       </View>
       <View style={styles.imageContainer}>
-        <Image source="" style={styles.profileImage} />
+        <ImageComponent uri={userDetails.userImage} label="User Image" />
       </View>
       <ListItem bottomDivider>
         <Avatar
@@ -37,7 +51,7 @@ export default function ViewForumProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandName}</Text>
+            <Text h4>{userDetails.brandName}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand Name</ListItem.Subtitle>
         </ListItem.Content>
@@ -53,7 +67,7 @@ export default function ViewForumProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.state}</Text>
+            <Text h4>{userDetails.state}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>State</ListItem.Subtitle>
         </ListItem.Content>
@@ -68,7 +82,7 @@ export default function ViewForumProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.address}</Text>
+            <Text h4>{userDetails.address}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Address</ListItem.Subtitle>
         </ListItem.Content>
@@ -84,14 +98,12 @@ const styles = StyleSheet.create({
   editButtonView: {
     alignItems: 'flex-end',
     padding: 10,
+    backgroundColor: 'white',
   },
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-  },
-  profileImage: {
-    width: 200,
-    height: 200,
+    backgroundColor: 'white',
   },
 });

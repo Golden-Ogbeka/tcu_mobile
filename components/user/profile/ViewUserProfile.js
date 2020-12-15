@@ -1,11 +1,25 @@
-import React from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Text, Button, ListItem, Avatar, Icon} from 'react-native-elements';
-import {useAppContext} from '../../../context/AppContext';
+import React, {useState, useEffect} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {Text, ListItem, Avatar, Icon} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
+import {API_URL} from '../../../app.json';
+import ImageComponent from '../../layout/ImageComponent';
+import Axios from 'axios';
 
 export default function ViewUserProfile(props) {
-  const {contextVariables, setContextVariables} = useAppContext();
+  const [userDetails, setUserDetails] = useState({});
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await Axios.get(`${API_URL}/api/user`);
+        const userData = response.data;
+        setUserDetails(userData);
+      } catch (error) {
+        setUserDetails({});
+      }
+    };
+    getUserData();
+  }, [userDetails]);
   return (
     <ScrollView>
       <View style={styles.editButtonView}>
@@ -25,7 +39,7 @@ export default function ViewUserProfile(props) {
         />
       </View>
       <View style={styles.imageContainer}>
-        <Image source="" style={styles.profileImage} />
+        <ImageComponent uri={userDetails.userImage} label="User Image" />
       </View>
 
       <ListItem bottomDivider>
@@ -38,7 +52,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.name}</Text>
+            <Text h4>{userDetails.name}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Name</ListItem.Subtitle>
         </ListItem.Content>
@@ -53,7 +67,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.email}</Text>
+            <Text h4>{userDetails.email}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Email</ListItem.Subtitle>
         </ListItem.Content>
@@ -68,7 +82,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.phoneNumber}</Text>
+            <Text h4>{userDetails.phoneNumber}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Phone Number</ListItem.Subtitle>
         </ListItem.Content>
@@ -83,7 +97,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.gender}</Text>
+            <Text h4>{userDetails.gender}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Gender</ListItem.Subtitle>
         </ListItem.Content>
@@ -99,7 +113,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.state}</Text>
+            <Text h4>{userDetails.state}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>State</ListItem.Subtitle>
         </ListItem.Content>
@@ -114,7 +128,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.address}</Text>
+            <Text h4>{userDetails.address}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Address</ListItem.Subtitle>
         </ListItem.Content>
@@ -129,7 +143,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.producerStatus}</Text>
+            <Text h4>{userDetails.producerStatus}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Producer Status</ListItem.Subtitle>
         </ListItem.Content>
@@ -144,7 +158,7 @@ export default function ViewUserProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.distributorStatus}</Text>
+            <Text h4>{userDetails.distributorStatus}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Distributor Status</ListItem.Subtitle>
         </ListItem.Content>
@@ -160,14 +174,11 @@ const styles = StyleSheet.create({
   editButtonView: {
     alignItems: 'flex-end',
     padding: 10,
+    backgroundColor: 'white',
   },
   imageContainer: {
-    justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-  },
-  profileImage: {
-    width: 200,
-    height: 200,
+    backgroundColor: 'white',
   },
 });

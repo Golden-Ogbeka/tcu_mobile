@@ -30,7 +30,7 @@ export default function PoultryProducts({navigation}) {
     <ScrollView>
       {loading === false ? (
         products.length > 0 ? (
-          <ProductInfo section="Poultry" />
+          <ProductInfo type="Poultry" />
         ) : (
           <View style={styles.container}>
             <Text h3>No products found</Text>

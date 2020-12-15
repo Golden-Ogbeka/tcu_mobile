@@ -30,7 +30,7 @@ export default function TrainingProducts({navigation}) {
     <ScrollView>
       {loading === false ? (
         products.length > 0 ? (
-          <ProductInfo section="Training" />
+          <ProductInfo type="Training" />
         ) : (
           <View style={styles.container}>
             <Text h3>No products found</Text>

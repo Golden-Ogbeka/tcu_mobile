@@ -1,11 +1,25 @@
-import React from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Text, Button, ListItem, Avatar, Icon} from 'react-native-elements';
-import {useAppContext} from '../../../context/AppContext';
+import React, {useState, useEffect} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {Text, ListItem, Avatar, Icon} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
+import ImageComponent from '../../layout/ImageComponent';
+import {API_URL} from '../../../app.json';
+import Axios from 'axios';
 
 export default function ViewProducerProfile(props) {
-  const {contextVariables, setContextVariables} = useAppContext();
+  const [userDetails, setUserDetails] = useState({});
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await Axios.get(`${API_URL}/api/user`);
+        const userData = response.data;
+        setUserDetails(userData);
+      } catch (error) {
+        setUserDetails({});
+      }
+    };
+    getUserData();
+  }, [userDetails]);
   return (
     <ScrollView>
       <View style={styles.editButtonView}>
@@ -25,7 +39,7 @@ export default function ViewProducerProfile(props) {
         />
       </View>
       <View style={styles.imageContainer}>
-        <Image source="" style={styles.profileImage} />
+        <ImageComponent uri={userDetails.brandImage} label="Brand Image" />
       </View>
       <ListItem bottomDivider>
         <Avatar
@@ -37,7 +51,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.producerStatus}</Text>
+            <Text h4>{userDetails.producerStatus}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Producer Status</ListItem.Subtitle>
         </ListItem.Content>
@@ -53,7 +67,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandName}</Text>
+            <Text h4>{userDetails.brandName}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Name</ListItem.Subtitle>
         </ListItem.Content>
@@ -68,7 +82,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandEmail}</Text>
+            <Text h4>{userDetails.brandEmail}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Email</ListItem.Subtitle>
         </ListItem.Content>
@@ -83,7 +97,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandNumber}</Text>
+            <Text h4>{userDetails.brandNumber}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Number</ListItem.Subtitle>
         </ListItem.Content>
@@ -98,7 +112,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandState}</Text>
+            <Text h4>{userDetails.brandState}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's State</ListItem.Subtitle>
         </ListItem.Content>
@@ -113,7 +127,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandAddress}</Text>
+            <Text h4>{userDetails.brandAddress}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Address</ListItem.Subtitle>
         </ListItem.Content>
@@ -129,7 +143,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandDescription}</Text>
+            <Text h4>{userDetails.brandDescription}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Description</ListItem.Subtitle>
         </ListItem.Content>
@@ -144,7 +158,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandMotto}</Text>
+            <Text h4>{userDetails.brandMotto}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Motto</ListItem.Subtitle>
         </ListItem.Content>
@@ -159,7 +173,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandVision}</Text>
+            <Text h4>{userDetails.brandVision}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Vision</ListItem.Subtitle>
         </ListItem.Content>
@@ -174,7 +188,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{contextVariables.user.brandDate}</Text>
+            <Text h4>{userDetails.brandDate}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Founding Date</ListItem.Subtitle>
         </ListItem.Content>
@@ -190,14 +204,12 @@ const styles = StyleSheet.create({
   editButtonView: {
     alignItems: 'flex-end',
     padding: 10,
+    backgroundColor: 'white',
   },
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-  },
-  profileImage: {
-    width: 200,
-    height: 200,
+    backgroundColor: 'white',
   },
 });

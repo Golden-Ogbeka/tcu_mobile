@@ -88,6 +88,7 @@ export default function EditProducerProfile(props) {
                 label="Brand's Number"
                 touched={props.touched.name}
                 errors={props.errors.name}
+                keyboardType="numeric"
                 rightIcon={{name: 'phone', type: 'font-awesome'}}
                 onChangeText={props.handleChange('brandNumber')}
                 onBlur={props.handleBlur('brandNumber')}
@@ -107,6 +108,7 @@ export default function EditProducerProfile(props) {
               />
               <InputComponent
                 label="Brand's Address"
+                multiline
                 touched={props.touched.brandAddress}
                 errors={props.errors.brandAddress}
                 rightIcon={{name: 'location-pin', size: 30}}
@@ -118,6 +120,7 @@ export default function EditProducerProfile(props) {
 
               <InputComponent
                 label="Brand's Description"
+                multiline
                 touched={props.touched.brandDescription}
                 errors={props.errors.brandDescription}
                 rightIcon={{name: 'description', size: 30}}
@@ -140,6 +143,7 @@ export default function EditProducerProfile(props) {
 
               <InputComponent
                 label="Brand's Vision"
+                multiline
                 touched={props.touched.brandVision}
                 errors={props.errors.brandVision}
                 rightIcon={{name: 'info', type: 'font-awesome'}}

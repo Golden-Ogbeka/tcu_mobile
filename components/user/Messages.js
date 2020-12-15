@@ -18,24 +18,42 @@ export default function Messages() {
   useEffect(() => {
     const getMessages = async () => {
       try {
+        setLoading(true);
         const response = await Axios.get(`${API_URL}/api/messages`);
         const {messages, conversations} = response.data;
         setMessageDetails({
           messages,
           conversations,
         });
+        setLoading(false);
       } catch (error) {
         setMessageDetails({
           messages: [],
           conversations: [],
         });
+        setLoading(false);
       }
     };
     getMessages();
   }, []);
 
   const deleteMessage = async (conversation) => {
-    Alert.prompt();
+    // The wrong messge gets deleted
+    try {
+      const response = await Axios.delete(
+        `${API_URL}/api/message/${conversation._id}`,
+      );
+      setMessageDetails({
+        ...messageDetails,
+        conversations: messageDetails.conversations.filter(
+          (item) => item._id !== conversation._id,
+        ),
+      });
+      Alert.alert('Success', response.data);
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Error', error.response.data);
+    }
   };
 
   return (
@@ -60,7 +78,23 @@ export default function Messages() {
               <Button
                 icon={<Icon name="trash" type="font-awesome" color="white" />}
                 buttonStyle={{backgroundColor: '#910000'}}
-                onPress={() => deleteMessage(conversation)}
+                // onPress={() => deleteMessage(conversation)}
+                onPress={() =>
+                  Alert.alert(
+                    'Delete Message',
+                    'Are you sure you want to delete this message?',
+                    [
+                      {
+                        text: 'No',
+                      },
+                      {
+                        text: 'Yes',
+                        onPress: () => deleteMessage(conversation),
+                      },
+                    ],
+                    {cancelable: true},
+                  )
+                }
               />
             </ListItem>
           ))

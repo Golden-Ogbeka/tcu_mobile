@@ -4,6 +4,7 @@ import {Image, StyleSheet, View} from 'react-native';
 import {Button, Card, Icon, Text} from 'react-native-elements';
 import {API_URL} from '../../../../app.json';
 import ButtonComponent from '../../../layout/ButtonComponent';
+import ImageComponent from '../../../layout/ImageComponent';
 
 export default function ProductInfo(props) {
   const [productDetails, setProductDetails] = useState([]);
@@ -11,22 +12,11 @@ export default function ProductInfo(props) {
   useEffect(() => {
     const getProductDetails = async () => {
       try {
-        if (props.section) {
+        if (props.type) {
           const response = await Axios.get(
-            `${API_URL}/api/products?productType=Poultry`,
+            `${API_URL}/api/products?productType=${props.type}`,
           );
           let allProducts = response.data;
-          //   allProducts = allProducts.map((product) => {
-          //     // console.log(product.productImage);
-
-          //     const imageFile = new File(product.productImage, {
-          //       type: 'image/jpg',
-          //     });
-          //     product.productImage = URL.createObjectURL(imageFile);
-          //     console.log(product.productImage);
-          //     return product;
-          //   });
-          //It is returned as an array
           setProductDetails(allProducts);
         }
         if (props.productID) {
@@ -53,7 +43,7 @@ export default function ProductInfo(props) {
               <Text h3>{product.productName}</Text>
             </Card.Title>
             <Card.Divider />
-            <Image source={`${product.productImage}`} style={styles.image} />
+            <ImageComponent uri={product.productImage} style={styles.image} />
             <Text style={styles.brand}>{product.brandName}</Text>
             <Text style={styles.description}>{product.productDescription}</Text>
             <Text style={styles.price}>NGN {product.price}</Text>
@@ -75,7 +65,8 @@ const styles = StyleSheet.create({
   image: {
     width: Card.width,
     height: 200,
-    resizeMode: 'contain',
+    // resizeMode: 'contain',
+    borderRadius: 20,
   },
   productName: {
     fontSize: 30,
