@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
   editButtonView: {
     alignItems: 'flex-end',
     padding: 10,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
   },
 });
