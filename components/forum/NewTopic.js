@@ -39,8 +39,8 @@ export default function NewTopic() {
               label="Topic"
               touched={props.touched.topic}
               errors={props.errors.topic}
-              onChangeText={props.handleChange('phoneNumber')}
-              onBlur={props.handleBlur('phoneNumber')}
+              onChangeText={props.handleChange('topic')}
+              onBlur={props.handleBlur('topic')}
               value={props.values.topic}
               placeholder="Input the topic"
             />
@@ -66,8 +66,8 @@ export default function NewTopic() {
               multiline
               touched={props.touched.content}
               errors={props.errors.content}
-              onChangeText={props.handleChange('phoneNumber')}
-              onBlur={props.handleBlur('phoneNumber')}
+              onChangeText={props.handleChange('content')}
+              onBlur={props.handleBlur('content')}
               value={props.values.content}
               placeholder="Input the topic's content"
             />

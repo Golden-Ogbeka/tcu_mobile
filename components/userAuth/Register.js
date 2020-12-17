@@ -72,8 +72,8 @@ export default function Register({navigation}) {
               <InputComponent
                 touched={props.touched.name}
                 errors={props.errors.name}
-                handleChange={props.handleChange('name')}
-                handleBlur={props.handleBlur('name')}
+                onChangeText={props.handleChange('name')}
+                onBlur={props.handleBlur('name')}
                 value={props.values.name}
                 placeholder="Enter your full name"
                 rightIcon={{name: 'user', type: 'font-awesome', size: 30}}
@@ -81,8 +81,8 @@ export default function Register({navigation}) {
               <InputComponent
                 touched={props.touched.email}
                 errors={props.errors.email}
-                handleChange={props.handleChange('email')}
-                handleBlur={props.handleBlur('email')}
+                onChangeText={props.handleChange('email')}
+                onBlur={props.handleBlur('email')}
                 value={props.values.email}
                 placeholder="Enter your email"
                 rightIcon={{name: 'envelope', type: 'font-awesome'}}
@@ -90,8 +90,8 @@ export default function Register({navigation}) {
               <InputComponent
                 touched={props.touched.password}
                 errors={props.errors.password}
-                handleChange={props.handleChange('password')}
-                handleBlur={props.handleBlur('password')}
+                onChangeText={props.handleChange('password')}
+                onBlur={props.handleBlur('password')}
                 value={props.values.password}
                 placeholder="Enter your password"
                 rightIcon={{name: 'lock', type: 'font-awesome-5'}}
@@ -100,8 +100,8 @@ export default function Register({navigation}) {
               <InputComponent
                 touched={props.touched.confirmPassword}
                 errors={props.errors.confirmPassword}
-                handleChange={props.handleChange('confirmPassword')}
-                handleBlur={props.handleBlur('confirmPassword')}
+                onChangeText={props.handleChange('confirmPassword')}
+                onBlur={props.handleBlur('confirmPassword')}
                 value={props.values.confirmPassword}
                 placeholder="Re-enter your password"
                 rightIcon={{name: 'lock', type: 'font-awesome-5'}}

@@ -52,6 +52,7 @@ export default function Login({navigation}) {
       <Formik
         initialValues={{email: '', password: ''}}
         onSubmit={(values) => submitDetails(values)}
+        enableReinitialize
         validationSchema={Yup.object({
           email: Yup.string()
             .email('Invalid Email')
@@ -63,8 +64,8 @@ export default function Login({navigation}) {
             <InputComponent
               touched={props.touched.email}
               errors={props.errors.email}
-              handleChange={props.handleChange('email')}
-              handleBlur={props.handleBlur('email')}
+              onChangeText={props.handleChange('email')}
+              onBlur={props.handleBlur('email')}
               value={props.values.email}
               placeholder="Enter your email"
               rightIcon={{name: 'envelope', type: 'font-awesome'}}
@@ -72,8 +73,8 @@ export default function Login({navigation}) {
             <InputComponent
               touched={props.touched.password}
               errors={props.errors.password}
-              handleChange={props.handleChange('password')}
-              handleBlur={props.handleBlur('password')}
+              onChangeText={props.handleChange('password')}
+              onBlur={props.handleBlur('password')}
               value={props.values.password}
               placeholder="Enter your password"
               rightIcon={{name: 'lock', type: 'font-awesome-5'}}

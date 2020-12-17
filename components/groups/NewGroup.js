@@ -39,8 +39,8 @@ export default function NewGroup() {
               label="Group's Name"
               touched={props.touched.name}
               errors={props.errors.name}
-              onChangeText={props.handleChange('phoneNumber')}
-              onBlur={props.handleBlur('phoneNumber')}
+              onChangeText={props.handleChange('name')}
+              onBlur={props.handleBlur('name')}
               value={props.values.name}
               placeholder="Input the Group's name"
             />
@@ -59,8 +59,8 @@ export default function NewGroup() {
               multiline
               touched={props.touched.description}
               errors={props.errors.description}
-              onChangeText={props.handleChange('phoneNumber')}
-              onBlur={props.handleBlur('phoneNumber')}
+              onChangeText={props.handleChange('description')}
+              onBlur={props.handleBlur('description')}
               value={props.values.description}
               placeholder="Input the Group's description"
             />
@@ -69,8 +69,8 @@ export default function NewGroup() {
               multiline
               touched={props.touched.rules}
               errors={props.errors.rules}
-              onChangeText={props.handleChange('phoneNumber')}
-              onBlur={props.handleBlur('phoneNumber')}
+              onChangeText={props.handleChange('rules')}
+              onBlur={props.handleBlur('rules')}
               value={props.values.rules}
               placeholder="Input the Group's rules"
             />
