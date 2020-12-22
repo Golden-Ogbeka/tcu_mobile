@@ -84,12 +84,15 @@ const App = () => {
     <AppContext.Provider value={{contextVariables, setContextVariables}}>
       <SafeAreaProvider>
         <View style={styles.container}>
-          <StatusBar />
+          <StatusBar backgroundColor="#910000" />
           <NavigationContainer>
             <Drawer.Navigator
               screenOptions={{
                 headerStyle: {
                   backgroundColor: '#910000',
+                },
+                headerTitleStyle: {
+                  fontSize: 25,
                 },
                 headerTintColor: 'white',
                 headerTitleAlign: 'center',

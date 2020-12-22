@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import Axios from 'axios';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 
-export default function FoodForum() {
+export default function FoodForum(props) {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function FoodForum() {
     <ScrollView>
       {loading === false ? (
         topics.length > 0 ? (
-          <ForumTopics section="Food" />
+          <ForumTopics section="Food" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No topics found</Text>

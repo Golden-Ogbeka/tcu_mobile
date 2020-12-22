@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
     width: Card.width,
     height: 200,
     resizeMode: 'contain',
+    borderRadius: 20,
   },
   text: {
     fontSize: 20,

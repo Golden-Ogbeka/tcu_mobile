@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import Axios from 'axios';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 
-export default function MedicationForum() {
+export default function MedicationForum(props) {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function MedicationForum() {
     <ScrollView>
       {loading === false ? (
         topics.length > 0 ? (
-          <ForumTopics section="Medication" />
+          <ForumTopics section="Medication" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No topics found</Text>

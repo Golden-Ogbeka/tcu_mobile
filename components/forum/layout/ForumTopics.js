@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
+import {Card, Divider, Icon, Text} from 'react-native-elements';
 import {API_URL} from '../../../app.json';
 import Axios from 'axios';
 import ButtonComponent from '../../layout/ButtonComponent';
@@ -44,13 +44,15 @@ export default function ForumTopics(props) {
         topics.map((topic) => (
           <Card key={topic._id}>
             <Card.Title
-              onPress={() => props.navigation.navigate('PoultryProducts')}>
+              onPress={() =>
+                props.navigation.navigate('View Topic', {topicID: topic._id})
+              }>
               <Text h4>{topic.topic}</Text>
             </Card.Title>
             <Card.Divider style={styles.divider} />
             <Text style={styles.content}>{topic.content}</Text>
             <Divider style={styles.divider} />
-            <Text style={styles.details}>Writer: {topic.brandName}</Text>
+            <Text style={styles.writer}>Writer: {topic.brandName}</Text>
             <View style={styles.topicDetails}>
               <Text style={styles.details}>
                 Views: {topic.views ? topic.views.length : 0}
@@ -65,7 +67,12 @@ export default function ForumTopics(props) {
               }
               title="View Topic Details"
               buttonStyle={styles.button}
-              onPress={() => props.navigation.navigate('PoultryProducts')}
+              onPress={() =>
+                props.navigation.navigate('Topic Stack', {
+                  screen: 'View Topic',
+                  params: {topicID: topic._id},
+                })
+              }
             />
           </Card>
         ))}
@@ -99,8 +106,7 @@ const styles = StyleSheet.create({
   },
   details: {
     marginBottom: 10,
-    fontSize: 20,
-    // fontWeight: 'bold',
+    fontSize: 18,
   },
   button: {
     backgroundColor: '#910000',
@@ -108,5 +114,10 @@ const styles = StyleSheet.create({
   topicDetails: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  writer: {
+    marginVertical: 10,
+    fontSize: 20,
+    fontStyle: 'italic',
   },
 });

@@ -7,7 +7,7 @@ import {useAppContext} from '../../context/AppContext';
 import LoadingIndicator from '../layout/LoadingIndicator';
 import ForumTopics from './layout/ForumTopics';
 
-export default function UserTopics() {
+export default function UserTopics(props) {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   const {contextVariables, setContextVariables} = useAppContext();
@@ -38,7 +38,7 @@ export default function UserTopics() {
       </View>
       {loading === false ? (
         topics.length > 0 ? (
-          <ForumTopics brandName="GOLDEN" />
+          <ForumTopics brandName="GOLDEN" {...props} />
         ) : (
           <View style={{alignItems: 'center'}}>
             <Text h3>No topics found</Text>

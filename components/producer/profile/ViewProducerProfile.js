@@ -188,7 +188,7 @@ export default function ViewProducerProfile(props) {
         />
         <ListItem.Content>
           <ListItem.Title>
-            <Text h4>{userDetails.brandDate}</Text>
+            <Text h4>{new Date(userDetails.brandDate).toDateString()}</Text>
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Founding Date</ListItem.Subtitle>
         </ListItem.Content>

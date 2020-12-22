@@ -19,13 +19,13 @@ export default function ProductInfo(props) {
           let allProducts = response.data;
           setProductDetails(allProducts);
         }
-        if (props.productID) {
-          const response = await Axios.get(
-            `${API_URL}/api/about/product/${productID}`,
-          );
-          const productInfo = response.data;
-          setProductDetails(productInfo);
-        }
+        // if (props.productID) {
+        //   const response = await Axios.get(
+        //     `${API_URL}/api/about/product/${productID}`,
+        //   );
+        //   const productInfo = response.data;
+        //   setProductDetails(productInfo);
+        // }
       } catch (error) {
         setProductDetails([]);
       }
@@ -39,11 +39,23 @@ export default function ProductInfo(props) {
         productDetails.map((product) => (
           <Card key={product._id}>
             <Card.Title
-              onPress={() => props.navigation.navigate('PoultryProducts')}>
+              onPress={() =>
+                props.navigation.navigate('View Product', {
+                  productID: product._id,
+                })
+              }>
               <Text h3>{product.productName}</Text>
             </Card.Title>
             <Card.Divider />
-            <ImageComponent uri={product.productImage} style={styles.image} />
+            <ImageComponent
+              uri={product.productImage}
+              style={styles.image}
+              onPress={() =>
+                props.navigation.navigate('View Product', {
+                  productID: product._id,
+                })
+              }
+            />
             <Text style={styles.brand}>{product.brandName}</Text>
             <Text style={styles.description}>{product.productDescription}</Text>
             <Text style={styles.price}>NGN {product.price}</Text>
@@ -53,7 +65,11 @@ export default function ProductInfo(props) {
               }
               title="View Product Details"
               buttonStyle={styles.button}
-              onPress={() => props.navigation.navigate('PoultryProducts')}
+              onPress={() =>
+                props.navigation.navigate('View Product', {
+                  productID: product._id,
+                })
+              }
             />
           </Card>
         ))}

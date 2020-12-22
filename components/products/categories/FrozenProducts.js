@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 import ProductInfo from './layout/ProductInfo';
 
-export default function FrozenProducts({navigation}) {
+export default function FrozenProducts(props) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function FrozenProducts({navigation}) {
     <ScrollView>
       {loading === false ? (
         products.length > 0 ? (
-          <ProductInfo type="Frozen Food" />
+          <ProductInfo type="Frozen Food" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No products found</Text>

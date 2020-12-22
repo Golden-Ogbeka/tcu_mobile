@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 import ProductInfo from './layout/ProductInfo';
 
-export default function FoodProducts({navigation}) {
+export default function FoodProducts(props) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function FoodProducts({navigation}) {
     <ScrollView>
       {loading === false ? (
         products.length > 0 ? (
-          <ProductInfo type="Food/Catering" />
+          <ProductInfo type="Food/Catering" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No products found</Text>

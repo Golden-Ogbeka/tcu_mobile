@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import Axios from 'axios';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 
-export default function ContactForum() {
+export default function ContactForum(props) {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function ContactForum() {
     <ScrollView>
       {loading === false ? (
         topics.length > 0 ? (
-          <ForumTopics section="Contact" />
+          <ForumTopics section="Contact" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No topics found</Text>

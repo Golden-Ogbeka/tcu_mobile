@@ -26,7 +26,7 @@ export default function ForumSectionStack() {
           headerTitleAlign: 'center',
         }}>
         <Stack.Screen
-          name="Sections"
+          name="Forum Sections"
           component={ForumSections}
           options={{title: 'Forum Sections'}}
         />

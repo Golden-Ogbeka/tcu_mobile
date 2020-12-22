@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import Axios from 'axios';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 
-export default function PoultryForum() {
+export default function PoultryForum(props) {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function PoultryForum() {
     <ScrollView contentContainerStyle={styles.container}>
       {loading === false ? (
         topics.length > 0 ? (
-          <ForumTopics section="Poultry" />
+          <ForumTopics section="Poultry" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No topics found</Text>

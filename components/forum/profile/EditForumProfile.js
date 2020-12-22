@@ -21,7 +21,7 @@ export default function EditForumProfile(props) {
         values,
       );
       Alert.alert('Success', response.data);
-      props.navigation.navigate('View Forum Profile');
+      // props.navigation.navigate('View Forum Profile');
       //Updated info isnt showing
     } catch (error) {
       Alert.alert('Error', error.response.data);

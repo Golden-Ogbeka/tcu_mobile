@@ -3,6 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import AllGroups from './AllGroups';
+import GroupStack from './GroupStack';
 import NewGroup from './NewGroup';
 import TrendingGroups from './TrendingGroups';
 import UserGroups from './UserGroups';
@@ -50,6 +51,14 @@ export default function GroupsTab() {
         component={AllGroups}
         options={{
           tabBarIcon: () => <Icon name="list" type="font-awesome" size={40} />,
+        }}
+      />
+      <Tab.Screen
+        name="Group Stack"
+        component={GroupStack}
+        options={{
+          tabBarButton: () => null,
+          unmountOnBlur: true,
         }}
       />
     </Tab.Navigator>

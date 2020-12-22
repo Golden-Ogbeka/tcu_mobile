@@ -6,7 +6,7 @@ import LoadingIndicator from '../layout/LoadingIndicator';
 import GroupList from './layout/GroupList';
 import {API_URL} from '../../app.json';
 
-export default function UserGroups() {
+export default function UserGroups(props) {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ export default function UserGroups() {
       </View>
       {loading === false ? (
         groups.length > 0 ? (
-          <GroupList user={true} />
+          <GroupList user={true} {...props} />
         ) : (
           <View style={{alignItems: 'center'}}>
             <Text h3>No group found</Text>

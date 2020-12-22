@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert, ScrollView, StyleSheet, View} from 'react-native';
 import {Formik} from 'formik';
 import {Button, Icon, Input, Text} from 'react-native-elements';
@@ -10,10 +10,22 @@ import InputComponent from '../../layout/InputComponent';
 import NigerianStates from '../../layout/NigerianStates';
 import SelectComponent from '../../layout/SelectComponent';
 import ButtonComponent from '../../layout/ButtonComponent';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function EditProducerProfile(props) {
-  const {contextVariables, setContextVariables} = useAppContext();
-
+  const [userDetails, setUserDetails] = useState({});
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const response = await Axios.get(`${API_URL}/api/user`);
+        const userData = response.data;
+        setUserDetails(userData);
+      } catch (error) {
+        setUserDetails({});
+      }
+    };
+    getUserData();
+  }, [userDetails]);
   const updateProfile = async (values) => {
     try {
       const response = await Axios.post(
@@ -22,7 +34,6 @@ export default function EditProducerProfile(props) {
       );
       Alert.alert('Success', response.data);
       props.navigation.navigate('View Producer Profile');
-      //Updated info isnt showing
     } catch (error) {
       Alert.alert('Error', error.response.data);
     }
@@ -37,15 +48,15 @@ export default function EditProducerProfile(props) {
       <View style={styles.profileContainer}>
         <Formik
           initialValues={{
-            brandName: contextVariables.user.brandName,
-            brandEmail: contextVariables.user.brandEmail,
-            brandNumber: contextVariables.user.brandNumber,
-            brandState: contextVariables.user.brandState,
-            brandAddress: contextVariables.user.brandAddress,
-            brandDescription: contextVariables.user.brandDescription,
-            brandMotto: contextVariables.user.brandMotto,
-            brandVision: contextVariables.user.brandVision,
-            brandDate: contextVariables.user.brandDate,
+            brandName: userDetails.brandName,
+            brandEmail: userDetails.brandEmail,
+            brandNumber: userDetails.brandNumber,
+            brandState: userDetails.brandState,
+            brandAddress: userDetails.brandAddress,
+            brandDescription: userDetails.brandDescription,
+            brandMotto: userDetails.brandMotto,
+            brandVision: userDetails.brandVision,
+            brandDate: userDetails.brandDate,
           }}
           enableReinitialize
           validationSchema={Yup.object({
@@ -153,6 +164,11 @@ export default function EditProducerProfile(props) {
                 value={props.values.brandVision}
               />
 
+              {/* <DateTimePicker
+                value={new Date()}
+                testID="ddd"
+                display="default"
+              /> */}
               {/* Use Date Picker */}
               <InputComponent
                 label="Brand's Founding Date"

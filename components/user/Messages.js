@@ -78,7 +78,6 @@ export default function Messages() {
               <Button
                 icon={<Icon name="trash" type="font-awesome" color="white" />}
                 buttonStyle={{backgroundColor: '#910000'}}
-                // onPress={() => deleteMessage(conversation)}
                 onPress={() =>
                   Alert.alert(
                     'Delete Message',

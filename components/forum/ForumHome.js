@@ -2,12 +2,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
-
 import UserTopics from './UserTopics';
 import NewTopic from './NewTopic';
-import ForumSections from './sections/ForumSections';
 import ForumSectionStack from './sections/ForumSectionStack';
 import TrendingTopics from './TrendingTopics';
+import TopicStack from './TopicStack';
 
 const Tab = createBottomTabNavigator();
 export default function ForumHome() {
@@ -18,6 +17,7 @@ export default function ForumHome() {
           style: {
             height: 70,
           },
+
           activeTintColor: '#910000',
           inactiveTintColor: 'gray',
           // showLabel: false,
@@ -27,10 +27,11 @@ export default function ForumHome() {
           },
         }}>
         <Tab.Screen
-          name="Sections"
+          name="Sections Tab"
           component={ForumSectionStack}
           options={{
             tabBarIcon: () => <Icon name="category" size={40} />,
+            title: 'Sections',
           }}
         />
         <Tab.Screen
@@ -49,12 +50,21 @@ export default function ForumHome() {
           }}
         />
         <Tab.Screen
-          name="Your Topics"
+          name="User Topics"
           component={UserTopics}
           options={{
             tabBarIcon: () => (
               <Icon name="list" type="font-awesome-5" size={40} />
             ),
+            title: 'Your Topics',
+          }}
+        />
+        <Tab.Screen
+          name="Topic Stack"
+          component={TopicStack}
+          options={{
+            tabBarButton: () => null,
+            unmountOnBlur: true,
           }}
         />
       </Tab.Navigator>

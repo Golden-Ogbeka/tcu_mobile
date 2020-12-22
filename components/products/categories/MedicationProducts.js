@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 import ProductInfo from './layout/ProductInfo';
 
-export default function MedicationProducts({navigation}) {
+export default function MedicationProducts(props) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function MedicationProducts({navigation}) {
     <ScrollView>
       {loading === false ? (
         products.length > 0 ? (
-          <ProductInfo type="Medication" />
+          <ProductInfo type="Medication" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No products found</Text>

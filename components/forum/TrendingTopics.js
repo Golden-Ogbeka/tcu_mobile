@@ -12,7 +12,7 @@ import {API_URL} from '../../app.json';
 import LoadingIndicator from '../layout/LoadingIndicator';
 import ForumTopics from './layout/ForumTopics';
 
-export default function TrendingTopics() {
+export default function TrendingTopics(props) {
   const [trendingTopics, setTrendingTopics] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,7 +42,7 @@ export default function TrendingTopics() {
         trendingTopics.length > 0 ? (
           trendingTopics.map((topic) => (
             <View key={topic._id}>
-              <ForumTopics topicID={topic._id} />
+              <ForumTopics topicID={topic._id} {...props} />
             </View>
           ))
         ) : (

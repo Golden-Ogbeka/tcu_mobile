@@ -6,7 +6,7 @@ import LoadingIndicator from '../layout/LoadingIndicator';
 import GroupList from './layout/GroupList';
 import {API_URL} from '../../app.json';
 
-export default function TrendingGroups() {
+export default function TrendingGroups(props) {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ export default function TrendingGroups() {
       </View>
       {loading === false ? (
         groups.length > 0 ? (
-          <GroupList trending={true} />
+          <GroupList trending={true} {...props} />
         ) : (
           <View style={{alignItems: 'center'}}>
             <Text h3>No group found</Text>

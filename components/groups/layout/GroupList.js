@@ -50,7 +50,8 @@ export default function GroupList(props) {
           <Card key={group._id}>
             <ImageComponent uri={group.image} style={styles.image} />
             <Divider />
-            <Card.Title onPress={() => navigation.navigate('PoultryProducts')}>
+            <Card.Title
+              onPress={() => props.navigation.navigate('PoultryProducts')}>
               <Text h4>{group.name}</Text>
             </Card.Title>
             <Card.Divider />
@@ -71,7 +72,13 @@ export default function GroupList(props) {
               }
               title="View Group Details"
               buttonStyle={styles.button}
-              onPress={() => navigation.navigate('PoultryProducts')}
+              onPress={() =>
+                // Nested navigation
+                props.navigation.navigate('Group Stack', {
+                  screen: 'Group Info',
+                  params: {groupID: group._id},
+                })
+              }
             />
           </Card>
         ))}

@@ -6,7 +6,7 @@ import {API_URL} from '../../../app.json';
 import Axios from 'axios';
 import LoadingIndicator from '../../layout/LoadingIndicator';
 
-export default function FrozenForum() {
+export default function FrozenForum(props) {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function FrozenForum() {
     <ScrollView>
       {loading === false ? (
         topics.length > 0 ? (
-          <ForumTopics section="Frozen" />
+          <ForumTopics section="Frozen" {...props} />
         ) : (
           <View style={styles.container}>
             <Text h3>No topics found</Text>
