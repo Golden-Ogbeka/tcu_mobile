@@ -116,7 +116,9 @@ export default function GroupInfo(props) {
                   />
                 }
                 buttonStyle={styles.controlButton}
-                onPress={() => props.navigation.navigate('Group Posts')}
+                onPress={() =>
+                  props.navigation.navigate('Group Posts', {groupID})
+                }
               />
 
               {members.find(
@@ -265,7 +267,9 @@ export default function GroupInfo(props) {
               <ButtonComponent
                 title="View"
                 buttonStyle={styles.controlButton}
-                onPress={() => props.navigation.navigate('Group Posts')}
+                onPress={() =>
+                  props.navigation.navigate('Group Posts', {groupID})
+                }
               />
             </ListItem>
             <ListItem bottomDivider>
