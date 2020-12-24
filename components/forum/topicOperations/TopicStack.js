@@ -1,8 +1,9 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import ViewTopic from './layout/ViewTopic';
-import ViewWriter from './layout/ViewWriter';
+import EditTopic from './EditTopic';
+import ViewTopic from './ViewTopic';
+import ViewWriter from './ViewWriter';
 
 const Stack = createStackNavigator();
 export default function TopicStack() {
@@ -28,6 +29,7 @@ export default function TopicStack() {
         component={ViewWriter}
         options={{title: 'Writer Details'}}
       />
+      <Stack.Screen name="Edit Topic" component={EditTopic} />
     </Stack.Navigator>
   );
 }

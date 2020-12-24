@@ -34,7 +34,7 @@ export default function SelectComponent(props) {
         }}
         dropDownStyle={{
           backgroundColor: '#fafafa',
-          maxHeight: 700,
+          // maxHeight: 700,
           minHeight: 200,
         }}
         searchableStyle={{fontSize: 20}}

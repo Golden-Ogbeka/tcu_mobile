@@ -1,14 +1,17 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
+import {Alert} from 'react-native';
 import {ScrollView} from 'react-native';
 import {StyleSheet, View} from 'react-native';
 import {Avatar, Text, Card, Icon, ListItem} from 'react-native-elements';
-import {API_URL} from '../../../../app.json';
-import ButtonComponent from '../../../layout/ButtonComponent';
-import ImageComponent from '../../../layout/ImageComponent';
-import LoadingIndicator from '../../../layout/LoadingIndicator';
+import {API_URL} from '../../../../../app.json';
+import {useAppContext} from '../../../../../context/AppContext';
+import ButtonComponent from '../../../../layout/ButtonComponent';
+import ImageComponent from '../../../../layout/ImageComponent';
+import LoadingIndicator from '../../../../layout/LoadingIndicator';
 
 export default function ViewProduct(props) {
+  const {contextVariables, setContextVariables} = useAppContext();
   const [productDetails, setProductDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const {productID} = props.route.params;
@@ -30,6 +33,19 @@ export default function ViewProduct(props) {
     };
     getProductDetails();
   }, []);
+
+  const deleteProduct = async (productID) => {
+    try {
+      const response = await Axios.delete(
+        `${API_URL}/api/product/${productID}`,
+      );
+      Alert.alert(response.data);
+      return props.navigation.goBack();
+    } catch (error) {
+      Alert.alert(error.response.data);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={{backgroundColor: 'white', flex: 1}}>
       {loading === false ? (
@@ -133,6 +149,46 @@ export default function ViewProduct(props) {
                 <ListItem.Subtitle>Brand's State</ListItem.Subtitle>
               </ListItem.Content>
             </ListItem>
+
+            {productDetails.brandName === contextVariables.user.brandName && (
+              <ListItem bottomDivider>
+                <ListItem.Content>
+                  <ListItem.Subtitle style={{fontSize: 20}}>
+                    Product Operations
+                  </ListItem.Subtitle>
+                </ListItem.Content>
+                <Icon
+                  name="edit"
+                  color="#910000"
+                  size={40}
+                  onPress={() =>
+                    props.navigation.navigate('Edit Product', {productDetails})
+                  }
+                />
+                <Icon
+                  name="delete"
+                  color="#910000"
+                  size={40}
+                  onPress={() =>
+                    Alert.alert(
+                      'Delete Product',
+                      'Are you sure you want to delete this product?',
+                      [
+                        {
+                          text: 'No',
+                        },
+                        {
+                          text: 'Yes',
+                          onPress: () => deleteProduct(productDetails._id),
+                        },
+                      ],
+                      {cancelable: true},
+                    )
+                  }
+                />
+                <Icon name="share" color="#910000" size={40} />
+              </ListItem>
+            )}
           </ScrollView>
         ) : (
           <Text>Product Not found</Text>

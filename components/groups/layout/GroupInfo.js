@@ -276,7 +276,7 @@ export default function GroupInfo(props) {
               <Avatar
                 size="small"
                 rounded
-                icon={{name: 'users', type: 'font-awesome', size: 25}}
+                icon={{name: 'users', type: 'font-awesome', size: 20}}
                 overlayContainerStyle={{backgroundColor: '#910000'}}
                 titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
               />

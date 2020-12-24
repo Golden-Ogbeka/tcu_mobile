@@ -1,12 +1,10 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Button, Card} from 'react-native-elements';
 import EquipmentProducts from './categories/EquipmentProducts';
 import FoodProducts from './categories/FoodProducts';
 import FrozenProducts from './categories/FrozenProducts';
-import ViewBrand from './categories/layout/ViewBrand';
-import ViewProduct from './categories/layout/ViewProduct';
+import ProductOperationsStack from './categories/layout/productOperations/ProductOperationsStack';
 import MedicationProducts from './categories/MedicationProducts';
 import PoultryProducts from './categories/PoultryProducts';
 import ProductCategories from './categories/ProductCategories';
@@ -59,14 +57,9 @@ export default function ProductsHome({navigation}) {
           options={{title: 'Medication Products'}}
         />
         <Stack.Screen
-          name="View Product"
-          component={ViewProduct}
-          options={{title: 'Product Details'}}
-        />
-        <Stack.Screen
-          name="View Brand"
-          component={ViewBrand}
-          options={{title: 'Brand Details'}}
+          name="Product Info"
+          component={ProductOperationsStack}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </View>

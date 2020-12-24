@@ -3,9 +3,9 @@ import React from 'react';
 import {AppState, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text, Input, Icon} from 'react-native-elements';
 import * as Yup from 'yup';
-import ButtonComponent from '../layout/ButtonComponent';
-import InputComponent from '../layout/InputComponent';
-import SelectComponent from '../layout/SelectComponent';
+import ButtonComponent from '../../layout/ButtonComponent';
+import InputComponent from '../../layout/InputComponent';
+import SelectComponent from '../../layout/SelectComponent';
 
 export default function NewTopic() {
   const createTopic = async (values) => {

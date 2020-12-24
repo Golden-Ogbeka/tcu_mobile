@@ -3,10 +3,12 @@ import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {Image, StyleSheet, View} from 'react-native';
 import {Button, Card, Icon, Text} from 'react-native-elements';
-import {API_URL} from '../../app.json';
-import LoadingIndicator from '../layout/LoadingIndicator';
+import {API_URL} from '../../../app.json';
+import ButtonComponent from '../../layout/ButtonComponent';
+import ImageComponent from '../../layout/ImageComponent';
+import LoadingIndicator from '../../layout/LoadingIndicator';
 
-export default function ProducerProducts({navigation}) {
+export default function ProducerProducts(props) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -35,12 +37,11 @@ export default function ProducerProducts({navigation}) {
         products.length > 0 ? (
           products.map((product) => (
             <Card key={product._id}>
-              <Card.Title
-                onPress={() => navigation.navigate('PoultryProducts')}>
+              <Card.Title>
                 <Text h3>{product.productName}</Text>
               </Card.Title>
               <Card.Divider />
-              <Image source={product.image} style={styles.image} />
+              <ImageComponent uri={product.image} style={styles.image} />
               <Text style={styles.brand}>{product.brandName}</Text>
               <Text style={styles.description}>
                 {product.productDescription}
@@ -57,13 +58,18 @@ export default function ProducerProducts({navigation}) {
                   Status: {product.status}
                 </Text>
               </View>
-              <Button
+              <ButtonComponent
                 icon={
                   <Icon name="info" style={{marginRight: 2}} color="#ffffff" />
                 }
                 title="View Product Details"
                 buttonStyle={styles.button}
-                onPress={() => navigation.navigate('PoultryProducts')}
+                onPress={() =>
+                  props.navigation.navigate('Product Info', {
+                    screen: 'View Product',
+                    params: {productID: product._id},
+                  })
+                }
               />
             </Card>
           ))
@@ -84,6 +90,7 @@ const styles = StyleSheet.create({
     width: Card.width,
     height: 200,
     resizeMode: 'contain',
+    borderRadius: 20,
   },
   brand: {
     marginBottom: 10,

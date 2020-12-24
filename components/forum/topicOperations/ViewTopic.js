@@ -9,13 +9,13 @@ import {
   Divider,
   Input,
 } from 'react-native-elements';
-import {API_URL} from '../../../app.json';
-import InputComponent from '../../layout/InputComponent';
-import LoadingIndicator from '../../layout/LoadingIndicator';
-import {useAppContext} from '../../../context/AppContext';
-import {Formik, yupToFormErrors} from 'formik';
-import ButtonComponent from '../../layout/ButtonComponent';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
+import {API_URL} from '../../../app.json';
+import {useAppContext} from '../../../context/AppContext';
+import InputComponent from '../../layout/InputComponent';
+import ButtonComponent from '../../layout/ButtonComponent';
+import LoadingIndicator from '../../layout/LoadingIndicator';
 
 export default function ViewTopic(props) {
   const {contextVariables, setContextVariables} = useAppContext();
@@ -135,6 +135,16 @@ export default function ViewTopic(props) {
       Alert.alert(error.response.data);
     }
   };
+
+  const deleteTopic = async () => {
+    try {
+      const response = await Axios.delete(`${API_URL}/api/topic/${topicID}`);
+      return props.navigation.goBack();
+    } catch (error) {
+      Alert.alert(error.response.data);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={{paddingBottom: 20}}>
       {loading === false ? (
@@ -216,6 +226,45 @@ export default function ViewTopic(props) {
                     {comments ? comments.length : 0}
                   </Text>
                 </View>
+                {brandName === contextVariables.user.brandName && (
+                  <>
+                    <View style={styles.iconContainer}>
+                      <Icon
+                        name="edit"
+                        size={40}
+                        color="#910000"
+                        onPress={() =>
+                          props.navigation.navigate('Edit Topic', {
+                            topic: topicDetails,
+                          })
+                        }
+                      />
+                    </View>
+                    <View style={styles.iconContainer}>
+                      <Icon
+                        name="delete"
+                        size={40}
+                        color="#910000"
+                        onPress={() =>
+                          Alert.alert(
+                            'Delete Topic',
+                            'Are you sure you want to delete this topic?',
+                            [
+                              {
+                                text: 'No',
+                              },
+                              {
+                                text: 'Yes',
+                                onPress: () => deleteTopic(),
+                              },
+                            ],
+                            {cancelable: true},
+                          )
+                        }
+                      />
+                    </View>
+                  </>
+                )}
               </View>
             </View>
             <Card.Divider />

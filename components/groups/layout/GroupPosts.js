@@ -92,13 +92,36 @@ export default function GroupPosts(props) {
   };
 
   const openPost = (postID) => {
-    return props.navigation.navigate('View Group Post', {
-      groupID,
-      postID,
+    return props.navigation.navigate('Group Post', {
+      screen: 'View Group Post',
+      params: {
+        groupID,
+        postID,
+      },
     });
   };
   return (
     <ScrollView>
+      <View style={styles.addButtonView}>
+        <ButtonComponent
+          title="Add Post"
+          icon={
+            <Icon
+              name="add"
+              size={30}
+              color="white"
+              style={{paddingRight: 10}}
+            />
+          }
+          buttonStyle={styles.addButton}
+          onPress={() =>
+            props.navigation.navigate('Group Post', {
+              screen: 'Add Group Post',
+              params: {groupID},
+            })
+          }
+        />
+      </View>
       {loading === false ? (
         groupInfo.posts.length > 0 ? (
           groupInfo.posts.map((post) => (
@@ -175,6 +198,12 @@ export default function GroupPosts(props) {
                         name="edit"
                         color="#910000"
                         size={30}
+                        onPress={() =>
+                          props.navigation.navigate('Group Post', {
+                            screen: 'Edit Group Post',
+                            params: {groupID, post},
+                          })
+                        }
                       />
                       <Icon
                         style={{paddingRight: 10}}
@@ -220,6 +249,15 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 18,
     color: 'black',
+    paddingBottom: 10,
+  },
+  addButton: {
+    backgroundColor: '#910000',
+  },
+  addButtonView: {
+    alignItems: 'flex-end',
+    padding: 10,
+    backgroundColor: 'white',
   },
   iconContainer: {
     paddingRight: 10,
@@ -229,6 +267,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 23,
     fontWeight: 'bold',
+    paddingBottom: 10,
   },
   viewButton: {
     backgroundColor: '#910000',

@@ -6,7 +6,8 @@ import GroupInfo from './layout/GroupInfo';
 import UserGroups from './UserGroups';
 import GroupPosts from './layout/GroupPosts';
 import GroupMembers from './layout/GroupMembers';
-import ViewGroupPost from './layout/ViewGroupPost';
+import ViewGroupPost from './layout/groupPost/ViewGroupPost';
+import GroupPostStack from './layout/groupPost/GroupPostStack';
 
 const Stack = createStackNavigator();
 export default function GroupsStack() {
@@ -33,9 +34,9 @@ export default function GroupsStack() {
         options={{title: "Group's Posts"}}
       />
       <Stack.Screen
-        name="View Group Post"
-        component={ViewGroupPost}
-        options={{title: 'Post Details'}}
+        name="Group Post"
+        component={GroupPostStack}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Group Members"

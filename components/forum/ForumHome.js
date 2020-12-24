@@ -3,10 +3,10 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import UserTopics from './UserTopics';
-import NewTopic from './NewTopic';
 import ForumSectionStack from './sections/ForumSectionStack';
 import TrendingTopics from './TrendingTopics';
-import TopicStack from './TopicStack';
+import TopicStack from './topicOperations/TopicStack';
+import NewTopic from './topicOperations/NewTopic';
 
 const Tab = createBottomTabNavigator();
 export default function ForumHome() {

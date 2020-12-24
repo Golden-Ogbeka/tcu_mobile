@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
-import {Button, Card, Icon, Text} from 'react-native-elements';
+import {StyleSheet, View} from 'react-native';
+import {Card, Icon, Text} from 'react-native-elements';
 import {API_URL} from '../../../../app.json';
 import ButtonComponent from '../../../layout/ButtonComponent';
 import ImageComponent from '../../../layout/ImageComponent';
@@ -40,8 +40,9 @@ export default function ProductInfo(props) {
           <Card key={product._id}>
             <Card.Title
               onPress={() =>
-                props.navigation.navigate('View Product', {
-                  productID: product._id,
+                props.navigation.navigate('Product Info', {
+                  screen: 'View Product',
+                  params: {productID: product._id},
                 })
               }>
               <Text h3>{product.productName}</Text>
@@ -51,8 +52,9 @@ export default function ProductInfo(props) {
               uri={product.productImage}
               style={styles.image}
               onPress={() =>
-                props.navigation.navigate('View Product', {
-                  productID: product._id,
+                props.navigation.navigate('Product Info', {
+                  screen: 'View Product',
+                  params: {productID: product._id},
                 })
               }
             />
@@ -66,8 +68,9 @@ export default function ProductInfo(props) {
               title="View Product Details"
               buttonStyle={styles.button}
               onPress={() =>
-                props.navigation.navigate('View Product', {
-                  productID: product._id,
+                props.navigation.navigate('Product Info', {
+                  screen: 'View Product',
+                  params: {productID: product._id},
                 })
               }
             />

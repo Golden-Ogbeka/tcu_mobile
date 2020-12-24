@@ -3,8 +3,8 @@ import React from 'react';
 import {AppState, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text, Input, Icon} from 'react-native-elements';
 import * as Yup from 'yup';
-import InputComponent from '../layout/InputComponent';
-import SelectComponent from '../layout/SelectComponent';
+import InputComponent from '../../layout/InputComponent';
+import SelectComponent from '../../layout/SelectComponent';
 
 export default function NewProduct() {
   const addProduct = async (values) => {

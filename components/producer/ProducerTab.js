@@ -2,8 +2,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
-import NewProduct from './NewProduct';
-import ProducerProducts from './ProducerProducts';
+import NewProduct from './products/NewProduct';
+import ProductsStack from './products/ProductsStack';
 import ProducerProfile from './profile/ProducerProfile';
 
 const Tab = createBottomTabNavigator();
@@ -25,7 +25,7 @@ export default function ProducerTab() {
       }}>
       <Tab.Screen
         name="Your products"
-        component={ProducerProducts}
+        component={ProductsStack}
         options={{
           tabBarIcon: () => (
             <Icon name="box-open" type="font-awesome-5" size={40} />
