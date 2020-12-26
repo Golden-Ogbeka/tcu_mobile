@@ -13,14 +13,32 @@ export default function ForumHome() {
   return (
     <View style={{flex: 1}}>
       <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+
+            if (route.name === 'Sections Tab') {
+              iconName = focused ? 'category' : 'category';
+            } else if (route.name === 'Trending Topics') {
+              iconName = focused ? 'trending-up' : 'trending-up';
+            } else if (route.name === 'New Topic') {
+              iconName = focused ? 'add-circle-outline' : 'add-circle';
+            } else if (route.name === 'User Topics') {
+              iconName = focused ? 'topic' : 'topic';
+            }
+
+            // You can return any component that you like here!
+            return <Icon name={iconName} size={40} color={color} />;
+          },
+        })}
         tabBarOptions={{
           style: {
             height: 70,
           },
-
-          activeTintColor: '#910000',
-          inactiveTintColor: 'gray',
-          // showLabel: false,
+          activeBackgroundColor: '#910000',
+          keyboardHidesTabBar: true,
+          activeTintColor: 'white',
+          inactiveTintColor: 'black',
           labelStyle: {
             fontSize: 15,
             fontWeight: 'bold',
@@ -30,7 +48,6 @@ export default function ForumHome() {
           name="Sections Tab"
           component={ForumSectionStack}
           options={{
-            tabBarIcon: () => <Icon name="category" size={40} />,
             title: 'Sections',
           }}
         />
@@ -38,24 +55,14 @@ export default function ForumHome() {
           name="Trending Topics"
           component={TrendingTopics}
           options={{
-            tabBarIcon: () => <Icon name="trending-up" size={40} />,
-            tabBarLabel: 'Trending',
+            title: 'Trending',
           }}
         />
-        <Tab.Screen
-          name="New Topic"
-          component={NewTopic}
-          options={{
-            tabBarIcon: () => <Icon name="plus" type="octicon" size={40} />,
-          }}
-        />
+        <Tab.Screen name="New Topic" component={NewTopic} options={{}} />
         <Tab.Screen
           name="User Topics"
           component={UserTopics}
           options={{
-            tabBarIcon: () => (
-              <Icon name="list" type="font-awesome-5" size={40} />
-            ),
             title: 'Your Topics',
           }}
         />

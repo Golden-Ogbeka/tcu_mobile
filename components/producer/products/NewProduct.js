@@ -12,11 +12,6 @@ export default function NewProduct() {
   };
   return (
     <ScrollView>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Add new Product
-        </Text>
-      </View>
       <Formik
         initialValues={{
           productName: '',

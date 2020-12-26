@@ -11,13 +11,30 @@ const Tab = createBottomTabNavigator();
 export default function UserProfileTab() {
   return (
     <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'UserProfile') {
+            iconName = focused ? 'person-outline' : 'person';
+          } else if (route.name === 'ProducerProfile') {
+            iconName = focused ? 'attach-money' : 'attach-money';
+          } else if (route.name === 'ForumProfile') {
+            iconName = focused ? 'forum' : 'forum';
+          }
+
+          // You can return any component that you like here!
+          return <Icon name={iconName} size={40} color={color} />;
+        },
+      })}
       tabBarOptions={{
         style: {
           height: 70,
         },
-        activeTintColor: '#910000',
-        inactiveTintColor: 'gray',
-        // showLabel: false,
+        activeBackgroundColor: '#910000',
+        keyboardHidesTabBar: true,
+        activeTintColor: 'white',
+        inactiveTintColor: 'black',
         labelStyle: {
           fontSize: 15,
           fontWeight: 'bold',
@@ -28,9 +45,6 @@ export default function UserProfileTab() {
         component={UserProfile}
         options={{
           title: 'User Profile',
-          tabBarIcon: () => (
-            <Icon name="user" type="font-awesome-5" size={40} />
-          ),
         }}
       />
       <Tab.Screen
@@ -38,7 +52,6 @@ export default function UserProfileTab() {
         component={ProducerProfile}
         options={{
           title: 'Producer Profile',
-          tabBarIcon: () => <Icon name="attach-money" size={40} />,
         }}
       />
       <Tab.Screen
@@ -46,9 +59,6 @@ export default function UserProfileTab() {
         component={ForumProfile}
         options={{
           title: 'Forum Profile',
-          tabBarIcon: () => (
-            <Icon name="pen-alt" type="font-awesome-5" size={40} />
-          ),
         }}
       />
     </Tab.Navigator>

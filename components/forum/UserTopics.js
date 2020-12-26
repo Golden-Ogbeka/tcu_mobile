@@ -31,11 +31,6 @@ export default function UserTopics(props) {
   }, []);
   return (
     <ScrollView>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Your Topics
-        </Text>
-      </View>
       {loading === false ? (
         topics.length > 0 ? (
           <ForumTopics brandName="GOLDEN" {...props} />

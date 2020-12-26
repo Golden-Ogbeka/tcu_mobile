@@ -13,11 +13,6 @@ export default function NewTopic() {
   };
   return (
     <ScrollView>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Create new topic
-        </Text>
-      </View>
       <Formik
         initialValues={{
           topic: '',

@@ -27,11 +27,6 @@ export default function UserGroups(props) {
   }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Your Groups
-        </Text>
-      </View>
       {loading === false ? (
         groups.length > 0 ? (
           <GroupList user={true} {...props} />

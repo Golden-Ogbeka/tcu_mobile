@@ -11,11 +11,6 @@ export default function NewGroup() {
   const createGroup = async (values) => {};
   return (
     <ScrollView>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Create new Group
-        </Text>
-      </View>
       <Formik
         initialValues={{
           name: '',

@@ -16,7 +16,7 @@ export default function EditTopic(props) {
   const updateTopic = async (values) => {
     try {
       const response = await Axios.put(
-        `${API_URL}/api/forum/topic/${_id}`,
+        `${API_URL}/api/forum/topic/${topic._id}`,
         values,
       );
       Alert.alert(response.data);
@@ -100,4 +100,6 @@ export default function EditTopic(props) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  inputContainer: {alignItems: 'center'},
+});

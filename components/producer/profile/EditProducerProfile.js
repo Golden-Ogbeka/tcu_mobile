@@ -40,11 +40,6 @@ export default function EditProducerProfile(props) {
   };
   return (
     <ScrollView contentContainerStyle>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Edit Producer Profile
-        </Text>
-      </View>
       <View style={styles.profileContainer}>
         <Formik
           initialValues={{
@@ -56,7 +51,6 @@ export default function EditProducerProfile(props) {
             brandDescription: userDetails.brandDescription,
             brandMotto: userDetails.brandMotto,
             brandVision: userDetails.brandVision,
-            brandDate: userDetails.brandDate,
           }}
           enableReinitialize
           validationSchema={Yup.object({
@@ -70,7 +64,6 @@ export default function EditProducerProfile(props) {
             ),
             brandMotto: Yup.string(),
             brandVision: Yup.string(),
-            brandDate: Yup.string(),
           })}
           onSubmit={(values) => updateProfile(values)}>
           {(props) => (
@@ -162,23 +155,6 @@ export default function EditProducerProfile(props) {
                 onBlur={props.handleBlur('brandVision')}
                 placeholder="Input your brand's vision'"
                 value={props.values.brandVision}
-              />
-
-              {/* <DateTimePicker
-                value={new Date()}
-                testID="ddd"
-                display="default"
-              /> */}
-              {/* Use Date Picker */}
-              <InputComponent
-                label="Brand's Founding Date"
-                touched={props.touched.brandDate}
-                errors={props.errors.brandDate}
-                rightIcon={{name: 'calendar', type: 'font-awesome'}}
-                onChangeText={props.handleChange('brandDate')}
-                onBlur={props.handleBlur('brandDate')}
-                placeholder="Input your brand's founding date'"
-                value={props.values.brandDate}
               />
 
               <ButtonComponent

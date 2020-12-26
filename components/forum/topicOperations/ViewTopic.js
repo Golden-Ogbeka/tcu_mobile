@@ -139,7 +139,8 @@ export default function ViewTopic(props) {
   const deleteTopic = async () => {
     try {
       const response = await Axios.delete(`${API_URL}/api/topic/${topicID}`);
-      return props.navigation.goBack();
+      Alert.alert(response.data);
+      return props.navigation.navigate('User Topics');
     } catch (error) {
       Alert.alert(error.response.data);
     }

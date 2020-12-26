@@ -33,11 +33,6 @@ export default function TrendingTopics(props) {
   }, []);
   return (
     <ScrollView>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Trending Topics
-        </Text>
-      </View>
       {loading === false ? (
         trendingTopics.length > 0 ? (
           trendingTopics.map((topic) => (

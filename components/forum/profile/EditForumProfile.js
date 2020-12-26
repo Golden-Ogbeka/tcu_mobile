@@ -29,11 +29,6 @@ export default function EditForumProfile(props) {
   };
   return (
     <ScrollView contentContainerStyle>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Edit Forum Profile
-        </Text>
-      </View>
       <View style={styles.profileContainer}>
         <Formik
           initialValues={{

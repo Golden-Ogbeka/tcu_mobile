@@ -11,43 +11,38 @@ const Tab = createBottomTabNavigator();
 export default function ProducerTab() {
   return (
     <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'Your products') {
+            iconName = focused ? 'inventory' : 'inventory';
+          } else if (route.name === 'New Product') {
+            iconName = focused ? 'add-circle-outline' : 'add-circle';
+          } else if (route.name === 'Brand Details') {
+            iconName = focused ? 'info' : 'info';
+          }
+
+          // You can return any component that you like here!
+          return <Icon name={iconName} size={40} color={color} />;
+        },
+      })}
       tabBarOptions={{
         style: {
           height: 70,
         },
-        activeTintColor: '#910000',
-        inactiveTintColor: 'gray',
-        // showLabel: false,
+        activeBackgroundColor: '#910000',
+        keyboardHidesTabBar: true,
+        activeTintColor: 'white',
+        inactiveTintColor: 'black',
         labelStyle: {
           fontSize: 15,
           fontWeight: 'bold',
         },
       }}>
-      <Tab.Screen
-        name="Your products"
-        component={ProductsStack}
-        options={{
-          tabBarIcon: () => (
-            <Icon name="box-open" type="font-awesome-5" size={40} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="New Product"
-        component={NewProduct}
-        options={{
-          tabBarIcon: () => (
-            <Icon name="plus" type="font-awesome-5" size={40} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Brand Details"
-        component={ProducerProfile}
-        options={{
-          tabBarIcon: () => <Icon name="info" size={40} />, //Look for a better icon
-        }}
-      />
+      <Tab.Screen name="Your products" component={ProductsStack} />
+      <Tab.Screen name="New Product" component={NewProduct} />
+      <Tab.Screen name="Brand Details" component={ProducerProfile} />
     </Tab.Navigator>
   );
 }

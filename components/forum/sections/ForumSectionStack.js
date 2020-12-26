@@ -28,7 +28,7 @@ export default function ForumSectionStack() {
         <Stack.Screen
           name="Forum Sections"
           component={ForumSections}
-          options={{title: 'Forum Sections'}}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="PoultryForum"

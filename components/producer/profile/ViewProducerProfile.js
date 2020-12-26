@@ -192,6 +192,15 @@ export default function ViewProducerProfile(props) {
           </ListItem.Title>
           <ListItem.Subtitle>Brand's Founding Date</ListItem.Subtitle>
         </ListItem.Content>
+        <ButtonComponent
+          title="Change"
+          buttonStyle={{backgroundColor: '#910000'}}
+          onPress={() =>
+            props.navigation.navigate('Change Date', {
+              dateType: 'brandDate',
+            })
+          }
+        />
       </ListItem>
     </ScrollView>
   );

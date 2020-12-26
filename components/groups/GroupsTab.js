@@ -13,46 +13,41 @@ const Tab = createBottomTabNavigator();
 export default function GroupsTab() {
   return (
     <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+
+          if (route.name === 'Your Groups') {
+            iconName = focused ? 'group' : 'group';
+          } else if (route.name === 'Trending') {
+            iconName = focused ? 'trending-up' : 'trending-up';
+          } else if (route.name === 'New Group') {
+            iconName = focused ? 'add-circle-outline' : 'add-circle';
+          } else if (route.name === 'All Groups') {
+            iconName = focused ? 'groups' : 'groups';
+          }
+
+          // You can return any component that you like here!
+          return <Icon name={iconName} size={40} color={color} />;
+        },
+      })}
       tabBarOptions={{
         style: {
           height: 70,
         },
-        activeTintColor: '#910000',
-        inactiveTintColor: 'gray',
-        // showLabel: false,
+        activeBackgroundColor: '#910000',
+        keyboardHidesTabBar: true,
+        activeTintColor: 'white',
+        inactiveTintColor: 'black',
         labelStyle: {
           fontSize: 15,
           fontWeight: 'bold',
         },
       }}>
-      <Tab.Screen
-        name="Your Groups"
-        component={UserGroups}
-        options={{
-          tabBarIcon: () => <Icon name="group" type="font-awesome" size={40} />,
-        }}
-      />
-      <Tab.Screen
-        name="Trending"
-        component={TrendingGroups}
-        options={{
-          tabBarIcon: () => <Icon name="trending-up" size={40} />,
-        }}
-      />
-      <Tab.Screen
-        name="New Group"
-        component={NewGroup}
-        options={{
-          tabBarIcon: () => <Icon name="plus" type="font-awesome" size={40} />,
-        }}
-      />
-      <Tab.Screen
-        name="All Groups"
-        component={AllGroups}
-        options={{
-          tabBarIcon: () => <Icon name="list" type="font-awesome" size={40} />,
-        }}
-      />
+      <Tab.Screen name="Your Groups" component={UserGroups} />
+      <Tab.Screen name="Trending" component={TrendingGroups} />
+      <Tab.Screen name="New Group" component={NewGroup} />
+      <Tab.Screen name="All Groups" component={AllGroups} />
       <Tab.Screen
         name="Group Stack"
         component={GroupStack}

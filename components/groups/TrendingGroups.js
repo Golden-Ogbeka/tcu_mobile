@@ -27,11 +27,6 @@ export default function TrendingGroups(props) {
   }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Trending Groups
-        </Text>
-      </View>
       {loading === false ? (
         groups.length > 0 ? (
           <GroupList trending={true} {...props} />

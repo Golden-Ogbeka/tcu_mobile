@@ -28,11 +28,6 @@ export default function ProducerProducts(props) {
   }, []);
   return (
     <ScrollView contentContainerStyle={{paddingBottom: 20}}>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          Your Products
-        </Text>
-      </View>
       {loading === false ? (
         products.length > 0 ? (
           products.map((product) => (

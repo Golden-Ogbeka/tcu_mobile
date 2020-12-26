@@ -27,11 +27,6 @@ export default function AllGroups(props) {
   }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.title}>
-        <Text h3 style={{color: 'white'}}>
-          All Groups
-        </Text>
-      </View>
       {loading === false ? (
         groups.length > 0 ? (
           <GroupList all={true} {...props} />
