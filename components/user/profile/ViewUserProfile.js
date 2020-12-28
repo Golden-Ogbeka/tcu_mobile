@@ -40,6 +40,15 @@ export default function ViewUserProfile(props) {
       </View>
       <View style={styles.imageContainer}>
         <ImageComponent uri={userDetails.userImage} label="User Image" />
+        <ButtonComponent
+          title="Change"
+          buttonStyle={{backgroundColor: '#910000'}}
+          onPress={() =>
+            props.navigation.navigate('Change User Image', {
+              imageType: 'userImage',
+            })
+          }
+        />
       </View>
 
       <ListItem bottomDivider>
