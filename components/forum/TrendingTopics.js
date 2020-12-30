@@ -32,7 +32,7 @@ export default function TrendingTopics(props) {
     getTrendingTopics();
   }, []);
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       {loading === false ? (
         trendingTopics.length > 0 ? (
           trendingTopics.map((topic) => (
@@ -53,39 +53,7 @@ export default function TrendingTopics(props) {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 55,
-    backgroundColor: '#910000',
-  },
-  image: {
-    width: Card.width,
-    height: 200,
-    resizeMode: 'contain',
-  },
-  divider: {
-    backgroundColor: '#910000',
-  },
-  content: {
-    marginBottom: 10,
-    fontSize: 20,
-  },
-  description: {
-    marginBottom: 10,
-    fontSize: 20,
-    fontStyle: 'italic',
-  },
-  details: {
-    marginBottom: 10,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#910000',
-  },
-  topicDetails: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  container: {
+    paddingBottom: 20,
   },
 });

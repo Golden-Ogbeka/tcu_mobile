@@ -138,13 +138,13 @@ const App = () => {
                       ),
                     }}
                   />
-                  <Drawer.Screen
+                  {/* <Drawer.Screen
                     name="About"
                     component={About}
                     options={{
                       drawerIcon: () => <Icon name="info" color="#C0C0C0" />,
                     }}
-                  />
+                  /> */}
                 </>
               ) : (
                 <>
@@ -226,13 +226,13 @@ const App = () => {
                       ),
                     }}
                   />
-                  <Drawer.Screen
+                  {/* <Drawer.Screen
                     name="About"
                     component={About}
                     options={{
                       drawerIcon: () => <Icon name="info" color="#C0C0C0" />,
                     }}
-                  />
+                  /> */}
                   <Drawer.Screen
                     name="Logout"
                     component={Logout}

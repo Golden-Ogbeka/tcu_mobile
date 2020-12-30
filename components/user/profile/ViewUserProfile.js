@@ -40,7 +40,7 @@ export default function ViewUserProfile(props) {
       </View>
       <View style={styles.imageContainer}>
         <ImageComponent uri={userDetails.userImage} label="User Image" />
-        <ButtonComponent
+        {/* <ButtonComponent
           title="Change"
           buttonStyle={{backgroundColor: '#910000'}}
           onPress={() =>
@@ -48,7 +48,7 @@ export default function ViewUserProfile(props) {
               imageType: 'userImage',
             })
           }
-        />
+        /> */}
       </View>
 
       <ListItem bottomDivider>

@@ -58,7 +58,7 @@ export default function ForumHome() {
             title: 'Trending',
           }}
         />
-        <Tab.Screen name="New Topic" component={NewTopic} options={{}} />
+        <Tab.Screen name="New Topic" component={NewTopic} />
         <Tab.Screen
           name="User Topics"
           component={UserTopics}

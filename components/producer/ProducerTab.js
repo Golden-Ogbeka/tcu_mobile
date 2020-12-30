@@ -41,7 +41,7 @@ export default function ProducerTab() {
         },
       }}>
       <Tab.Screen name="Your products" component={ProductsStack} />
-      <Tab.Screen name="New Product" component={NewProduct} />
+      {/* <Tab.Screen name="New Product" component={NewProduct} /> */}
       <Tab.Screen name="Brand Details" component={ProducerProfile} />
     </Tab.Navigator>
   );

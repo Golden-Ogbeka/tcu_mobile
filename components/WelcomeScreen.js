@@ -144,7 +144,7 @@ export default function WelcomeScreen(props) {
                   <Text h4>Groups</Text>
                 </ListItem.Title>
                 <ListItem.Subtitle style={styles.listSubtitle}>
-                  Create or join associations
+                  Create and join associations
                 </ListItem.Subtitle>
               </ListItem.Content>
               <Button
@@ -210,7 +210,7 @@ export default function WelcomeScreen(props) {
               <Avatar
                 size="medium"
                 rounded
-                icon={{name: 'user', type: 'font-awesome'}}
+                icon={{name: 'user', type: 'font-awesome', size: 30}}
                 overlayContainerStyle={{backgroundColor: '#910000'}}
                 titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
                 onPress={() => props.navigation.navigate('Profile')}

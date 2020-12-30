@@ -46,7 +46,7 @@ export default function GroupsTab() {
       }}>
       <Tab.Screen name="Your Groups" component={UserGroups} />
       <Tab.Screen name="Trending" component={TrendingGroups} />
-      <Tab.Screen name="New Group" component={NewGroup} />
+      {/* <Tab.Screen name="New Group" component={NewGroup} /> */}
       <Tab.Screen name="All Groups" component={AllGroups} />
       <Tab.Screen
         name="Group Stack"

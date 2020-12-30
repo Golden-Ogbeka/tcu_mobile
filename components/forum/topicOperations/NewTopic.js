@@ -6,10 +6,25 @@ import * as Yup from 'yup';
 import ButtonComponent from '../../layout/ButtonComponent';
 import InputComponent from '../../layout/InputComponent';
 import SelectComponent from '../../layout/SelectComponent';
+import {API_URL} from '../../../app.json';
+import {Alert} from 'react-native';
+import Axios from 'axios';
 
-export default function NewTopic() {
+export default function NewTopic(props) {
   const createTopic = async (values) => {
-    console.log(values);
+    try {
+      const data = new FormData();
+      data.append('topic', values.topic);
+      data.append('content', values.content);
+      data.append('section', values.section);
+      // data.append("forumAttachment", forumAttachment);
+      const response = await Axios.post(`${API_URL}/api/newTopic`, data);
+      Alert.alert('Topic Created');
+      return props.navigation.navigate('User Topics');
+    } catch (error) {
+      console.log(error);
+      Alert.alert(error.response.data);
+    }
   };
   return (
     <ScrollView>
