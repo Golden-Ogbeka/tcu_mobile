@@ -4,11 +4,11 @@ import {Alert} from 'react-native';
 import {ScrollView} from 'react-native';
 import {StyleSheet, View} from 'react-native';
 import {Avatar, Text, Card, Icon, ListItem} from 'react-native-elements';
-import {API_URL} from '../../../../../app.json';
-import {useAppContext} from '../../../../../context/AppContext';
-import ButtonComponent from '../../../../layout/ButtonComponent';
-import ImageComponent from '../../../../layout/ImageComponent';
-import LoadingIndicator from '../../../../layout/LoadingIndicator';
+import {API_URL} from '../../../../app.json';
+import {useAppContext} from '../../../../context/AppContext';
+import ButtonComponent from '../../../layout/ButtonComponent';
+import ImageComponent from '../../../layout/ImageComponent';
+import LoadingIndicator from '../../../layout/LoadingIndicator';
 
 export default function ViewProduct(props) {
   const {contextVariables, setContextVariables} = useAppContext();

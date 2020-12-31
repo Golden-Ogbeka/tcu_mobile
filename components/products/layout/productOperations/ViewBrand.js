@@ -3,9 +3,9 @@ import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import {StyleSheet, View} from 'react-native';
 import {Text, ListItem} from 'react-native-elements';
-import {API_URL} from '../../../../../app.json';
-import ImageComponent from '../../../../layout/ImageComponent';
-import LoadingIndicator from '../../../../layout/LoadingIndicator';
+import {API_URL} from '../../../../app.json';
+import ImageComponent from '../../../layout/ImageComponent';
+import LoadingIndicator from '../../../layout/LoadingIndicator';
 
 export default function ViewBrand(props) {
   const [brandDetails, setBrandDetails] = useState({

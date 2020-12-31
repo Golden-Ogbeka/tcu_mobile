@@ -4,7 +4,7 @@ import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
 import {Text} from 'react-native-elements';
 import {API_URL} from '../../../app.json';
 import LoadingIndicator from '../../layout/LoadingIndicator';
-import ProductInfo from './layout/ProductInfo';
+import ProductInfo from '../layout/ProductInfo';
 
 export default function MedicationProducts(props) {
   const [products, setProducts] = useState([]);

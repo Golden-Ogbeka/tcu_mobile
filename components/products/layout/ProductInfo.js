@@ -2,10 +2,9 @@ import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Card, Icon, Text} from 'react-native-elements';
-import {API_URL} from '../../../../app.json';
-import ButtonComponent from '../../../layout/ButtonComponent';
-import ImageComponent from '../../../layout/ImageComponent';
-
+import {API_URL} from '../../../app.json';
+import ButtonComponent from '../../layout/ButtonComponent';
+import ImageComponent from '../../layout/ImageComponent';
 export default function ProductInfo(props) {
   const [productDetails, setProductDetails] = useState([]);
 

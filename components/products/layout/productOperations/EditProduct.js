@@ -5,12 +5,12 @@ import {ScrollView} from 'react-native';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import * as Yup from 'yup';
-import ButtonComponent from '../../../../layout/ButtonComponent';
-import InputComponent from '../../../../layout/InputComponent';
-import NigerianStates from '../../../../layout/NigerianStates';
-import SelectComponent from '../../../../layout/SelectComponent';
-import {API_URL} from '../../../../../app.json';
 import Axios from 'axios';
+import {API_URL} from '../../../../app.json';
+import InputComponent from '../../../layout/InputComponent';
+import SelectComponent from '../../../layout/SelectComponent';
+import ButtonComponent from '../../../layout/ButtonComponent';
+import NigerianStates from '../../../layout/NigerianStates';
 
 export default function EditProduct(props) {
   const {productDetails} = props.route.params;

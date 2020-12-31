@@ -1,7 +1,7 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import ProductOperationsStack from '../../products/categories/layout/productOperations/ProductOperationsStack';
+import ProductOperationsStack from '../../products/layout/productOperations/ProductOperationsStack';
 import ProducerProducts from './ProducerProducts';
 
 const Stack = createStackNavigator();
