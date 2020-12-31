@@ -4,7 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import EquipmentProducts from './categories/EquipmentProducts';
 import FoodProducts from './categories/FoodProducts';
 import FrozenProducts from './categories/FrozenProducts';
-import ProductOperationsStack from './categories/layout/productOperations/ProductOperationsStack';
+import ProductOperationsStack from './layout/productOperations/ProductOperationsStack';
 import MedicationProducts from './categories/MedicationProducts';
 import PoultryProducts from './categories/PoultryProducts';
 import ProductCategories from './categories/ProductCategories';
