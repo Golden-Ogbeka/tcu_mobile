@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Alert, Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Avatar, Button, Icon, Text, ListItem} from 'react-native-elements';
+import {Alert, Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Avatar, Button, Icon, ListItem} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useAppContext} from '../context/AppContext';
 import LoadingIndicator from './layout/LoadingIndicator';
@@ -72,9 +72,7 @@ export default function WelcomeScreen(props) {
         ) : (
           <ScrollView style={{flex: 1}}>
             <View style={styles.title}>
-              <Text h3 style={{color: 'white'}}>
-                {contextVariables.user.name}
-              </Text>
+              <Text style={styles.user}>{contextVariables.user.name}</Text>
             </View>
             <ListItem bottomDivider>
               <Avatar
@@ -210,7 +208,11 @@ export default function WelcomeScreen(props) {
               <Avatar
                 size="medium"
                 rounded
-                icon={{name: 'user', type: 'font-awesome', size: 30}}
+                icon={{
+                  name: 'user',
+                  type: 'font-awesome',
+                  size: 30,
+                }}
                 overlayContainerStyle={{backgroundColor: '#910000'}}
                 titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
                 onPress={() => props.navigation.navigate('Profile')}
@@ -252,15 +254,18 @@ const styles = StyleSheet.create({
   },
   logoImage: {
     width: '100%',
-    height: 500,
+    // height: 500,
+    resizeMode: 'contain',
   },
   logoContainer: {
-    top: -100,
-    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   listTitle: {
     fontSize: 25,
+    fontWeight: 'bold',
+    color: '#910000',
   },
   listSubtitle: {
     fontSize: 18,
@@ -270,5 +275,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 55,
     backgroundColor: '#910000',
+  },
+  user: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 });

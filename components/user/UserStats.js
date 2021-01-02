@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {Button, Divider, Text, ListItem} from 'react-native-elements';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useAppContext} from '../../context/AppContext';
 import {API_URL} from '../../app.json';
 import Axios from 'axios';
@@ -50,32 +49,36 @@ export default function UserStats(props) {
       {loading === false ? (
         <>
           <View style={styles.statsContainer}>
-            <Text h2>Groups:</Text>
-            <Text h2>{userStats.groups}</Text>
+            <Text style={styles.statLabel}>Groups:</Text>
+            <Text style={styles.statLabel}>{userStats.groups}</Text>
           </View>
           <View style={styles.statsContainer}>
-            <Text h2>Forums: </Text>
-            <Text h2>{userStats.forums}</Text>
+            <Text style={styles.statLabel}>Forums: </Text>
+            <Text style={styles.statLabel}>{userStats.forums}</Text>
           </View>
           <View style={styles.statsContainer}>
-            <Text h2>Products: </Text>
-            <Text h2>{userStats.products}</Text>
+            <Text style={styles.statLabel}>Products: </Text>
+            <Text style={styles.statLabel}>{userStats.products}</Text>
           </View>
           <View style={styles.statsContainer}>
-            <Text h2>Products' Views: </Text>
-            <Text h2>{userStats.productViews}</Text>
+            <Text style={styles.statLabel}>Products' Views: </Text>
+            <Text style={styles.statLabel}>{userStats.productViews}</Text>
           </View>
           <View style={styles.statsContainer}>
-            <Text h2>Brand's Views: </Text>
-            <Text h2>{contextVariables.user.brandClicks}</Text>
+            <Text style={styles.statLabel}>Brand's Views: </Text>
+            <Text style={styles.statLabel}>
+              {contextVariables.user.brandClicks}
+            </Text>
           </View>
           <View style={styles.statsContainer}>
-            <Text h2>Messages: </Text>
-            <Text h2>{userStats.messages}</Text>
+            <Text style={styles.statLabel}>Messages: </Text>
+            <Text style={styles.statLabel}>{userStats.messages}</Text>
           </View>
           <View style={styles.statsContainer}>
-            <Text h3>Date of Registration: </Text>
-            <Text h3>{contextVariables.user.Created}</Text>
+            <Text style={styles.statLabel}>Date of Registration: </Text>
+            <Text style={styles.statLabel}>
+              {contextVariables.user.Created}
+            </Text>
           </View>
         </>
       ) : (
@@ -93,5 +96,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     padding: 10,
     flexWrap: 'wrap',
+  },
+  statLabel: {
+    fontSize: 30,
   },
 });

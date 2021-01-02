@@ -1,14 +1,7 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {ScrollView, StyleSheet, View, Alert} from 'react-native';
-import {
-  Card,
-  Text,
-  Icon,
-  ListItem,
-  Divider,
-  Input,
-} from 'react-native-elements';
+import {ScrollView, StyleSheet, View, Text, Alert} from 'react-native';
+import {Card, Icon, ListItem, Divider, Input} from 'react-native-elements';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {API_URL} from '../../../app.json';
@@ -269,7 +262,7 @@ export default function ViewTopic(props) {
               </View>
             </View>
             <Card.Divider />
-            <Text h4>Comments</Text>
+            <Text style={{fontSize: 20}}>Comments</Text>
             <ScrollView contentContainerStyle={styles.commentsContainer}>
               {comments && comments.length > 0 ? (
                 comments.map((comment) => (

@@ -8,8 +8,8 @@ import {
   StyleSheet,
   View,
   TextInput,
+  Text,
 } from 'react-native';
-import {Button, Input, Text} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {API_URL} from '../../app.json';
 import {Formik} from 'formik';
@@ -38,17 +38,7 @@ export default function Login({navigation}) {
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={{position: 'relative', top: 0, alignItems: 'center'}}>
-        <Image
-          // resizeMode="contain"
-          source={logo}
-          style={styles.logoImage}
-          // PlaceholderContent={<ActivityIndicator color="red" size="large" />}
-          // placeholderStyle={{
-          //   backgroundColor: 'black',
-          // }}
-        />
-      </View>
+      <Image source={logo} style={styles.logoImage} />
       <Formik
         initialValues={{email: '', password: ''}}
         onSubmit={(values) => submitDetails(values)}
@@ -68,7 +58,11 @@ export default function Login({navigation}) {
               onBlur={props.handleBlur('email')}
               value={props.values.email}
               placeholder="Enter your email"
-              rightIcon={{name: 'envelope', type: 'font-awesome'}}
+              rightIcon={{
+                name: 'envelope',
+                type: 'font-awesome',
+                color: '#910000',
+              }}
             />
             <InputComponent
               touched={props.touched.password}
@@ -77,7 +71,11 @@ export default function Login({navigation}) {
               onBlur={props.handleBlur('password')}
               value={props.values.password}
               placeholder="Enter your password"
-              rightIcon={{name: 'lock', type: 'font-awesome-5'}}
+              rightIcon={{
+                name: 'lock',
+                type: 'font-awesome-5',
+                color: '#910000',
+              }}
               secureTextEntry
             />
             <ButtonComponent
@@ -112,11 +110,12 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
+    paddingBottom: 20,
   },
   logoImage: {
     width: 300,
     height: 300,
-    borderRadius: 100,
     resizeMode: 'contain',
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Button, Card, Icon, Text} from 'react-native-elements';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Button, Card, Icon} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
 
 export default function ProductCategories({navigation}) {
@@ -8,7 +8,7 @@ export default function ProductCategories({navigation}) {
     <ScrollView style={styles.container}>
       <Card>
         <Card.Title onPress={() => navigation.navigate('PoultryProducts')}>
-          <Text h3>Poultry Products</Text>
+          <Text style={styles.category}>Poultry Products</Text>
         </Card.Title>
         <Card.Divider />
         <Image
@@ -27,7 +27,7 @@ export default function ProductCategories({navigation}) {
       </Card>
       <Card>
         <Card.Title onPress={() => navigation.navigate('FoodProducts')}>
-          <Text h3> Food Products</Text>
+          <Text style={styles.category}> Food Products</Text>
         </Card.Title>
         <Card.Divider />
         <Image
@@ -46,7 +46,7 @@ export default function ProductCategories({navigation}) {
       </Card>
       <Card>
         <Card.Title onPress={() => navigation.navigate('FrozenProducts')}>
-          <Text h3>Frozen Products</Text>
+          <Text style={styles.category}>Frozen Products</Text>
         </Card.Title>
         <Card.Divider />
         <Image
@@ -65,7 +65,7 @@ export default function ProductCategories({navigation}) {
       </Card>
       <Card>
         <Card.Title onPress={() => navigation.navigate('TrainingProducts')}>
-          <Text h3>Training Products</Text>
+          <Text style={styles.category}>Training Products</Text>
         </Card.Title>
         <Card.Divider />
         <Image
@@ -84,7 +84,7 @@ export default function ProductCategories({navigation}) {
       </Card>
       <Card>
         <Card.Title onPress={() => navigation.navigate('EquipmentProducts')}>
-          <Text h3>Equipment Products</Text>
+          <Text style={styles.category}>Equipment Products</Text>
         </Card.Title>
         <Card.Divider />
         <Image
@@ -103,7 +103,7 @@ export default function ProductCategories({navigation}) {
       </Card>
       <Card>
         <Card.Title onPress={() => navigation.navigate('MedicationProducts')}>
-          <Text h3>Medication Products</Text>
+          <Text style={styles.category}>Medication Products</Text>
         </Card.Title>
         <Card.Divider />
         <Image
@@ -125,13 +125,16 @@ export default function ProductCategories({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  category: {
+    fontSize: 30,
+    color: '#910000',
+  },
   container: {
     flex: 1,
     marginBottom: 20,
   },
   image: {
     width: Card.width,
-    height: 200,
     resizeMode: 'contain',
     borderRadius: 20,
   },

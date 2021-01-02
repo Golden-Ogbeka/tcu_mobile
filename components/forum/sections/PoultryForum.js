@@ -32,8 +32,8 @@ export default function PoultryForum(props) {
         topics.length > 0 ? (
           <ForumTopics section="Poultry" {...props} />
         ) : (
-          <View style={styles.container}>
-            <Text h3>No topics found</Text>
+          <View style={styles.empty}>
+            <Text h3>No topic found</Text>
           </View>
         )
       ) : (
@@ -46,5 +46,8 @@ export default function PoultryForum(props) {
 const styles = StyleSheet.create({
   container: {
     paddingBottom: 20,
+  },
+  empty: {
+    alignItems: 'center',
   },
 });

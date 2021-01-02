@@ -27,12 +27,12 @@ export default function MedicationForum(props) {
     getTopics();
   }, []);
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
       {loading === false ? (
         topics.length > 0 ? (
           <ForumTopics section="Medication" {...props} />
         ) : (
-          <View style={styles.container}>
+          <View style={styles.empty}>
             <Text h3>No topics found</Text>
           </View>
         )
@@ -45,6 +45,9 @@ export default function MedicationForum(props) {
 
 const styles = StyleSheet.create({
   container: {
+    paddingBottom: 20,
+  },
+  empty: {
     alignItems: 'center',
   },
 });

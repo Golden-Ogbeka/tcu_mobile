@@ -40,8 +40,8 @@ export default function GroupsTab() {
         activeTintColor: 'white',
         inactiveTintColor: 'black',
         labelStyle: {
-          fontSize: 15,
-          fontWeight: 'bold',
+          fontSize: 20,
+          // fontWeight: 'bold',
         },
       }}>
       <Tab.Screen name="Your Groups" component={UserGroups} />

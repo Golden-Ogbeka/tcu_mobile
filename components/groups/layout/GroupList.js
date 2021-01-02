@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, View, Text} from 'react-native';
 import Axios from 'axios';
 import {API_URL} from '../../../app.json';
-import {Button, Card, Divider, Icon, Text} from 'react-native-elements';
+import {Button, Card, Divider, Icon} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
 import ImageComponent from '../../layout/ImageComponent';
 
@@ -49,14 +49,21 @@ export default function GroupList(props) {
         groups.map((group) => (
           <Card key={group._id}>
             <ImageComponent uri={group.image} style={styles.image} />
-            <Divider />
+            <Card.Divider />
             <Card.Title
-              onPress={() => props.navigation.navigate('PoultryProducts')}>
-              <Text h4>{group.name}</Text>
+              onPress={() =>
+                props.navigation.navigate('Group Stack', {
+                  screen: 'Group Info',
+                  params: {groupID: group._id},
+                })
+              }>
+              <Text style={styles.groupName}>{group.name}</Text>
             </Card.Title>
             <Card.Divider />
-            <Text style={styles.founder}>{group.founder}</Text>
-            <Text style={styles.description}>{group.description}</Text>
+            <Text style={styles.founder}>Founder: {group.founder}</Text>
+            <Text style={styles.description}>
+              Description: {group.description}
+            </Text>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text style={styles.members}>
@@ -90,7 +97,6 @@ const styles = StyleSheet.create({
   image: {
     width: Card.width,
     height: 200,
-    // resizeMode: 'stretch',
     borderRadius: 20,
   },
   founder: {
@@ -98,10 +104,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  groupName: {
+    fontSize: 30,
+    color: '#910000',
+  },
   description: {
     marginBottom: 10,
     fontSize: 20,
-    fontStyle: 'italic',
   },
   members: {
     marginBottom: 10,

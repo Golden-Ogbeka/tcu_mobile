@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -11,7 +12,6 @@ import {
   Button,
   Image,
   TouchableOpacity,
-  Text,
   Alert,
 } from 'react-native';
 import NavLayout from './components/layout/NavLayout';
@@ -26,7 +26,7 @@ import ProducerTab from './components/producer/ProducerTab';
 import GroupsTab from './components/groups/GroupsTab';
 import Messages from './components/user/Messages';
 import About from './components/About';
-import {Icon} from 'react-native-elements';
+import {Icon, Text} from 'react-native-elements';
 import UserStats from './components/user/UserStats';
 import Axios from 'axios';
 import {API_URL} from './app.json';
@@ -78,6 +78,7 @@ const App = () => {
       }
     };
     verifyUser();
+    SplashScreen.hide();
   }, []);
 
   return (
@@ -100,22 +101,30 @@ const App = () => {
               drawerContentOptions={{
                 activeBackgroundColor: '#910000',
                 activeTintColor: 'white',
-                inactiveTintColor: 'black',
+                inactiveTintColor: '#910000',
                 style: {
                   borderRightWidth: 1,
                   borderColor: '#910000',
                 },
                 labelStyle: {
-                  fontSize: 20,
-                  fontWeight: 'bold',
+                  fontSize: 25,
+                  // fontWeight: 'bold',
                 },
-              }}>
+              }}
+              drawerStyle={{width: 300}}>
               {/* This home page would always show and content is determined based on login activity */}
               <Drawer.Screen
                 name="Home"
                 component={WelcomeScreen}
                 options={{
-                  drawerIcon: () => <Icon name="home" color="#C0C0C0" />,
+                  drawerIcon: () => (
+                    <Icon
+                      name="home"
+                      color="#C0C0C0"
+                      type="font-awesome"
+                      size={30}
+                    />
+                  ),
                 }}
               />
 
@@ -126,7 +135,9 @@ const App = () => {
                     name="Login"
                     component={Login}
                     options={{
-                      drawerIcon: () => <Icon name="login" color="#C0C0C0" />,
+                      drawerIcon: () => (
+                        <Icon name="login" color="#C0C0C0" size={30} />
+                      ),
                     }}
                   />
                   <Drawer.Screen
@@ -134,7 +145,12 @@ const App = () => {
                     component={Register}
                     options={{
                       drawerIcon: () => (
-                        <Icon name="user" type="font-awesome" color="#C0C0C0" />
+                        <Icon
+                          name="user"
+                          type="font-awesome"
+                          color="#C0C0C0"
+                          size={30}
+                        />
                       ),
                     }}
                   />
@@ -154,11 +170,7 @@ const App = () => {
                     component={ProductsHome}
                     options={{
                       drawerIcon: () => (
-                        <Icon
-                          name="box-open"
-                          type="font-awesome-5"
-                          color="#C0C0C0"
-                        />
+                        <Icon name="inventory" color="#C0C0C0" size={30} />
                       ),
                     }}
                   />
@@ -167,11 +179,7 @@ const App = () => {
                     component={ForumHome}
                     options={{
                       drawerIcon: () => (
-                        <Icon
-                          name="pen"
-                          type="font-awesome-5"
-                          color="#C0C0C0"
-                        />
+                        <Icon name="edit" color="#C0C0C0" size={30} />
                       ),
                     }}
                   />
@@ -180,11 +188,7 @@ const App = () => {
                     component={GroupsTab}
                     options={{
                       drawerIcon: () => (
-                        <Icon
-                          name="group"
-                          type="font-awesome"
-                          color="#C0C0C0"
-                        />
+                        <Icon name="group" color="#C0C0C0" size={30} />
                       ),
                     }}
                   />
@@ -193,11 +197,7 @@ const App = () => {
                     component={UserProfileTab}
                     options={{
                       drawerIcon: () => (
-                        <Icon
-                          name="user"
-                          type="font-awesome-5"
-                          color="#C0C0C0"
-                        />
+                        <Icon name="person" color="#C0C0C0" size={30} />
                       ),
                     }}
                   />
@@ -206,7 +206,12 @@ const App = () => {
                     component={ProducerTab}
                     options={{
                       drawerIcon: () => (
-                        <Icon name="attach-money" color="#C0C0C0" />
+                        <Icon
+                          name="attach-money"
+                          color="#C0C0C0"
+                          size={30}
+                          style={{padding: 0}}
+                        />
                       ),
                     }}
                   />
@@ -214,7 +219,9 @@ const App = () => {
                     name="Messages"
                     component={Messages}
                     options={{
-                      drawerIcon: () => <Icon name="message" color="#C0C0C0" />,
+                      drawerIcon: () => (
+                        <Icon name="message" color="#C0C0C0" size={30} />
+                      ),
                     }}
                   />
                   <Drawer.Screen
@@ -222,7 +229,7 @@ const App = () => {
                     component={UserStats}
                     options={{
                       drawerIcon: () => (
-                        <Icon name="hourglass-top" color="#C0C0C0" />
+                        <Icon name="hourglass-top" color="#C0C0C0" size={30} />
                       ),
                     }}
                   />
@@ -242,6 +249,7 @@ const App = () => {
                           name="sign-out"
                           type="font-awesome"
                           color="#C0C0C0"
+                          size={30}
                         />
                       ),
                     }}

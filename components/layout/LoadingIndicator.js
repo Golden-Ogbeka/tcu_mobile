@@ -1,6 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {Text} from 'react-native-elements';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 
 export default function LoadingIndicator() {
   return (
@@ -10,7 +9,7 @@ export default function LoadingIndicator() {
         size="large"
         style={styles.indicator}
       />
-      <Text h3>Loading...</Text>
+      <Text style={styles.title}>Loading...</Text>
     </View>
   );
 }
@@ -21,5 +20,8 @@ const styles = StyleSheet.create({
   },
   indicator: {
     paddingTop: 20,
+  },
+  title: {
+    fontSize: 30,
   },
 });

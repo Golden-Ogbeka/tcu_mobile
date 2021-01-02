@@ -8,7 +8,7 @@ import {API_URL} from '../../app.json';
 
 export default function Messages() {
   const {contextVariables, setVariables} = useAppContext();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [messageDetails, setMessageDetails] = useState({
     messages: [],
     conversations: [],
@@ -71,10 +71,10 @@ export default function Messages() {
                   Date: {conversation.timestamp}
                 </ListItem.Subtitle>
               </ListItem.Content>
-              <Button
+              {/* <Button
                 icon={<Icon name="reply" type="font-awesome" color="white" />}
                 buttonStyle={{backgroundColor: 'gold'}}
-              />
+              /> */}
               <Button
                 icon={<Icon name="trash" type="font-awesome" color="white" />}
                 buttonStyle={{backgroundColor: '#910000'}}

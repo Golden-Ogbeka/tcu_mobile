@@ -1,6 +1,6 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, View} from 'react-native';
-import {Avatar, Button, Card, ListItem, Text} from 'react-native-elements';
+import {Image, ScrollView, StyleSheet, View, Text} from 'react-native';
+import {Avatar, Button, Card, ListItem} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
 
 export default function ForumSections({navigation}) {
@@ -10,15 +10,17 @@ export default function ForumSections({navigation}) {
         <Avatar
           rounded
           title="P"
-          overlayContainerStyle={{backgroundColor: '#910000'}}
+          overlayContainerStyle={{backgroundColor: '#910000', padding: 20}}
           titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
           onPress={() => navigation.navigate('PoultryForum')}
         />
         <ListItem.Content>
           <ListItem.Title onPress={() => navigation.navigate('PoultryForum')}>
-            <Text h4>Poultry Forum</Text>
+            <Text style={styles.section}>Poultry Forum</Text>
           </ListItem.Title>
-          <ListItem.Subtitle>About Live Chickens, Eggs, etc.</ListItem.Subtitle>
+          <ListItem.Subtitle>
+            <Text>About Live Chickens, Eggs, etc.</Text>
+          </ListItem.Subtitle>
         </ListItem.Content>
         <ButtonComponent
           title="View"
@@ -30,15 +32,17 @@ export default function ForumSections({navigation}) {
         <Avatar
           rounded
           title="F"
-          overlayContainerStyle={{backgroundColor: '#910000'}}
+          overlayContainerStyle={{backgroundColor: '#910000', padding: 20}}
           titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
           onPress={() => navigation.navigate('FoodForum')}
         />
         <ListItem.Content>
           <ListItem.Title onPress={() => navigation.navigate('FoodForum')}>
-            <Text h4>Food Forum</Text>
+            <Text style={styles.section}>Food Forum</Text>
           </ListItem.Title>
-          <ListItem.Subtitle>About Fast Food, Snacks, etc. </ListItem.Subtitle>
+          <ListItem.Subtitle>
+            <Text>About Fast Food, Snacks, etc.</Text>
+          </ListItem.Subtitle>
         </ListItem.Content>
         <ButtonComponent
           title="View"
@@ -50,16 +54,16 @@ export default function ForumSections({navigation}) {
         <Avatar
           rounded
           title="Fr"
-          overlayContainerStyle={{backgroundColor: '#910000'}}
+          overlayContainerStyle={{backgroundColor: '#910000', padding: 20}}
           titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
           onPress={() => navigation.navigate('FrozenForum')}
         />
         <ListItem.Content>
           <ListItem.Title onPress={() => navigation.navigate('FrozenForum')}>
-            <Text h4>Frozen Forum</Text>
+            <Text style={styles.section}>Frozen Forum</Text>
           </ListItem.Title>
           <ListItem.Subtitle>
-            About Frozen Food, Cold rooms, etc.
+            <Text>About Frozen Food, Cold rooms, etc.</Text>
           </ListItem.Subtitle>
         </ListItem.Content>
         <ButtonComponent
@@ -72,15 +76,17 @@ export default function ForumSections({navigation}) {
         <Avatar
           rounded
           title="T"
-          overlayContainerStyle={{backgroundColor: '#910000'}}
+          overlayContainerStyle={{backgroundColor: '#910000', padding: 20}}
           titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
           onPress={() => navigation.navigate('TrainingForum')}
         />
         <ListItem.Content>
           <ListItem.Title onPress={() => navigation.navigate('TrainingForum')}>
-            <Text h4>Training Forum</Text>
+            <Text style={styles.section}>Training Forum</Text>
           </ListItem.Title>
-          <ListItem.Subtitle>About Tranings, Seminars, etc. </ListItem.Subtitle>
+          <ListItem.Subtitle>
+            <Text>About Tranings, Seminars, etc.</Text>
+          </ListItem.Subtitle>
         </ListItem.Content>
         <ButtonComponent
           title="View"
@@ -92,16 +98,16 @@ export default function ForumSections({navigation}) {
         <Avatar
           rounded
           title="E"
-          overlayContainerStyle={{backgroundColor: '#910000'}}
+          overlayContainerStyle={{backgroundColor: '#910000', padding: 20}}
           titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
           onPress={() => navigation.navigate('EquipmentForum')}
         />
         <ListItem.Content>
           <ListItem.Title onPress={() => navigation.navigate('EquipmentForum')}>
-            <Text h4>Equipment Forum</Text>
+            <Text style={styles.section}>Equipment Forum</Text>
           </ListItem.Title>
           <ListItem.Subtitle>
-            About Feed, Tools, Equipment, etc.{' '}
+            <Text>About Feed, Tools, Equipment, etc. </Text>
           </ListItem.Subtitle>
         </ListItem.Content>
         <ButtonComponent
@@ -114,17 +120,17 @@ export default function ForumSections({navigation}) {
         <Avatar
           rounded
           title="M"
-          overlayContainerStyle={{backgroundColor: '#910000'}}
+          overlayContainerStyle={{backgroundColor: '#910000', padding: 20}}
           titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
           onPress={() => navigation.navigate('MedicationForum')}
         />
         <ListItem.Content>
           <ListItem.Title
             onPress={() => navigation.navigate('MedicationForum')}>
-            <Text h4>Medication Forum</Text>
+            <Text style={styles.section}>Medication Forum</Text>
           </ListItem.Title>
           <ListItem.Subtitle>
-            About Live Chickens, Eggs, etc.{' '}
+            <Text>About Live Chickens, Eggs, etc. </Text>
           </ListItem.Subtitle>
         </ListItem.Content>
         <ButtonComponent
@@ -137,16 +143,16 @@ export default function ForumSections({navigation}) {
         <Avatar
           rounded
           title="C"
-          overlayContainerStyle={{backgroundColor: '#910000'}}
+          overlayContainerStyle={{backgroundColor: '#910000', padding: 20}}
           titleStyle={{color: 'white', fontSize: 25, fontWeight: 'bold'}}
           onPress={() => navigation.navigate('ContactForum')}
         />
         <ListItem.Content>
           <ListItem.Title onPress={() => navigation.navigate('ContactForum')}>
-            <Text h4>Contact Forum</Text>
+            <Text style={styles.section}>Contact Forum</Text>
           </ListItem.Title>
           <ListItem.Subtitle>
-            Brand Descriptions, Contact, etc
+            <Text>Brand Descriptions, Contact, etc</Text>
           </ListItem.Subtitle>
         </ListItem.Content>
         <ButtonComponent
@@ -159,4 +165,10 @@ export default function ForumSections({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  section: {
+    color: '#910000',
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
+});

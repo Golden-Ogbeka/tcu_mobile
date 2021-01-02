@@ -1,8 +1,8 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
-import {Image, StyleSheet, View} from 'react-native';
-import {Button, Card, Icon, Text} from 'react-native-elements';
+import {Image, StyleSheet, View, Text} from 'react-native';
+import {Button, Card, Icon} from 'react-native-elements';
 import {API_URL} from '../../../app.json';
 import ButtonComponent from '../../layout/ButtonComponent';
 import ImageComponent from '../../layout/ImageComponent';
@@ -33,7 +33,9 @@ export default function ProducerProducts(props) {
           products.map((product) => (
             <Card key={product._id}>
               <Card.Title>
-                <Text h3>{product.productName}</Text>
+                <Text style={{fontSize: 30, color: '#910000'}}>
+                  {product.productName}
+                </Text>
               </Card.Title>
               <Card.Divider />
               <ImageComponent uri={product.image} style={styles.image} />
@@ -48,10 +50,8 @@ export default function ProducerProducts(props) {
                   justifyContent: 'space-between',
                   paddingBottom: 20,
                 }}>
-                <Text h4>Views: {product.clicks}</Text>
-                <Text h4 style={{color: 'blue'}}>
-                  Status: {product.status}
-                </Text>
+                <Text style={styles.views}>Views: {product.clicks}</Text>
+                <Text style={styles.status}>Status: {product.status}</Text>
               </View>
               <ButtonComponent
                 icon={
@@ -70,7 +70,7 @@ export default function ProducerProducts(props) {
           ))
         ) : (
           <View style={{alignItems: 'center'}}>
-            <Text h3>No product found</Text>
+            <Text style={{fontSize: 30}}>No product found</Text>
           </View>
         )
       ) : (
@@ -95,15 +95,21 @@ const styles = StyleSheet.create({
   description: {
     marginBottom: 10,
     fontSize: 20,
-    fontStyle: 'italic',
   },
   price: {
     marginBottom: 10,
     fontSize: 30,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
   },
   button: {
     backgroundColor: '#910000',
+  },
+  status: {
+    fontSize: 20,
+    color: 'blue',
+  },
+  views: {
+    fontSize: 20,
   },
   title: {
     justifyContent: 'center',

@@ -36,8 +36,7 @@ export default function ProducerTab() {
         activeTintColor: 'white',
         inactiveTintColor: 'black',
         labelStyle: {
-          fontSize: 15,
-          fontWeight: 'bold',
+          fontSize: 20,
         },
       }}>
       <Tab.Screen name="Your products" component={ProductsStack} />

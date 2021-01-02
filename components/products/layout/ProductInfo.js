@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {Card, Icon, Text} from 'react-native-elements';
+import {StyleSheet, Text, View} from 'react-native';
+import {Card, Icon} from 'react-native-elements';
 import {API_URL} from '../../../app.json';
 import ButtonComponent from '../../layout/ButtonComponent';
 import ImageComponent from '../../layout/ImageComponent';
@@ -44,7 +44,7 @@ export default function ProductInfo(props) {
                   params: {productID: product._id},
                 })
               }>
-              <Text h3>{product.productName}</Text>
+              <Text style={styles.productTitle}>{product.productName}</Text>
             </Card.Title>
             <Card.Divider />
             <ImageComponent
@@ -103,6 +103,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 30,
     fontWeight: 'bold',
+  },
+  productTitle: {
+    fontSize: 30,
+    color: '#910000',
   },
   button: {
     backgroundColor: '#910000',

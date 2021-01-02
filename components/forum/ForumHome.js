@@ -40,8 +40,8 @@ export default function ForumHome() {
           activeTintColor: 'white',
           inactiveTintColor: 'black',
           labelStyle: {
-            fontSize: 15,
-            fontWeight: 'bold',
+            fontSize: 20,
+            // fontWeight: 'bold',
           },
         }}>
         <Tab.Screen
