@@ -1,5 +1,5 @@
 {
   "name": "tcu_mobile",
   "displayName": "TCU",
-  "API_URL": "http://192.168.43.187:3000"
+  "API_URL": "https://www.tcu.ng"
 }
