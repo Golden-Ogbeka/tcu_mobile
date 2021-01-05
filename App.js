@@ -24,7 +24,6 @@ import ForumHome from './components/forum/ForumHome';
 import UserProfileTab from './components/user/profile/UserProfileTab';
 import ProducerTab from './components/producer/ProducerTab';
 import GroupsTab from './components/groups/GroupsTab';
-import Messages from './components/user/Messages';
 import About from './components/About';
 import {Icon, Text} from 'react-native-elements';
 import UserStats from './components/user/UserStats';
@@ -34,6 +33,7 @@ import {API_URL} from './app.json';
 // Context
 import {AppContext} from './context/AppContext';
 import Logout from './components/userAuth/Logout';
+import MessageStack from './components/user/messages/MessageStack';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -217,7 +217,7 @@ const App = () => {
                   />
                   <Drawer.Screen
                     name="Messages"
-                    component={Messages}
+                    component={MessageStack}
                     options={{
                       drawerIcon: () => (
                         <Icon name="message" color="#C0C0C0" size={30} />

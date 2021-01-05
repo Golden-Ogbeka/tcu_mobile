@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {Alert, ScrollView, StyleSheet, View, Share} from 'react-native';
 import {Text, ListItem, Avatar, Icon} from 'react-native-elements';
 import ButtonComponent from '../../layout/ButtonComponent';
 import ImageComponent from '../../layout/ImageComponent';
@@ -20,24 +20,55 @@ export default function ViewProducerProfile(props) {
     };
     getUserData();
   }, [userDetails]);
+
+  const ShareBrand = async () => {
+    try {
+      const url = `${API_URL}/about/brand/${userDetails.brandName}`;
+      await Share.share({
+        title: userDetails.brandName,
+        message: `View my brand: ${userDetails.brandName}. ${url}`,
+        url: url,
+      });
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
   return (
     <ScrollView contentContainerStyle={{backgroundColor: 'white'}}>
-      <View style={styles.editButtonView}>
-        <ButtonComponent
-          title="Edit Profile"
-          icon={
-            <Icon
-              name="pen"
-              type="font-awesome-5"
-              size={20}
-              color="white"
-              style={{paddingRight: 10}}
-            />
-          }
-          buttonStyle={styles.editButton}
-          onPress={() => props.navigation.navigate('Edit Producer Profile')}
-        />
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={styles.editButtonView}>
+          <ButtonComponent
+            title="Share Brand"
+            icon={
+              <Icon
+                name="share"
+                size={20}
+                color="white"
+                style={{paddingRight: 10}}
+              />
+            }
+            buttonStyle={styles.controlButton}
+            onPress={() => ShareBrand()}
+          />
+        </View>
+        <View style={styles.editButtonView}>
+          <ButtonComponent
+            title="Edit Profile"
+            icon={
+              <Icon
+                name="pen"
+                type="font-awesome-5"
+                size={20}
+                color="white"
+                style={{paddingRight: 10}}
+              />
+            }
+            buttonStyle={styles.controlButton}
+            onPress={() => props.navigation.navigate('Edit Producer Profile')}
+          />
+        </View>
       </View>
+
       <View style={styles.imageContainer}>
         <ImageComponent uri={userDetails.brandImage} label="Brand Image" />
       </View>
@@ -207,7 +238,7 @@ export default function ViewProducerProfile(props) {
 }
 
 const styles = StyleSheet.create({
-  editButton: {
+  controlButton: {
     backgroundColor: '#910000',
   },
   editButtonView: {

@@ -2,12 +2,10 @@ import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {Alert, ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Text, Icon, ListItem} from 'react-native-elements';
-import {useAppContext} from '../../context/AppContext';
-import LoadingIndicator from '../layout/LoadingIndicator';
-import {API_URL} from '../../app.json';
+import LoadingIndicator from '../../layout/LoadingIndicator';
+import {API_URL} from '../../../app.json';
 
-export default function Messages() {
-  const {contextVariables, setVariables} = useAppContext();
+export default function ViewMessages(props) {
   const [loading, setLoading] = useState(true);
   const [messageDetails, setMessageDetails] = useState({
     messages: [],
@@ -71,10 +69,19 @@ export default function Messages() {
                   Date: {conversation.timestamp}
                 </ListItem.Subtitle>
               </ListItem.Content>
-              {/* <Button
+              <Button
                 icon={<Icon name="reply" type="font-awesome" color="white" />}
-                buttonStyle={{backgroundColor: 'gold'}}
-              /> */}
+                buttonStyle={{
+                  backgroundColor: conversation.replied ? 'grey' : 'gold',
+                }}
+                onPress={() =>
+                  props.navigation.navigate('Send Message', {
+                    senderEmail: conversation.senderEmail,
+                    type: 'reply',
+                    messageID: conversation._id,
+                  })
+                }
+              />
               <Button
                 icon={<Icon name="trash" type="font-awesome" color="white" />}
                 buttonStyle={{backgroundColor: '#910000'}}

@@ -1,8 +1,6 @@
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Alert} from 'react-native';
-import {ScrollView} from 'react-native';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Share, ScrollView, Alert} from 'react-native';
 import {Avatar, Text, Card, Icon, ListItem} from 'react-native-elements';
 import {API_URL} from '../../../../app.json';
 import {useAppContext} from '../../../../context/AppContext';
@@ -43,6 +41,19 @@ export default function ViewProduct(props) {
       return props.navigation.goBack();
     } catch (error) {
       Alert.alert(error.response.data);
+    }
+  };
+
+  const ShareProduct = async () => {
+    try {
+      const url = `${API_URL}/about/product/${productDetails._id}`;
+      await Share.share({
+        title: productDetails.productName,
+        message: `View my product: ${productDetails.productName}. ${url}`,
+        url: url,
+      });
+    } catch (error) {
+      Alert.alert(error.message);
     }
   };
 
@@ -186,7 +197,12 @@ export default function ViewProduct(props) {
                     )
                   }
                 />
-                <Icon name="share" color="#910000" size={40} />
+                <Icon
+                  name="share"
+                  color="#910000"
+                  size={40}
+                  onPress={() => ShareProduct()}
+                />
               </ListItem>
             )}
           </ScrollView>

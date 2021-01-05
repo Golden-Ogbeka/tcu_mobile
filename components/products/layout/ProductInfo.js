@@ -60,19 +60,50 @@ export default function ProductInfo(props) {
             <Text style={styles.brand}>{product.brandName}</Text>
             <Text style={styles.description}>{product.productDescription}</Text>
             <Text style={styles.price}>NGN {product.price}</Text>
-            <ButtonComponent
-              icon={
-                <Icon name="info" style={{paddingRight: 10}} color="#ffffff" />
-              }
-              title="View Product Details"
-              buttonStyle={styles.button}
-              onPress={() =>
-                props.navigation.navigate('Product Info', {
-                  screen: 'View Product',
-                  params: {productID: product._id},
-                })
-              }
-            />
+            <View style={styles.productControls}>
+              <View style={styles.buttonView}>
+                <ButtonComponent
+                  icon={
+                    <Icon
+                      name="info"
+                      style={{paddingRight: 10}}
+                      color="#ffffff"
+                    />
+                  }
+                  title="Details"
+                  buttonStyle={styles.button}
+                  onPress={() =>
+                    props.navigation.navigate('Product Info', {
+                      screen: 'View Product',
+                      params: {productID: product._id},
+                    })
+                  }
+                />
+              </View>
+              <View style={styles.buttonView}>
+                <ButtonComponent
+                  icon={
+                    <Icon
+                      name="message"
+                      style={{paddingRight: 10}}
+                      color="#ffffff"
+                    />
+                  }
+                  title="Message"
+                  buttonStyle={styles.button}
+                  onPress={() =>
+                    props.navigation.navigate('Messages', {
+                      screen: 'Send Message',
+                      params: {
+                        brand: product.brandName,
+                        type: 'send',
+                      },
+                      initial: false,
+                    })
+                  }
+                />
+              </View>
+            </View>
           </Card>
         ))}
     </View>
@@ -104,11 +135,19 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
+  productControls: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: 1,
+  },
   productTitle: {
     fontSize: 30,
     color: '#910000',
   },
   button: {
     backgroundColor: '#910000',
+  },
+  buttonView: {
+    paddingHorizontal: 20,
   },
 });
